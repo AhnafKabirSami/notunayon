@@ -29,3 +29,6 @@ dist-ssr
 /backend/.claude/
 /backend/.cursor/
 /backend/.devin/
+
+# Generated Prisma Client
+/backend/src/generated/
