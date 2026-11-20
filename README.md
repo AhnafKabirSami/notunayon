@@ -1,16 +1,27 @@
-# React + Vite
+# Notunayon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Notunayon is a static React prototype for discovering and exchanging agricultural by-products in Bangladesh. It uses illustrative marketplace data and local browser state to demonstrate supplier discovery, offers, and buyer, seller, and admin workflows.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+Useful checks:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm run build
+npm run lint
+```
 
-## Expanding the ESLint configuration
+## Prototype routes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `/` — Public homepage and sourcing enquiry.
+- `/marketplace` and `/marketplace/:id` — Search, filter, and inspect sample materials.
+- `/requests`, `/how-it-works`, `/about`, `/contact`, and `/logistics` — Public information pages.
+- `/login` and `/register` — Local-only account demonstrations.
+- `/buyer-dashboard/*`, `/seller-dashboard/*`, and `/admin/*` — Demonstration workspaces.
+
+No backend, database, real authentication, payment processing, or AI service is connected. Listing, offer, and profile interactions are mock-only; sample prices, supply, statistics, and match scores are not verified real-world data.
