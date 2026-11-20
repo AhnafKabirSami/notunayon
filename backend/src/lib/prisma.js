@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 const { PrismaMariaDb } = require('@prisma/adapter-mariadb');
-const { PrismaClient } = require('../generated/prisma/client');
+const { PrismaClient } = require('@prisma/client');
 
 // Parse components from DATABASE_URL (mysql://user:password@host:port/database).
 // Using Node's built-in URL class avoids an extra dependency and handles

@@ -1,19 +1,10 @@
 // Prisma schema for Notunayon
 // Prisma ORM 7.10.1 | MySQL 8.4
 
-// Generator changed from "prisma-client-js" to "prisma-client":
-//   - "prisma-client-js" is a deprecated alias in Prisma 7; it still compiles
-//     but does NOT support the moduleFormat option, which is required here.
-//   - moduleFormat = "cjs" generates CommonJS-compatible require() output.
-//     Without it, Prisma 7 defaults to ESM-first which breaks require().
-//   - output = "../src/generated/prisma" is required when using driver adapters
-//     in Prisma 7 — the client can no longer live in node_modules/@prisma/client.
-//   - Import path changes from require('@prisma/client')
-//     to require('../generated/prisma/client') (relative to src/lib/).
+// This CommonJS backend runs plain JavaScript, so use the JavaScript client
+// generator instead of the TypeScript-only prisma-client generator.
 generator client {
-  provider     = "prisma-client"
-  output       = "../src/generated/prisma"
-  moduleFormat = "cjs"
+  provider = "prisma-client-js"
 }
 
 datasource db {
