@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Bot, RotateCcw, Sprout, X } from 'lucide-react'
 import ChatInput from './ChatInput.jsx'
 import ChatMessage, { TypingIndicator } from './ChatMessage.jsx'
 import ChatSuggestions from './ChatSuggestions.jsx'
 
 export default function ChatWindow({ open, messages, typing, onClose, onClear, onSend }) {
+  const { t } = useTranslation()
   const conversationRef = useRef(null)
 
   useEffect(() => {
@@ -16,24 +18,24 @@ export default function ChatWindow({ open, messages, typing, onClose, onClear, o
   return (
     <section
       className={`notu-chat-window ${open ? 'notu-chat-window-open' : ''}`}
-      aria-label="Tonu AI chat"
+      aria-label={t('chatbot.name')}
       aria-hidden={!open}
       inert={!open}
     >
       <header className="notu-chat-header">
         <span className="notu-chat-logo"><Sprout size={21} /></span>
         <div className="notu-chat-title">
-          <b>Tonu AI</b>
-          <span>Your Notunayon Marketplace Assistant</span>
-          <small><i /> Online · Demo assistant</small>
+          <b>{t('chatbot.name')}</b>
+          <span>{t('chatbot.subtitle')}</span>
+          <small><i /> {t('chatbot.online')}</small>
         </div>
         <div className="notu-chat-header-actions">
-          <button type="button" onClick={onClear} aria-label="Clear conversation" title="Clear conversation"><RotateCcw size={16} /></button>
-          <button type="button" onClick={onClose} aria-label="Close chat" title="Close chat"><X size={18} /></button>
+          <button type="button" onClick={onClear} aria-label={t('chatbot.clear')} title={t('chatbot.clear')}><RotateCcw size={16} /></button>
+          <button type="button" onClick={onClose} aria-label={t('common.close')} title={t('common.close')}><X size={18} /></button>
         </div>
       </header>
 
-      <div className="notu-chat-demo-note"><Bot size={14} /> Responses are predefined demonstrations. No AI service is connected.</div>
+      <div className="notu-chat-demo-note"><Bot size={14} /> {t('chatbot.demoNote')}</div>
 
       <div className="notu-chat-conversation" ref={conversationRef} aria-live="polite">
         {messages.map((message) => (
@@ -49,7 +51,7 @@ export default function ChatWindow({ open, messages, typing, onClose, onClear, o
 
       <footer className="notu-chat-footer">
         <ChatInput disabled={typing} onSend={onSend} />
-        <span>Enter to send <i>·</i> Shift + Enter for a new line</span>
+        <span>{t('chatbot.enterHint')}</span>
       </footer>
     </section>
   )

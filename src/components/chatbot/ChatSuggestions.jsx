@@ -1,16 +1,14 @@
 import { ArrowUpRight, MessageCircleQuestion } from 'lucide-react'
-
-const chatSuggestions = [
-  'Find rice husk near Rajshahi',
-  'How can I sell cattle manure?',
-  'What is poultry litter used for?',
-  'How does Notunayon work?',
-]
+import { useTranslation } from 'react-i18next'
 
 export default function ChatSuggestions({ onSelect }) {
+  const { t } = useTranslation()
+  const chatSuggestions = [
+    t('chatbot.s1'), t('chatbot.s2'), t('chatbot.s3'), t('chatbot.s4'),
+  ]
   return (
-    <div className="notu-suggestions" aria-label="Suggested questions">
-      <div className="notu-suggestions-heading"><MessageCircleQuestion size={14} /> Suggested questions</div>
+    <div className="notu-suggestions" aria-label={t('chatbot.suggested')}>
+      <div className="notu-suggestions-heading"><MessageCircleQuestion size={14} /> {t('chatbot.suggested')}</div>
       {chatSuggestions.map((question) => (
         <button key={question} type="button" onClick={() => onSelect(question)}>
           <span>{question}</span><ArrowUpRight size={14} />
