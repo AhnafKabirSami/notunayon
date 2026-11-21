@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
   ArrowDownUp, ArrowLeft, ArrowRight, ArrowUpRight, BadgeCheck, BarChart3, Bell, Boxes,
@@ -13,6 +14,7 @@ import { categories, listingsSeed, locations, offersSeed, requestsSeed, transact
 import { filterListings, formatPrice } from './utils'
 import { calculateDemoMatches } from './utils/matching'
 import Chatbot from './components/chatbot/Chatbot.jsx'
+import { changeWebsiteLanguage } from './i18n/i18n.js'
 import './index.css'
 
 const AppContext = createContext(null)
@@ -20,6 +22,10 @@ const useApp = () => useContext(AppContext)
 const photo = (id, width = 900) => `https://images.unsplash.com/${id.startsWith('photo-') ? id : `photo-${id}`}?auto=format&fit=crop&w=${width}&q=82`
 
 function App() {
+  const { i18n } = useTranslation()
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage === 'bn' ? 'bn' : 'en'
+  }, [i18n.resolvedLanguage])
   const [listings, setListings] = useState(() => {
     try { return [...listingsSeed, ...(JSON.parse(localStorage.getItem('notunayon-listings') || '[]'))] } catch { return listingsSeed }
   })
@@ -63,34 +69,40 @@ function PublicLayout({ children }) {
 }
 
 function Navbar() {
+  const { t, i18n } = useTranslation()
   const [open, setOpen] = useState(false)
   const { user } = useApp()
-  const links = [['Home', '/'], ['Marketplace', '/marketplace'], ['How it works', '/how-it-works'], ['About', '/about'], ['Contact', '/contact'], ['Register', '/register']]
+  const links = [[t('common.home'), '/'], [t('common.marketplace'), '/marketplace'], [t('common.howItWorks'), '/how-it-works'], [t('common.about'), '/about'], [t('common.contact'), '/contact'], [t('common.register'), '/register']]
+  const toggleLanguage = () => changeWebsiteLanguage(i18n.resolvedLanguage === 'bn' ? 'en' : 'bn')
   return <header className="site-header">
-    <div className="topline"><span>Bangladesh’s circular economy marketplace</span><span className="demo-pill">DEMO PLATFORM · Sample data</span></div>
+    <div className="topline"><span>{t('nav.topline')}</span><span className="demo-pill">{t('nav.demoPlatform')} · {t('common.sampleData')}</span></div>
     <div className="nav-wrap container">
       <Logo />
-      <button className="mobile-menu icon-button" aria-label="Toggle navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+      <button className="mobile-menu icon-button" aria-label={t('nav.toggle')} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       <nav className={`main-nav ${open ? 'nav-open' : ''}`}>
         {links.map(([label, to]) => <NavLink key={to} to={to} end={to === '/'} onClick={() => setOpen(false)}>{label}</NavLink>)}
       </nav>
       <div className="nav-actions">
-        <Link className="nav-login" to={user ? `/${user.type}-dashboard` : '/login'}>{user ? user.name.split(' ')[0] : 'Log in'}</Link>
-        <Link className="button button-small button-solid" to="/register"><Plus size={16} /> List a by-product</Link>
+        <button type="button" className="nav-language" onClick={toggleLanguage} aria-label={i18n.resolvedLanguage === 'bn' ? 'Switch to English' : 'বাংলায় পরিবর্তন করুন'}>
+          {i18n.resolvedLanguage === 'bn' ? 'English' : 'বাংলা'}
+        </button>
+        <Link className="nav-login" to={user ? `/${user.type}-dashboard` : '/login'}>{user ? user.name.split(' ')[0] : t('common.login')}</Link>
+        <Link className="button button-small button-solid" to="/register"><Plus size={16} /> {t('common.listByProduct')}</Link>
       </div>
     </div>
   </header>
 }
 
 function Footer() {
+  const { t } = useTranslation()
   return <footer className="footer">
     <div className="container footer-main">
-      <div className="footer-about"><Logo light /><p>Making agricultural by-products easier to discover, exchange, and put to productive use across Bangladesh.</p><div className="social-row"><a href="mailto:hello@notunayon.example" aria-label="Email us"><Mail size={17} /></a><a href="tel:+8801700000000" aria-label="Call us"><Phone size={17} /></a><a href="/contact" aria-label="Contact"><MessageCircle size={17} /></a></div></div>
-      <div><h4>Marketplace</h4><Link to="/marketplace">Browse materials</Link><Link to="/requests">Buyer requests</Link><Link to="/register">List a by-product</Link><Link to="/logistics">Transport partners</Link></div>
-      <div><h4>Company</h4><Link to="/about">About Notunayon</Link><Link to="/how-it-works">How it works</Link><Link to="/contact">Contact</Link><Link to="/login">Sign in</Link></div>
-      <div className="footer-contact"><h4>Get in touch</h4><p>Questions about sourcing or listing?</p><a href="mailto:hello@notunayon.example">hello@notunayon.example</a><p className="footer-note">Contact details shown for prototype demonstration.</p></div>
+      <div className="footer-about"><Logo light /><p>{t('footer.tagline')}</p><div className="social-row"><a href="mailto:hello@notunayon.example" aria-label={t('common.email') || 'Email'}><Mail size={17} /></a><a href="tel:+8801700000000" aria-label={t('common.phone') || 'Phone'}><Phone size={17} /></a><a href="/contact" aria-label={t('common.contact')}><MessageCircle size={17} /></a></div></div>
+      <div><h4>{t('common.marketplace')}</h4><Link to="/marketplace">{t('footer.browse')}</Link><Link to="/requests">{t('footer.requests')}</Link><Link to="/register">{t('common.listByProduct')}</Link><Link to="/logistics">{t('footer.transport')}</Link></div>
+      <div><h4>{t('common.company') || t('common.about')}</h4><Link to="/about">{t('common.about')} Notunayon</Link><Link to="/how-it-works">{t('common.howItWorks')}</Link><Link to="/contact">{t('common.contact')}</Link><Link to="/login">{t('common.login')}</Link></div>
+      <div className="footer-contact"><h4>{t('footer.getInTouch')}</h4><p>{t('footer.question')}</p><a href="mailto:hello@notunayon.example">hello@notunayon.example</a><p className="footer-note">{t('footer.prototypeContact')}</p></div>
     </div>
-    <div className="container footer-bottom"><span>© 2026 Notunayon. Built for a more circular agricultural economy.</span><span>Prototype interface · All marketplace information is illustrative.</span></div>
+    <div className="container footer-bottom"><span>{t('footer.copyright')}</span><span>{t('footer.illustrative')}</span></div>
   </footer>
 }
 
@@ -106,20 +118,24 @@ function SectionHeading({ eyebrow, title, text, action }) {
 }
 
 function SearchBox({ initialValue = '', onSearch, compact = false }) {
+  const { t } = useTranslation()
   const [value, setValue] = useState(initialValue)
   function submit(e) { e.preventDefault(); onSearch(value.trim()) }
   return <form className={`search-box ${compact ? 'search-compact' : ''}`} onSubmit={submit}>
     <Search size={20} className="search-icon" />
-    <input aria-label="Search agricultural materials" placeholder="Try “rice husk near Rajshahi”" value={value} onChange={(e) => setValue(e.target.value)} />
-    {value && <button className="search-clear" type="button" aria-label="Clear search" onClick={() => { setValue(''); onSearch('') }}><X size={16} /></button>}
-    <Button type="submit"><Search size={17} /> Search materials</Button>
+    <input aria-label={t('home.searchMaterials')} placeholder={t('home.searchPlaceholder')} value={value} onChange={(e) => setValue(e.target.value)} />
+    {value && <button className="search-clear" type="button" aria-label={t('common.clear')} onClick={() => { setValue(''); onSearch('') }}><X size={16} /></button>}
+    <Button type="submit"><Search size={17} /> {t('home.searchMaterials')}</Button>
   </form>
 }
 
 function Home() {
+  const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const { listings } = useApp()
-  const examples = ['Rice husk near Rajshahi', 'Cow manure under ৳30/kg', 'Poultry litter, 5 tonnes', 'Rice straw in Rangpur']
+  const examples = i18n.resolvedLanguage === 'bn'
+    ? ['রাজশাহীর ধানের তুষ', '৩০ টাকার নিচে গরুর গোবর', 'পোল্ট্রি লিটার, ৫ টন', 'রংপুরের ধানের খড়']
+    : ['Rice husk near Rajshahi', 'Cow manure under ৳30/kg', 'Poultry litter, 5 tonnes', 'Rice straw in Rangpur']
   const fresh = listings.filter((item) => !item.paused).slice(0, 6)
   return <>
     <main>
@@ -128,10 +144,10 @@ function Home() {
         <div className="hero-shade" />
         <div className="container hero-content">
           <div className="hero-copy">
-            <span className="hero-kicker"><span className="kicker-dot" /> Bangladesh’s agricultural by-product marketplace</span>
-            <h1>Turn agricultural waste into <em>valuable resources.</em></h1>
-            <p>Discover, buy, and sell agricultural by-products through Bangladesh’s growing circular economy marketplace.</p>
-            <div className="hero-ctas"><Link className="button button-light" to="/marketplace">Find materials <ArrowRight size={17} /></Link><Link className="button button-outline-light" to="/register">List your by-products</Link></div>
+            <span className="hero-kicker"><span className="kicker-dot" /> {t('home.kicker')}</span>
+            <h1>{t('home.title')}</h1>
+            <p>{t('home.subtitle')}</p>
+            <div className="hero-ctas"><Link className="button button-light" to="/marketplace">{t('home.findMaterials')} <ArrowRight size={17} /></Link><Link className="button button-outline-light" to="/register">{t('home.listByProducts')}</Link></div>
           </div>
           <div className="hero-search-panel">
             <div className="search-panel-label"><span><Sparkles size={16} /> Smart material search</span><small>Demo experience</small></div>
@@ -200,15 +216,17 @@ function SupplyMap() {
 }
 
 function ListingCard({ listing, horizontal = false }) {
+  const { t } = useTranslation()
   const { saved, setSaved } = useApp()
   const isSaved = saved.includes(listing.id)
   return <article className={`listing-card ${horizontal ? 'listing-horizontal' : ''}`}>
-    <Link to={`/marketplace/${listing.id}`} className="listing-image" style={{ backgroundColor: listing.color }}><img src={photo(listing.image, 650)} alt={listing.name} loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} /><span className="listing-category">{listing.category}</span><button className={`save-button ${isSaved ? 'is-saved' : ''}`} type="button" aria-label={isSaved ? 'Remove from saved listings' : 'Save listing'} onClick={(e) => { e.preventDefault(); setSaved(isSaved ? saved.filter((id) => id !== listing.id) : [...saved, listing.id]) }}><Heart size={17} fill={isSaved ? 'currentColor' : 'none'} /></button></Link>
-    <div className="listing-body"><div className="listing-title-row"><Link className="listing-title" to={`/marketplace/${listing.id}`}>{listing.name}</Link><strong>{formatPrice(listing.price, listing.unit)}</strong></div><span className="listing-seller">{listing.seller}</span><div className="listing-meta"><span><MapPin size={14} />{listing.location}</span><span><Package size={14} />{listing.quantity} {listing.quantityUnit}</span></div><div className="listing-tags"><span>{listing.condition}</span><span>{listing.availability}</span></div><Link className="listing-link" to={`/marketplace/${listing.id}`}>View details <ArrowUpRight size={15} /></Link></div>
+    <Link to={`/marketplace/${listing.id}`} className="listing-image" style={{ backgroundColor: listing.color }}><img src={photo(listing.image, 650)} alt={listing.name} loading="lazy" onError={(e) => { e.currentTarget.style.display = 'none' }} /><span className="listing-category">{listing.category}</span><button className={`save-button ${isSaved ? 'is-saved' : ''}`} type="button" aria-label={isSaved ? t('common.save') : t('marketplace.save')} onClick={(e) => { e.preventDefault(); setSaved(isSaved ? saved.filter((id) => id !== listing.id) : [...saved, listing.id]) }}><Heart size={17} fill={isSaved ? 'currentColor' : 'none'} /></button></Link>
+    <div className="listing-body"><div className="listing-title-row"><Link className="listing-title" to={`/marketplace/${listing.id}`}>{listing.name}</Link><strong>{formatPrice(listing.price, listing.unit)}</strong></div><span className="listing-seller">{listing.seller}</span><div className="listing-meta"><span><MapPin size={14} />{listing.location}</span><span><Package size={14} />{listing.quantity} {listing.quantityUnit}</span></div><div className="listing-tags"><span>{listing.condition}</span><span>{listing.availability}</span></div><Link className="listing-link" to={`/marketplace/${listing.id}`}>{t('common.view')} {t('common.more')} <ArrowUpRight size={15} /></Link></div>
   </article>
 }
 
 function Marketplace() {
+  const { t } = useTranslation()
   const { listings } = useApp()
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -232,21 +250,21 @@ function Marketplace() {
   }, [listings, query, category, place, condition, availability, minPrice, maxPrice, minQty, sort])
   const clear = () => { setSearchParams({}); setCategory(''); setPlace(''); setCondition(''); setAvailability(''); setMinPrice(''); setMaxPrice(''); setMinQty('') }
   const activeCount = [category, place, condition, availability, minPrice, maxPrice, minQty].filter(Boolean).length
-  return <main className="page-main marketplace-page"><div className="page-intro container"><div><span className="eyebrow">Marketplace</span><h1>Find useful materials, close to the source.</h1><p>Browse sample agricultural by-product listings from producers across Bangladesh.</p></div><Link className="button button-solid" to="/register">List a by-product <Plus size={17} /></Link></div>
-    <div className="container"><div className="market-search"><SearchBox key={location.search} initialValue={query} onSearch={(value) => setSearchParams(value ? { q: value } : {})} compact /><span className="market-demo"><ShieldCheck size={15} /> Demo listings only</span></div>
-      <div className="market-layout"><aside className={`filter-sidebar ${filtersOpen ? 'filters-open' : ''}`}><div className="filter-head"><h3><SlidersHorizontal size={17} /> Filters</h3><button className="text-small" onClick={clear}>Clear all</button></div>
-        <FilterSelect title="Material category" value={category} onChange={setCategory} options={categories} placeholder="All categories" />
-        <FilterSelect title="Location" value={place} onChange={setPlace} options={locations} placeholder="All locations" />
-        <div className="filter-group"><label>Price (৳ / kg)</label><div className="range-fields"><input aria-label="Minimum price" type="number" placeholder="Min" value={minPrice} onChange={(e) => setMinPrice(e.target.value)} /><span>—</span><input aria-label="Maximum price" type="number" placeholder="Max" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} /></div></div>
-        <div className="filter-group"><label>Minimum available quantity</label><div className="select-shell"><select value={minQty} onChange={(e) => setMinQty(e.target.value)}><option value="">Any quantity</option><option value="1">1 MT or more</option><option value="2">2 MT or more</option><option value="5">5 MT or more</option></select><ChevronDown size={16} /></div></div>
-        <FilterSelect title="Condition" value={condition} onChange={setCondition} options={[...new Set(listings.map((item) => item.condition))]} placeholder="Any condition" />
-        <FilterSelect title="Availability" value={availability} onChange={setAvailability} options={[...new Set(listings.map((item) => item.availability))]} placeholder="Any availability" />
-        <button className="button button-solid filter-apply" onClick={() => setFiltersOpen(false)}>Show {result.length} listings</button>
+  return <main className="page-main marketplace-page"><div className="page-intro container"><div><span className="eyebrow">{t('marketplace.eyebrow')}</span><h1>{t('marketplace.title')}</h1><p>{t('marketplace.intro')}</p></div><Link className="button button-solid" to="/register">{t('common.listByProduct')} <Plus size={17} /></Link></div>
+    <div className="container"><div className="market-search"><SearchBox key={location.search} initialValue={query} onSearch={(value) => setSearchParams(value ? { q: value } : {})} compact /><span className="market-demo"><ShieldCheck size={15} /> {t('common.demoListingsOnly')}</span></div>
+      <div className="market-layout"><aside className={`filter-sidebar ${filtersOpen ? 'filters-open' : ''}`}><div className="filter-head"><h3><SlidersHorizontal size={17} /> {t('common.filters')}</h3><button className="text-small" onClick={clear}>{t('common.clearAll')}</button></div>
+        <FilterSelect title={t('marketplace.materialCategory')} value={category} onChange={setCategory} options={categories} placeholder={t('common.allCategories')} />
+        <FilterSelect title={t('common.location')} value={place} onChange={setPlace} options={locations} placeholder={t('common.allLocations')} />
+        <div className="filter-group"><label>{t('marketplace.priceRange')}</label><div className="range-fields"><input aria-label={t('common.price')} type="number" placeholder={t('marketplace.min')} value={minPrice} onChange={(e) => setMinPrice(e.target.value)} /><span>—</span><input aria-label={t('common.price')} type="number" placeholder={t('marketplace.max')} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} /></div></div>
+        <div className="filter-group"><label>{t('marketplace.minimumQuantity')}</label><div className="select-shell"><select value={minQty} onChange={(e) => setMinQty(e.target.value)}><option value="">{t('common.anyQuantity')}</option><option value="1">1 MT or more</option><option value="2">2 MT or more</option><option value="5">5 MT or more</option></select><ChevronDown size={16} /></div></div>
+        <FilterSelect title={t('common.condition')} value={condition} onChange={setCondition} options={[...new Set(listings.map((item) => item.condition))]} placeholder={t('common.anyCondition')} />
+        <FilterSelect title={t('common.availability')} value={availability} onChange={setAvailability} options={[...new Set(listings.map((item) => item.availability))]} placeholder={t('common.anyAvailability')} />
+        <button className="button button-solid filter-apply" onClick={() => setFiltersOpen(false)}>{t('marketplace.showListings', { count: result.length })}</button>
       </aside>
-      <section className="market-results"><div className="results-toolbar"><div><button className="mobile-filter-trigger" onClick={() => setFiltersOpen(!filtersOpen)}><Filter size={16} /> Filters {activeCount > 0 && <span>{activeCount}</span>}</button><p><strong>{result.length}</strong> materials found</p></div><div className="result-controls"><div className="select-shell sort-select"><ArrowDownUp size={15} /><select aria-label="Sort listings" value={sort} onChange={(e) => setSort(e.target.value)}><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="quantity">Quantity: highest first</option></select><ChevronDown size={15} /></div><div className="view-switch"><button aria-label="Grid view" className={!listView ? 'active' : ''} onClick={() => setListView(false)}>▦</button><button aria-label="List view" className={listView ? 'active' : ''} onClick={() => setListView(true)}>☷</button></div></div></div>
+      <section className="market-results"><div className="results-toolbar"><div><button className="mobile-filter-trigger" onClick={() => setFiltersOpen(!filtersOpen)}><Filter size={16} /> {t('common.filters')} {activeCount > 0 && <span>{activeCount}</span>}</button><p><strong>{result.length}</strong> {t('common.noResults') === 'কোনো ফল নেই' ? 'টি উপকরণ পাওয়া গেছে' : 'materials found'}</p></div><div className="result-controls"><div className="select-shell sort-select"><ArrowDownUp size={15} /><select aria-label={t('common.sort')} value={sort} onChange={(e) => setSort(e.target.value)}><option value="recommended">{t('marketplace.recommended')}</option><option value="price-low">{t('marketplace.priceLow')}</option><option value="price-high">{t('marketplace.priceHigh')}</option><option value="quantity">{t('marketplace.quantityHigh')}</option></select><ChevronDown size={15} /></div><div className="view-switch"><button aria-label={t('common.gridView')} className={!listView ? 'active' : ''} onClick={() => setListView(false)}>▦</button><button aria-label={t('common.listView')} className={listView ? 'active' : ''} onClick={() => setListView(true)}>☷</button></div></div></div>
         {(query || activeCount > 0) && <div className="active-filters">{query && <button onClick={() => setSearchParams({})}>“{query}” <X size={13} /></button>}{activeCount > 0 && <button onClick={clear}>Clear {activeCount} filters <X size={13} /></button>}</div>}
-        {result.length ? <div className={`listing-grid ${listView ? 'listing-list-view' : ''}`}>{result.map((item) => <ListingCard key={item.id} listing={item} horizontal={listView} />)}</div> : <EmptyState icon={<Search />} title="No materials match those filters" text="Try a different search or clear some filters to see more listings." action={<Button onClick={clear}>Clear filters <RotateCcw size={15} /></Button>} />}
-        <p className="demo-disclaimer"><CircleHelp size={15} /> Listings and prices are sample data for demonstration only.</p>
+        {result.length ? <div className={`listing-grid ${listView ? 'listing-list-view' : ''}`}>{result.map((item) => <ListingCard key={item.id} listing={item} horizontal={listView} />)}</div> : <EmptyState icon={<Search />} title={t('marketplace.noMatchTitle')} text={t('marketplace.noMatchText')} action={<Button onClick={clear}>{t('common.clearFilters')} <RotateCcw size={15} /></Button>} />}
+        <p className="demo-disclaimer"><CircleHelp size={15} /> {t('marketplace.demoDisclaimer')}</p>
       </section></div></div>
   </main>
 }
@@ -256,12 +274,13 @@ function FilterSelect({ title, value, onChange, options, placeholder }) {
 }
 
 function ListingDetails() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const { listings, saved, setSaved } = useApp()
   const [offerOpen, setOfferOpen] = useState(false)
   const [modalMode, setModalMode] = useState('offer')
   const listing = listings.find((item) => item.id === id)
-  if (!listing) return <main className="page-main"><div className="container"><EmptyState icon={<Package />} title="This listing isn’t available" text="It may have been removed from this demonstration marketplace." action={<Link className="button button-solid" to="/marketplace">Back to marketplace</Link>} /></div></main>
+  if (!listing) return <main className="page-main"><div className="container"><EmptyState icon={<Package />} title={t('marketplace.listingUnavailable')} text={t('marketplace.listingUnavailableText')} action={<Link className="button button-solid" to="/marketplace">{t('marketplace.back')}</Link>} /></div></main>
   const isSaved = saved.includes(id)
   const similar = listings.filter((item) => item.id !== id && item.category === listing.category).slice(0, 3)
   return <main className="page-main detail-page"><div className="container"><Link className="back-link" to="/marketplace"><ArrowLeft size={16} /> Back to marketplace</Link><div className="detail-layout"><div className="detail-main"><div className="detail-image" style={{ backgroundColor: listing.color }}><img src={photo(listing.image, 1200)} alt={listing.name} onError={(e) => { e.currentTarget.style.display = 'none' }} /><span className="demo-image-label">Demonstration listing image</span></div><div className="detail-section"><span className="eyebrow">About this material</span><h2>Material overview</h2><p>{listing.description}</p></div><div className="detail-section"><span className="eyebrow">Listing information</span><h2>Specifications provided by seller</h2><div className="spec-grid"><Spec title="Condition" value={listing.condition} /><Spec title="Availability" value={listing.availability} /><Spec title="Supply frequency" value={listing.frequency} /><Spec title="Minimum order" value={`${listing.minimum.toLocaleString('en-BD')} kg`} /><Spec title="Pickup location" value={listing.location} /><Spec title="Delivery" value="Discuss with seller" /></div><p className="quality-note"><CircleHelp size={15} /> Listing details are provided for demonstration; Notunayon does not verify material quality.</p></div><div className="detail-section seller-card"><div className="seller-avatar"><Sprout /></div><div><span className="eyebrow">Listed by</span><h3>{listing.seller}</h3><p><MapPin size={14} /> {listing.location}, Bangladesh · Demo business profile</p></div><BadgeCheck size={21} className="seller-check" /></div></div>
@@ -304,14 +323,20 @@ function RequestCard({ request }) {
 }
 
 function HowItWorks() {
-  return <StaticPage eyebrow="How it works" title="From agricultural by-product to practical resource." intro="Notunayon brings producers, material buyers, and local logistics providers into one discovery experience." image="photo-1464226184884-fa280b87c399">
-    <div className="journey-flow">{[['01', 'List a by-product', 'Sellers share what they have, where it is, and the condition and quantity they can supply.'], ['02', 'Discover relevant supply', 'Buyers browse listings and use filters to find potential material matches.'], ['03', 'Discuss an offer', 'A buyer submits a local demo offer; both sides can discuss the terms directly.'], ['04', 'Coordinate delivery', 'The buyer and seller agree how pickup, transport, and any payment would work.']].map(([num, title, text]) => <article className="journey-step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><div className="two-callouts"><div><h3>For producers</h3><p>Make surplus and by-products easier for new buyers to find.</p><Link className="text-link" to="/register">Start a demo listing <ArrowRight size={15} /></Link></div><div><h3>For buyers</h3><p>Compare local supply options and send a sourcing request.</p><Link className="text-link" to="/marketplace">Browse materials <ArrowRight size={15} /></Link></div></div>
+  const { t, i18n } = useTranslation()
+  const steps = i18n.resolvedLanguage === 'bn'
+    ? [['01','উপ-বর্জ্য তালিকাভুক্ত করুন','বিক্রেতা আছে কী, কোথায়, কত এবং কোন অবস্থায় তা জানান।'],['02','উপযুক্ত সরবরাহ খুঁজুন','ক্রেতা তালিকা ও ফিল্টার দেখে সম্ভাব্য উপকরণ খুঁজবে।'],['03','অফার আলোচনা করুন','ক্রেতা স্থানীয় ডেমো অফার পাঠাবে ও শর্ত আলোচনা হবে।'],['04','পরিবহন সমন্বয় করুন','ক্রেতা-বিক্রেতা সংগ্রহ বা পরিবহন সম্পর্কে সিদ্ধান্ত নেবে।']]
+    : [['01','List a by-product','Sellers share what they have, where it is, and the condition and quantity they can supply.'],['02','Discover relevant supply','Buyers browse listings and use filters to find potential material matches.'],['03','Discuss an offer','A buyer submits a local demo offer; both sides can discuss the terms directly.'],['04','Coordinate delivery','The buyer and seller agree how pickup, transport, and any payment would work.']]
+  return <StaticPage eyebrow={t('common.howItWorks')} title={t('home.processTitle')} intro={t('home.processText')} image="photo-1464226184884-fa280b87c399">
+    <div className="journey-flow">{steps.map(([num, title, text]) => <article className="journey-step" key={num}><span>{num}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div><div className="two-callouts"><div><h3>{i18n.resolvedLanguage === 'bn' ? 'উৎপাদকদের জন্য' : 'For producers'}</h3><p>{i18n.resolvedLanguage === 'bn' ? 'অতিরিক্ত উপ-বর্জ্য নতুন ক্রেতাদের কাছে সহজে পৌঁছে দিন।' : 'Make surplus and by-products easier for new buyers to find.'}</p><Link className="text-link" to="/register">{i18n.resolvedLanguage === 'bn' ? 'ডেমো তালিকা শুরু করুন' : 'Start a demo listing'} <ArrowRight size={15} /></Link></div><div><h3>{i18n.resolvedLanguage === 'bn' ? 'ক্রেতাদের জন্য' : 'For buyers'}</h3><p>{i18n.resolvedLanguage === 'bn' ? 'স্থানীয় সরবরাহের বিকল্প তুলনা করুন ও প্রয়োজন পাঠান।' : 'Compare local supply options and send a sourcing request.'}</p><Link className="text-link" to="/marketplace">{t('footer.browse')} <ArrowRight size={15} /></Link></div></div>
   </StaticPage>
 }
 
 function About() {
-  return <StaticPage eyebrow="About Notunayon" title="A more useful future for agricultural by-products." intro="Notunayon is a marketplace concept helping Bangladesh’s agricultural ecosystem see opportunity in resources that are often left underused." image="photo-1500382017468-9049fed747ef">
-    <div className="story-grid"><div><span className="eyebrow">The challenge</span><h2>Valuable materials can be hard to find—and hard to move.</h2><p>Farm and agro-industry by-products such as rice husk, straw, manure, and processing residues can be useful inputs for many businesses. Yet producers and potential users may not know how to reach each other.</p><p>Supply can vary by location, season, quality, and quantity. Clear discovery and practical conversations can help participants explore opportunities without assuming that every material suits every use.</p></div><div className="mission-card"><Sprout size={28} /><span className="eyebrow">Our mission</span><h3>Make agricultural resource exchange more discoverable, local, and circular.</h3><p>Prototype values: practical connections, transparent listings, and responsible material use.</p></div></div><div className="values-grid">{[['Circular by design', 'Help useful by-products find a potential next use.'], ['Grounded in place', 'Make regional supply and logistics part of discovery.'], ['Built for clarity', 'Give buyers and producers practical listing details to compare.']].map(([title, text]) => <div key={title}><span className="value-mark"><Check size={17} /></span><h3>{title}</h3><p>{text}</p></div>)}</div>
+  const { t, i18n } = useTranslation()
+  const bn = i18n.resolvedLanguage === 'bn'
+  return <StaticPage eyebrow={t('common.about')} title={bn ? 'কৃষিজ উপ-বর্জ্যের আরও উপযোগী ভবিষ্যৎ।' : 'A more useful future for agricultural by-products.'} intro={bn ? 'নতুনায়ন একটি বাজার ধারণা যা বাংলাদেশের কৃষি ব্যবস্থাকে কম ব্যবহার হওয়া সম্পদে সুযোগ দেখতে সহায়তা করে।' : 'Notunayon is a marketplace concept helping Bangladesh’s agricultural ecosystem see opportunity in resources that are often left underused.'} image="photo-1500382017468-9049fed747ef">
+    <div className="story-grid"><div><span className="eyebrow">{bn ? 'সমস্যা' : 'The challenge'}</span><h2>{bn ? 'মূল্যবান উপকরণ খুঁজে পাওয়া ও পরিবহন দুটোই কঠিন হতে পারে।' : 'Valuable materials can be hard to find—and hard to move.'}</h2><p>{bn ? 'ধানের তুষ, খড়, গোবর ও প্রক্রিয়াকরণ বর্জ্য অনেক ব্যবসার দরকারি উপাদান হতে পারে। তবু উৎপাদক ও ব্যবহারকারী পরস্পরকে খুঁজে নাও পেতে পারেন।' : 'Farm and agro-industry by-products such as rice husk, straw, manure, and processing residues can be useful inputs for many businesses. Yet producers and potential users may not know how to reach each other.'}</p><p>{bn ? 'সরবরাহ স্থান, মৌসুম, গুণমান ও পরিমাণ অনুযায়ী বদলায়। পরিষ্কার তথ্য ও ব্যবহারিক আলোচনা সুযোগ দেখাতে সহায়তা করে।' : 'Supply can vary by location, season, quality, and quantity. Clear discovery and practical conversations can help participants explore opportunities without assuming that every material suits every use.'}</p></div><div className="mission-card"><Sprout size={28} /><span className="eyebrow">{bn ? 'আমাদের লক্ষ্য' : 'Our mission'}</span><h3>{bn ? 'কৃষিজ সম্পদ বিনিময়কে স্থানীয়, পরিষ্কার ও বৃত্তাকার করুন।' : 'Make agricultural resource exchange more discoverable, local, and circular.'}</h3><p>{bn ? 'প্রোটোটাইপের মূলনীতি: ব্যবহারিক সংযোগ, স্বচ্ছ তালিকা ও দায়িত্বশীল ব্যবহার।' : 'Prototype values: practical connections, transparent listings, and responsible material use.'}</p></div></div><div className="values-grid">{(bn ? [['পরিকল্পনায় বৃত্তাকার', 'দরকারি উপ-বর্জ্যের নতুন ব্যবহারের সুযোগ খুঁজে দিন।'], ['স্থানকে কেন্দ্র করে', 'আঞ্চলিক সরবরাহ ও পরিবহনকে খোঁজের অংশ করুন।'], ['পরিষ্কার তথ্য', 'ক্রেতা ও উৎপাদক ব্যবহারযোগ্য তালিকা দেখেন।']] : [['Circular by design', 'Help useful by-products find a potential next use.'], ['Grounded in place', 'Make regional supply and logistics part of discovery.'], ['Built for clarity', 'Give buyers and producers practical listing details to compare.']]).map(([title, text]) => <div key={title}><span className="value-mark"><Check size={17} /></span><h3>{title}</h3><p>{text}</p></div>)}</div>
   </StaticPage>
 }
 
@@ -320,8 +345,10 @@ function StaticPage({ eyebrow, title, intro, image, children }) {
 }
 
 function Contact() {
+  const { t, i18n } = useTranslation()
+  const bn = i18n.resolvedLanguage === 'bn'
   const [sent, setSent] = useState(false)
-  return <main className="page-main contact-page"><div className="page-intro container"><div><span className="eyebrow">Contact</span><h1>Let’s talk about better material connections.</h1><p>Questions about sourcing, listing, or logistics? Send a message through this frontend demo.</p></div></div><div className="container contact-grid"><div className="contact-info"><div className="contact-info-card"><Mail /><div><span>Email</span><b>hello@notunayon.example</b><small>Placeholder contact for prototype</small></div></div><div className="contact-info-card"><Phone /><div><span>Phone</span><b>+880 1700-000000</b><small>Placeholder contact for prototype</small></div></div><div className="contact-info-card"><MapPin /><div><span>Based in</span><b>Bangladesh</b><small>Serving agricultural communities nationwide</small></div></div><div className="faq-card"><h3>Frequently asked</h3><details><summary>Are listings verified?</summary><p>No. All supplier and material details on this prototype are sample information.</p></details><details><summary>Can I complete a transaction here?</summary><p>No payments or real transactions are processed. Offers are frontend demonstrations.</p></details><details><summary>How can I list my by-product?</summary><p>Create a demo seller profile or use the listing form in the seller dashboard.</p></details></div></div><div className="contact-form-card">{sent ? <SuccessState title="Message received." text="Thanks for trying the Notunayon contact demo. No message was sent to a server." /> : <form className="form-stack" onSubmit={(e) => { e.preventDefault(); setSent(true) }}><h2>Send us a message</h2><p className="form-help">Fields marked required are needed for this demo.</p><div className="form-row"><Field label="Your name" name="name" required /><Field label="Email address" name="email" type="email" required /></div><Field label="I’m contacting about" name="subject" as="select" options={['Sourcing materials', 'Listing by-products', 'Business partnership', 'Transport and logistics', 'Other']} /><Field label="Message" name="message" as="textarea" required placeholder="Tell us a little about what you need" /><Button type="submit">Send message <ArrowRight size={17} /></Button></form>}</div></div></main>
+  return <main className="page-main contact-page"><div className="page-intro container"><div><span className="eyebrow">{t('common.contact')}</span><h1>{bn ? 'ভালো উপকরণ সংযোগ নিয়ে কথা বলুন।' : 'Let’s talk about better material connections.'}</h1><p>{bn ? 'সরবরাহ, তালিকাভুক্তি বা পরিবহন নিয়ে প্রশ্ন? এই ডেমো ফর্মে বার্তা লিখুন।' : 'Questions about sourcing, listing, or logistics? Send a message through this frontend demo.'}</p></div></div><div className="container contact-grid"><div className="contact-info"><div className="contact-info-card"><Mail /><div><span>{t('auth.email')}</span><b>hello@notunayon.example</b><small>{bn ? 'প্রোটোটাইপের নমুনা যোগাযোগ' : 'Placeholder contact for prototype'}</small></div></div><div className="contact-info-card"><Phone /><div><span>{t('auth.phone')}</span><b>+880 1700-000000</b><small>{bn ? 'নমুনা ফোন নম্বর' : 'Placeholder contact for prototype'}</small></div></div><div className="contact-info-card"><MapPin /><div><span>{bn ? 'স্মূলে' : 'Based in'}</span><b>{bn ? 'বাংলাদেশ' : 'Bangladesh'}</b><small>{bn ? 'সারা দেশের কৃষি সম্প্রদায়ের জন্য' : 'Serving agricultural communities nationwide'}</small></div></div><div className="faq-card"><h3>{bn ? 'প্রায়শই জিজ্ঞাসিত' : 'Frequently asked'}</h3><details><summary>{bn ? 'তালিকাগুলো যাচাই করা কি?' : 'Are listings verified?'}</summary><p>{bn ? 'না। এই প্রোটোটাইপের সব তথ্য নমুনা।' : 'No. All supplier and material details on this prototype are sample information.'}</p></details><details><summary>{bn ? 'এখানে লেনদেন করা যাবে?' : 'Can I complete a transaction here?'}</summary><p>{bn ? 'না। পেমেন্ট বা আসল লেনদেন হচ্ছে না।' : 'No payments or real transactions are processed. Offers are frontend demonstrations.'}</p></details></div></div><div className="contact-form-card">{sent ? <SuccessState title={bn ? 'বার্তা পেয়েছি।' : 'Message received.'} text={bn ? 'নতুনায়ন ডেমো ফর্ম জমা হয়েছে। কোনো বার্তা সার্ভারে পাঠানো হয়নি।' : 'Thanks for trying the Notunayon contact demo. No message was sent to a server.'} /> : <form className="form-stack" onSubmit={(e) => { e.preventDefault(); setSent(true) }}><h2>{bn ? 'আমাদের কাছে লিখুন' : 'Send us a message'}</h2><p className="form-help">{bn ? 'চিহ্নিত ঘরগুলো এই ডেমোতে প্রয়োজন।' : 'Fields marked required are needed for this demo.'}</p><div className="form-row"><Field label={bn ? 'আপনার নাম' : 'Your name'} name="name" required /><Field label={bn ? 'ইমেইল' : 'Email address'} name="email" type="email" required /></div><Field label={bn ? 'কিসের বিষয়ে যোগাযোগ?' : 'I’m contacting about'} name="subject" as="select" options={bn ? ['উপকরণ সংগ্রহ','উপ-বর্জ্য তালিকা','ব্যবসায়িক অংশীদারিত্ব','পরিবহন ও সরবরাহ','অন্যান্য'] : ['Sourcing materials','Listing by-products','Business partnership','Transport and logistics','Other']} /><Field label={bn ? 'বার্তা' : 'Message'} name="message" as="textarea" required placeholder={bn ? 'আপনার প্রয়োজন সংক্ষেপে লিখুন' : 'Tell us a little about what you need'} /><Button type="submit">{bn ? 'বার্তা পাঠান' : 'Send message'} <ArrowRight size={17} /></Button></form>}</div></div></main>
 }
 
 function Logistics() {
@@ -342,6 +369,7 @@ function MatchingPreview() {
 }
 
 function Login() {
+  const { t } = useTranslation()
   const { setUser } = useApp()
   const navigate = useNavigate()
   const [error, setError] = useState('')
@@ -354,10 +382,11 @@ function Login() {
     localStorage.setItem('notunayon-demo-user', JSON.stringify(account)); setUser(account)
     navigate('/buyer-dashboard')
   }
-  return <AuthPage><div className="auth-form-head"><span className="eyebrow">Welcome back</span><h1>Sign in to Notunayon.</h1><p>Access your marketplace demonstration account.</p></div>{forgot ? <SuccessState title="Password reset demo" text="Password recovery is not connected in this frontend prototype." close={() => setForgot(false)} /> : <form className="form-stack" onSubmit={submit}><Field label="Email or phone" name="identity" placeholder="you@example.com or +880 1XXX..." required /><PasswordField /><div className="remember-row"><label><input type="checkbox" name="remember" /> Remember me</label><button type="button" className="text-link" onClick={() => setForgot(true)}>Forgot password?</button></div><p className="form-error">{error}</p><Button type="submit">Log in <ArrowRight size={16} /></Button><p className="auth-foot">New to Notunayon? <Link to="/register">Create a demo account</Link></p></form>}</AuthPage>
+  return <AuthPage><div className="auth-form-head"><span className="eyebrow">{t('auth.loginEyebrow')}</span><h1>{t('auth.loginTitle')}</h1><p>{t('auth.loginText')}</p></div>{forgot ? <SuccessState title={t('auth.resetDemo')} text={t('auth.resetText')} close={() => setForgot(false)} /> : <form className="form-stack" onSubmit={submit}><Field label={t('auth.emailOrPhone')} name="identity" placeholder="you@example.com or +880 1XXX..." required /><PasswordField /><div className="remember-row"><label><input type="checkbox" name="remember" /> {t('auth.remember')}</label><button type="button" className="text-link" onClick={() => setForgot(true)}>{t('auth.forgot')}</button></div><p className="form-error">{error}</p><Button type="submit">{t('common.login')} <ArrowRight size={16} /></Button><p className="auth-foot">{t('auth.newHere')} <Link to="/register">{t('auth.createDemo')}</Link></p></form>}</AuthPage>
 }
 
 function Register() {
+  const { t, i18n } = useTranslation()
   const { setUser } = useApp()
   const navigate = useNavigate()
   const [type, setType] = useState('buyer')
@@ -366,13 +395,13 @@ function Register() {
   function submit(e) {
     e.preventDefault()
     const form = e.currentTarget
-    if (!form.checkValidity()) { setError('Please complete all required fields.'); return }
+    if (!form.checkValidity()) { setError(t('auth.requiredError')); return }
     const data = new FormData(form)
     const account = { name: data.get('name'), type }
     localStorage.setItem('notunayon-demo-user', JSON.stringify(account))
     setUser(account); setSuccess(true); setError('')
   }
-  return <AuthPage><div className="auth-form-head"><span className="eyebrow">Join the marketplace</span><h1>Create your demo profile.</h1><p>Choose how you would like to take part in the Notunayon prototype.</p></div>{success ? <SuccessState title="Profile created." text="This demo profile is stored locally in your browser. You can now explore the dashboard." close={() => navigate(`/${type}-dashboard`)} /> : <form className="form-stack" onSubmit={submit}><div className="account-type-select"><button type="button" className={type === 'buyer' ? 'selected' : ''} onClick={() => setType('buyer')}><ShoppingBag size={19} /><b>Buyer</b><small>Find useful materials</small></button><button type="button" className={type === 'seller' ? 'selected' : ''} onClick={() => setType('seller')}><Wheat size={19} /><b>Seller</b><small>List by-products</small></button></div><div className="form-row"><Field label="Full name" name="name" required /><Field label={type === 'seller' ? 'Farm / business name' : 'Company name'} name="business" required /></div><div className="form-row"><Field label="Email" name="email" type="email" required /><Field label="Phone" name="phone" type="tel" placeholder="+880 1XXX-XXXXXX" required /></div><div className="form-row"><Field label="Location" name="location" placeholder="District, Bangladesh" required /><Field label={type === 'seller' ? 'Business type' : 'Industry / business type'} name="industry" placeholder={type === 'seller' ? 'Farm, rice mill…' : 'Compost, manufacturing…'} required /></div><PasswordField /><div className="form-group"><label>{type === 'seller' ? 'Materials you can supply' : 'Materials of interest'}</label><input name="materials" placeholder={type === 'seller' ? 'Rice husk, manure…' : 'Crop residues, rice by-products…'} /></div><p className="form-error">{error}</p><Button type="submit">Create {type} demo profile <ArrowRight size={16} /></Button><p className="auth-foot">Already have an account? <Link to="/login">Log in</Link></p><p className="form-help">No real account or authentication service is used.</p></form>}</AuthPage>
+  return <AuthPage><div className="auth-form-head"><span className="eyebrow">{t('auth.registerEyebrow')}</span><h1>{t('auth.registerTitle')}</h1><p>{t('auth.registerText')}</p></div>{success ? <SuccessState title={t('auth.profileCreated')} text={t('auth.profileStored')} close={() => navigate(`/${type}-dashboard`)} /> : <form className="form-stack" onSubmit={submit}><div className="account-type-select"><button type="button" className={type === 'buyer' ? 'selected' : ''} onClick={() => setType('buyer')}><ShoppingBag size={19} /><b>{t('common.buyer')}</b><small>{t('auth.findUseful')}</small></button><button type="button" className={type === 'seller' ? 'selected' : ''} onClick={() => setType('seller')}><Wheat size={19} /><b>{t('common.seller')}</b><small>{t('auth.supplyByProducts')}</small></button></div><div className="form-row"><Field label={t('auth.fullName')} name="name" required /><Field label={type === 'seller' ? t('auth.farmBusiness') : t('auth.businessName')} name="business" required /></div><div className="form-row"><Field label={t('auth.email')} name="email" type="email" required /><Field label={t('auth.phone')} name="phone" type="tel" placeholder="+880 1XXX-XXXXXX" required /></div><div className="form-row"><Field label={t('auth.location')} name="location" placeholder={i18n.resolvedLanguage === 'bn' ? 'জেলা, বাংলাদেশ' : 'District, Bangladesh'} required /><Field label={t('auth.industry')} name="industry" placeholder={i18n.resolvedLanguage === 'bn' ? 'খামার, রাইস মিল…' : 'Compost, manufacturing…'} required /></div><PasswordField /><div className="form-group"><label>{type === 'seller' ? (i18n.resolvedLanguage === 'bn' ? 'যে উপকরণ সরবরাহ করবেন' : 'Materials you can supply') : t('auth.materialsInterest')}</label><input name="materials" placeholder={i18n.resolvedLanguage === 'bn' ? 'ধানের তুষ, গোবর…' : 'Crop residues, rice by-products…'} /></div><p className="form-error">{error}</p><Button type="submit">{type === 'buyer' ? t('auth.createBuyer') : t('auth.createSeller')} <ArrowRight size={16} /></Button><p className="auth-foot">{t('auth.already')} <Link to="/login">{t('common.login')}</Link></p><p className="form-help">{t('auth.noAccount')}</p></form>}</AuthPage>
 }
 
 function AuthPage({ children }) {
@@ -380,11 +409,13 @@ function AuthPage({ children }) {
 }
 
 function PasswordField() {
+  const { t, i18n } = useTranslation()
   const [shown, setShown] = useState(false)
-  return <div className="form-group"><label htmlFor="password">Password</label><div className="password-shell"><input id="password" type={shown ? 'text' : 'password'} name="password" minLength="6" placeholder="At least 6 characters" required /><button type="button" aria-label={shown ? 'Hide password' : 'Show password'} onClick={() => setShown(!shown)}><Eye size={16} /></button></div></div>
+  return <div className="form-group"><label htmlFor="password">{t('auth.password')}</label><div className="password-shell"><input id="password" type={shown ? 'text' : 'password'} name="password" minLength="6" placeholder={t('auth.passwordHint')} required /><button type="button" aria-label={shown ? (i18n.resolvedLanguage === 'bn' ? 'পাসওয়ার্ড লুকান' : 'Hide password') : (i18n.resolvedLanguage === 'bn' ? 'পাসওয়ার্ড দেখান' : 'Show password')} onClick={() => setShown(!shown)}><Eye size={16} /></button></div></div>
 }
 
 function Dashboard({ type }) {
+  const { t, i18n } = useTranslation()
   const path = useLocation().pathname.replace(/\/+$/, '')
   const dashboardPath = type === 'admin' ? '/admin' : `/${type}-dashboard`
   const suffix = path.replace(dashboardPath, '') || '/'
@@ -393,12 +424,12 @@ function Dashboard({ type }) {
   const isSeller = type === 'seller'
   const isBuyer = type === 'buyer'
   const isAdmin = type === 'admin'
-  const title = isSeller ? 'Seller workspace' : isBuyer ? 'Buyer workspace' : 'Admin demonstration'
+  const title = isSeller ? t('dashboard.sellerWorkspace') : isBuyer ? t('dashboard.buyerWorkspace') : t('dashboard.adminDemo')
   const menus = isSeller
-    ? [['Overview', '/seller-dashboard', LayoutDashboard], ['My listings', '/seller-dashboard/listings', Package], ['Create listing', '/seller-dashboard/create-listing', Plus], ['Offers received', '/seller-dashboard/offers', HandCoins], ['Messages', '/seller-dashboard/messages', MessageCircle], ['Transactions', '/seller-dashboard/transactions', ClipboardList], ['Analytics', '/seller-dashboard/analytics', BarChart3], ['Profile', '/seller-dashboard/profile', UserRound]]
+    ? [[t('dashboard.overview'), '/seller-dashboard', LayoutDashboard], [t('dashboard.myListings'), '/seller-dashboard/listings', Package], [t('dashboard.createListing'), '/seller-dashboard/create-listing', Plus], [t('dashboard.offersReceived'), '/seller-dashboard/offers', HandCoins], [t('dashboard.messages'), '/seller-dashboard/messages', MessageCircle], [t('dashboard.transactions'), '/seller-dashboard/transactions', ClipboardList], [t('dashboard.analytics'), '/seller-dashboard/analytics', BarChart3], [t('dashboard.profile'), '/seller-dashboard/profile', UserRound]]
     : isBuyer
-      ? [['Overview', '/buyer-dashboard', LayoutDashboard], ['Browse materials', '/buyer-dashboard/browse', Search], ['AI recommendations', '/buyer-dashboard/recommendations', Sparkles], ['Post a requirement', '/buyer-dashboard/requirement', Plus], ['My offers', '/buyer-dashboard/offers', HandCoins], ['Messages', '/buyer-dashboard/messages', MessageCircle], ['Purchase history', '/buyer-dashboard/history', ClipboardList], ['Analytics', '/buyer-dashboard/analytics', BarChart3], ['Profile', '/buyer-dashboard/profile', UserRound]]
-      : [['Overview', '/admin', LayoutDashboard], ['Users', '/admin/users', Users], ['Business verification', '/admin/verification', ShieldCheck], ['Listings', '/admin/listings', Package], ['Categories', '/admin/categories', Boxes], ['Transactions', '/admin/transactions', ClipboardList], ['Buyer requests', '/admin/requests', FileText], ['Reports', '/admin/reports', BarChart3], ['Analytics', '/admin/analytics', TrendingUp], ['Settings', '/admin/settings', Settings]]
+      ? [[t('dashboard.overview'), '/buyer-dashboard', LayoutDashboard], [t('dashboard.browseMaterials'), '/buyer-dashboard/browse', Search], [t('dashboard.recommendations'), '/buyer-dashboard/recommendations', Sparkles], [t('dashboard.postRequirement'), '/buyer-dashboard/requirement', Plus], [t('dashboard.myOffers'), '/buyer-dashboard/offers', HandCoins], [t('dashboard.messages'), '/buyer-dashboard/messages', MessageCircle], [t('dashboard.purchaseHistory'), '/buyer-dashboard/history', ClipboardList], [t('dashboard.analytics'), '/buyer-dashboard/analytics', BarChart3], [t('dashboard.profile'), '/buyer-dashboard/profile', UserRound]]
+      : [[t('dashboard.overview'), '/admin', LayoutDashboard], [t('dashboard.users'), '/admin/users', Users], [t('dashboard.verification'), '/admin/verification', ShieldCheck], [t('dashboard.myListings'), '/admin/listings', Package], [t('dashboard.categories'), '/admin/categories', Boxes], [t('dashboard.transactions'), '/admin/transactions', ClipboardList], [t('dashboard.buyerRequests'), '/admin/requests', FileText], [t('dashboard.reports'), '/admin/reports', BarChart3], [t('dashboard.analytics'), '/admin/analytics', TrendingUp], [t('dashboard.settings'), '/admin/settings', Settings]]
   const [menuOpen, setMenuOpen] = useState(false)
   const [showNotice, setShowNotice] = useState(!isAdmin)
   function logout() {
@@ -406,7 +437,7 @@ function Dashboard({ type }) {
     setUser(null)
     navigate('/login')
   }
-  return <div className="dashboard-app"><aside className={`dash-sidebar ${menuOpen ? 'dash-sidebar-open' : ''}`}><div className="dash-brand"><Logo /><button className="icon-button mobile-menu" onClick={() => setMenuOpen(false)}><X size={19} /></button></div><div className="workspace-label">{title}</div><nav>{menus.map(([label, to, Icon]) => <NavLink key={to} end={to === `/${type}-dashboard` || to === '/admin'} to={to} onClick={() => setMenuOpen(false)}><Icon size={18} /><span>{label}</span></NavLink>)}{!isAdmin && <button className="dash-logout" onClick={logout}><LogOut size={18} /><span>Log out</span></button>}</nav><div className="dash-sidebar-bottom"><Link to="/" className="dash-public-link"><ArrowLeft size={16} /> Back to public site</Link><div className="dash-user"><span>{isAdmin ? 'AD' : isBuyer ? 'BU' : 'SE'}</span><div><b>{isAdmin ? 'Demo administrator' : 'Demo workspace'}</b><small>{type} · prototype</small></div><MoreHorizontal size={17} /></div></div></aside><div className="dash-main"><header className="dash-topbar"><button className="icon-button mobile-menu dash-menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Open dashboard menu"><Menu /></button><div className="dash-breadcrumb">{title}<ChevronRight size={14} /> <span>{menus.find((item) => item[1] === `${dashboardPath}${suffix === '/' ? '' : suffix}`)?.[0] || (suffix === '/create-listing' ? 'Create listing' : 'Workspace')}</span></div><div className="dash-top-actions"><span className="demo-pill"><i /> DEMO MODE</span><button aria-label="Notifications" className="icon-button dash-notification"><Bell size={18} /><i /></button><Link className="dash-avatar" to="/">{isAdmin ? 'AD' : isBuyer ? 'BU' : 'SE'}</Link></div></header><main className="dash-content">{showNotice && !isAdmin && <div className="dashboard-notice"><CircleHelp size={17} /><span><b>Frontend demonstration</b> — sample records and local interactions only. No account, payment, or messages are sent to a server.</span><button onClick={() => setShowNotice(false)} aria-label="Dismiss notice"><X size={15} /></button></div>}<DashboardContent type={type} suffix={suffix} /></main></div></div>
+  return <div className="dashboard-app"><aside className={`dash-sidebar ${menuOpen ? 'dash-sidebar-open' : ''}`}><div className="dash-brand"><Logo /><button className="icon-button mobile-menu" onClick={() => setMenuOpen(false)}><X size={19} /></button></div><div className="workspace-label">{title}</div><nav>{menus.map(([label, to, Icon]) => <NavLink key={to} end={to === `/${type}-dashboard` || to === '/admin'} to={to} onClick={() => setMenuOpen(false)}><Icon size={18} /><span>{label}</span></NavLink>)}{!isAdmin && <button className="dash-logout" onClick={logout}><LogOut size={18} /><span>{t('common.logout')}</span></button>}</nav><div className="dash-sidebar-bottom"><Link to="/" className="dash-public-link"><ArrowLeft size={16} /> {t('common.backToPublic')}</Link><div className="dash-user"><span>{isAdmin ? 'AD' : isBuyer ? 'BU' : 'SE'}</span><div><b>{isAdmin ? 'Demo administrator' : t('dashboard.demoUser')}</b><small>{type} · prototype</small></div><MoreHorizontal size={17} /></div></div></aside><div className="dash-main"><header className="dash-topbar"><button className="icon-button mobile-menu dash-menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Open dashboard menu"><Menu /></button><div className="dash-breadcrumb">{title}<ChevronRight size={14} /> <span>{menus.find((item) => item[1] === `${dashboardPath}${suffix === '/' ? '' : suffix}`)?.[0] || (suffix === '/create-listing' ? t('dashboard.createListing') : t('dashboard.workspace'))}</span></div><div className="dash-top-actions"><button type="button" className="nav-language" onClick={() => changeWebsiteLanguage(i18n.resolvedLanguage === 'bn' ? 'en' : 'bn')}>{i18n.resolvedLanguage === 'bn' ? 'English' : 'বাংলা'}</button><span className="demo-pill"><i /> {t('common.demoMode')}</span><button aria-label={t('common.notifications')} className="icon-button dash-notification"><Bell size={18} /><i /></button><Link className="dash-avatar" to="/">{isAdmin ? 'AD' : isBuyer ? 'BU' : 'SE'}</Link></div></header><main className="dash-content">{showNotice && !isAdmin && <div className="dashboard-notice"><CircleHelp size={17} /><span><b>{t('dashboard.demoNotice')}</b> — {t('dashboard.demoNoticeText')}</span><button onClick={() => setShowNotice(false)} aria-label={t('common.close')}><X size={15} /></button></div>}<DashboardContent type={type} suffix={suffix} /></main></div></div>
 }
 
 function DashboardContent({ type, suffix }) {
@@ -600,7 +631,8 @@ function SelectField({ label, name, options, defaultValue, required = false }) {
 function InlineNotice({ text }) { return <div className="inline-notice"><CheckCircle2 size={17} /> {text}</div> }
 
 function NotFound() {
-  return <main className="page-main not-found"><div className="container"><span className="eyebrow">404 · Page not found</span><h1>That page isn’t here.</h1><p>Try returning to the homepage or browsing available materials.</p><div><Link className="button button-solid" to="/">Go to homepage <ArrowRight size={16} /></Link><Link className="button button-outline-dark" to="/marketplace">Browse marketplace</Link></div></div></main>
+  const { t } = useTranslation()
+  return <main className="page-main not-found"><div className="container"><span className="eyebrow">{t('notFound.eyebrow')}</span><h1>{t('notFound.title')}</h1><p>{t('notFound.text')}</p><div><Link className="button button-solid" to="/">{t('notFound.home')} <ArrowRight size={16} /></Link><Link className="button button-outline-dark" to="/marketplace">{t('notFound.browse')}</Link></div></div></main>
 }
 
 export default App
