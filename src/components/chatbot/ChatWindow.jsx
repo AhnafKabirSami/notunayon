@@ -16,14 +16,14 @@ export default function ChatWindow({ open, messages, typing, onClose, onClear, o
   return (
     <section
       className={`notu-chat-window ${open ? 'notu-chat-window-open' : ''}`}
-      aria-label="Notu AI chat"
+      aria-label="Tonu AI chat"
       aria-hidden={!open}
       inert={!open}
     >
       <header className="notu-chat-header">
         <span className="notu-chat-logo"><Sprout size={21} /></span>
         <div className="notu-chat-title">
-          <b>Notu AI</b>
+          <b>Tonu AI</b>
           <span>Your Notunayon Marketplace Assistant</span>
           <small><i /> Online · Demo assistant</small>
         </div>

@@ -2,14 +2,16 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { MessageCircle, X } from 'lucide-react'
 import { listingsSeed } from '../../data/mockData.js'
 import { getDemoResponse } from './chatbotResponses.js'
+import { createConversationContext } from './conversationContext.js'
 import ChatWindow from './ChatWindow.jsx'
 import './chatbot.css'
 
-const STORAGE_KEY = 'notu-ai-conversation'
-const WELCOME_TEXT = "Hello! I'm Notu AI, your Notunayon assistant. I can help you discover agricultural materials, find suppliers, understand by-products, and navigate our marketplace. How can I help you today?"
+const STORAGE_KEY = 'tonu-ai-conversation'
+const CONTEXT_STORAGE_KEY = 'tonu-ai-context'
+const WELCOME_TEXT = "Hello! I'm Tonu AI, your Notunayon assistant. I can help you discover agricultural materials, find suppliers, understand by-products, and navigate our marketplace. How can I help you today?"
 
 function createWelcomeMessage() {
-  return { id: 'notu-welcome', role: 'assistant', text: WELCOME_TEXT, timestamp: new Date().toISOString() }
+  return { id: 'tonu-welcome', role: 'assistant', text: WELCOME_TEXT, timestamp: new Date().toISOString() }
 }
 
 function readConversation() {
@@ -26,6 +28,13 @@ export default function Chatbot({ listings = listingsSeed }) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState(readConversation)
   const [typing, setTyping] = useState(false)
+  const [conversationContext, setConversationContext] = useState(() => {
+    try {
+      return { ...createConversationContext(), ...(JSON.parse(sessionStorage.getItem(CONTEXT_STORAGE_KEY) || '{}')) }
+    } catch {
+      return createConversationContext()
+    }
+  })
   const timerRef = useRef(null)
 
   useEffect(() => {
@@ -36,6 +45,14 @@ export default function Chatbot({ listings = listingsSeed }) {
     }
   }, [messages])
 
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(CONTEXT_STORAGE_KEY, JSON.stringify(conversationContext))
+    } catch {
+      // Context remains available in component state if storage is unavailable.
+    }
+  }, [conversationContext])
+
   useEffect(() => () => window.clearTimeout(timerRef.current), [])
 
   const clearConversation = useCallback(() => {
@@ -43,18 +60,20 @@ export default function Chatbot({ listings = listingsSeed }) {
     timerRef.current = null
     setTyping(false)
     setMessages([createWelcomeMessage()])
+    setConversationContext(createConversationContext())
   }, [])
 
   const sendMessage = useCallback((text) => {
     const content = text.trim()
     if (!content || timerRef.current) return
-    const userMessage = { id: `notu-user-${Date.now()}`, role: 'user', text: content, timestamp: new Date().toISOString() }
+    const userMessage = { id: `tonu-user-${Date.now()}`, role: 'user', text: content, timestamp: new Date().toISOString() }
     setMessages((current) => [...current, userMessage])
     setTyping(true)
     timerRef.current = window.setTimeout(() => {
-      const response = getDemoResponse(content, listings)
+      const response = getDemoResponse(content, listings, conversationContext)
+      setConversationContext(response.context || conversationContext)
       const assistantMessage = {
-        id: `notu-assistant-${Date.now()}`,
+        id: `tonu-assistant-${Date.now()}`,
         role: 'assistant',
         text: response.text,
         links: response.links,
@@ -64,7 +83,7 @@ export default function Chatbot({ listings = listingsSeed }) {
       setTyping(false)
       timerRef.current = null
     }, 850)
-  }, [listings])
+  }, [listings, conversationContext])
 
   return (
     <div className="notu-chatbot">
@@ -79,12 +98,12 @@ export default function Chatbot({ listings = listingsSeed }) {
       <button
         className={`notu-chat-launcher ${open ? 'notu-chat-launcher-open' : ''}`}
         type="button"
-        aria-label={open ? 'Close Notu AI chat' : 'Open Notu AI chat'}
+        aria-label={open ? 'Close Tonu AI chat' : 'Open Tonu AI chat'}
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
         {open ? <X size={23} /> : <MessageCircle size={23} />}
-        {!open && <span>Ask Notu AI</span>}
+        {!open && <span>Ask Tonu AI</span>}
       </button>
     </div>
   )
