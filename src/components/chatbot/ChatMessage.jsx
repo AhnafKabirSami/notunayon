@@ -12,7 +12,7 @@ export default function ChatMessage({ message }) {
       </span>
       <div className="notu-message-content">
         <div className="notu-message-meta">
-          <b>{isAssistant ? 'Notu AI' : 'You'}</b>
+          <b>{isAssistant ? 'Tonu AI' : 'You'}</b>
           <time dateTime={message.timestamp}>{time}</time>
         </div>
         <div className="notu-message-bubble">
@@ -32,7 +32,7 @@ export default function ChatMessage({ message }) {
 
 export function TypingIndicator() {
   return (
-    <div className="notu-message notu-message-assistant" role="status" aria-label="Notu AI is typing">
+    <div className="notu-message notu-message-assistant" role="status" aria-label="Tonu AI is typing">
       <span className="notu-message-avatar" aria-hidden="true"><Bot size={16} /></span>
       <div className="notu-typing-bubble"><i /><i /><i /></div>
     </div>

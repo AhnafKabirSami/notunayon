@@ -22,7 +22,7 @@ export default function ChatInput({ disabled, onSend }) {
   return (
     <form className="notu-chat-input" onSubmit={submit}>
       <textarea
-        aria-label="Write a message to Notu AI"
+        aria-label="Write a message to Tonu AI"
         placeholder="Ask about materials or suppliers…"
         value={value}
         onChange={(event) => setValue(event.target.value)}
