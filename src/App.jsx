@@ -12,6 +12,7 @@ import {
 import { categories, listingsSeed, locations, offersSeed, requestsSeed, transactionsSeed, usersSeed } from './data/mockData'
 import { filterListings, formatPrice } from './utils'
 import { calculateDemoMatches } from './utils/matching'
+import Chatbot from './components/chatbot/Chatbot.jsx'
 import './index.css'
 
 const AppContext = createContext(null)
@@ -47,7 +48,7 @@ function App() {
     <Route path="/buyer-dashboard/*" element={<Dashboard type="buyer" />} />
     <Route path="/admin/*" element={<Dashboard type="admin" />} />
     <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
-  </Routes></AppContext.Provider></BrowserRouter>
+  </Routes><Chatbot listings={listings} /></AppContext.Provider></BrowserRouter>
 }
 
 function Logo({ light = false }) {
