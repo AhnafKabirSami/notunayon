@@ -503,3 +503,38 @@
     scroll-behavior: auto;
   }
 }
+
+html[data-theme="dark"] .notu-chat-window,
+html[data-theme="dark"] .notu-chat-conversation {
+  background: #19251e;
+  border-color: #34463a;
+}
+html[data-theme="dark"] .notu-chat-header,
+html[data-theme="dark"] .notu-chat-launcher {
+  background: #1b3024;
+}
+html[data-theme="dark"] .notu-chat-demo-note {
+  color: #b7c3ba;
+  background: #223128;
+  border-color: #34463a;
+}
+html[data-theme="dark"] .notu-message-bubble,
+html[data-theme="dark"] .notu-suggestions button,
+html[data-theme="dark"] .notu-chat-input {
+  color: #edf4ef;
+  background: #223128;
+  border-color: #3a4d40;
+}
+html[data-theme="dark"] .notu-message-user .notu-message-bubble {
+  color: #102016;
+  background: #a8c5ad;
+  border-color: #a8c5ad;
+}
+html[data-theme="dark"] .notu-message-meta b,
+html[data-theme="dark"] .notu-chat-footer > span,
+html[data-theme="dark"] .notu-suggestions-heading { color: #c6d2c9; }
+html[data-theme="dark"] .notu-chat-input textarea {
+  color: #edf4ef;
+  background: transparent;
+}
+html[data-theme="dark"] .notu-chat-input textarea::placeholder { color: #93a098; }

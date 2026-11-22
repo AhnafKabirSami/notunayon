@@ -83,6 +83,10 @@
     "listingUnavailableText": "এটি এই ডেমো মার্কেটপ্লেস থেকে সরানো হতে পারে."
   },
   "auth": {
+    "chooseOption": "একটি বিকল্প বেছে নিন",
+    "changeRole": "ভূমিকা পরিবর্তন",
+    "buyerCardDescription": "দরকারি উপকরণ খুঁজুন।",
+    "sellerCardDescription": "কৃষিজ উপ-বর্জ্য তালিকাভুক্ত করুন।",
     "loginEyebrow": "আবার স্বাগতম", "loginTitle": "নতুনায়নে প্রবেশ করুন।",
     "loginText": "আপনার মার্কেটপ্লেস ডেমো অ্যাকাউন্ট ব্যবহার করুন।", "emailOrPhone": "ইমেইল বা ফোন",
     "password": "পাসওয়ার্ড", "passwordHint": "কমপক্ষে ৬ অক্ষর", "remember": "আমাকে মনে রাখুন",

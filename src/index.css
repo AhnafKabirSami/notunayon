@@ -72,6 +72,70 @@ html[lang="bn"] select {
   white-space: nowrap;
 }
 .nav-language:hover { background: #e7eee4; }
+
+.theme-toggle {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: var(--forest);
+  background: #f2f5ef;
+  border: 1px solid #dfe7dc;
+  border-radius: 4px;
+}
+.theme-toggle:hover { background: #e7eee4; }
+.dash-theme-toggle { margin: 8px 0; }
+
+.role-selection {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 6px;
+}
+.role-card {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 18px;
+  color: var(--ink);
+  text-align: left;
+  background: #fff;
+  border: 1px solid #dde5dc;
+  border-radius: 8px;
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.role-card:hover {
+  transform: translateY(-2px);
+  border-color: #88a58e;
+  box-shadow: 0 10px 24px rgba(34,66,45,.09);
+}
+.role-card-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--forest);
+  background: #edf3eb;
+  border-radius: 8px;
+}
+.role-card b { margin-top: 4px; font-size: 15px; }
+.role-card > span:not(.role-card-icon) { color: #526157; font-size: 11px; }
+.role-card small { color: #7c887f; font-size: 9px; }
+.role-switch-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+.role-change { flex-shrink: 0; }
+
+@media (max-width: 760px) {
+  .role-selection { grid-template-columns: 1fr; }
+  .role-switch-row { align-items: stretch; flex-direction: column; }
+  .nav-actions .theme-toggle { width: 32px; height: 32px; }
+}
 .nav-login { color: #45554a; font-size: 13px; font-weight: 650; }
 .mobile-menu { display: none !important; }
 .button { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; border: 1px solid transparent; border-radius: 4px; font-size: 13px; font-weight: 680; letter-spacing: -.01em; transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease; cursor: pointer; white-space: nowrap; }
@@ -962,4 +1026,134 @@ td small { display: block; max-width: 225px; overflow: hidden; margin-top: 4px; 
   .recommendation-reasons span { font-size: 6px; }
   .recommendation-score > span { font-size: 7px; }
   .matching-config .demo-tag { font-size: 7px; }
+}
+
+/* Global dark palette: preserve component structure and layout. */
+html[data-theme="dark"] {
+  --forest: #a6c5ab;
+  --forest-dark: #15271d;
+  --green: #77a887;
+  --sage: #26352c;
+  --sage-pale: #1b2821;
+  --cream: #18231d;
+  --sand: #263129;
+  --muted: #b2beb5;
+  --line: #34463a;
+  --ink: #edf4ef;
+  --shadow: 0 12px 35px rgba(0, 0, 0, .22);
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] .dashboard-app,
+html[data-theme="dark"] .dash-content,
+html[data-theme="dark"] .page-main,
+html[data-theme="dark"] .auth-panel,
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .footer {
+  color: #edf4ef;
+  background: #111915;
+}
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] b,
+html[data-theme="dark"] strong { color: #edf4ef; }
+html[data-theme="dark"] p,
+html[data-theme="dark"] small,
+html[data-theme="dark"] label,
+html[data-theme="dark"] .listing-seller,
+html[data-theme="dark"] .listing-meta,
+html[data-theme="dark"] .table-primary small,
+html[data-theme="dark"] .dash-breadcrumb,
+html[data-theme="dark"] .dash-user small { color: #b2beb5; }
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .dash-sidebar,
+html[data-theme="dark"] .dash-topbar,
+html[data-theme="dark"] .dash-panel,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .table-card,
+html[data-theme="dark"] .listing-card,
+html[data-theme="dark"] .filter-sidebar,
+html[data-theme="dark"] .request-card,
+html[data-theme="dark"] .modal-card,
+html[data-theme="dark"] .contact-form-card,
+html[data-theme="dark"] .contact-info-card,
+html[data-theme="dark"] .faq-card,
+html[data-theme="dark"] .partner-form,
+html[data-theme="dark"] .enquiry-card,
+html[data-theme="dark"] .message-app,
+html[data-theme="dark"] .message-contacts,
+html[data-theme="dark"] .role-card {
+  background: #1a261f;
+  border-color: #34463a;
+  box-shadow: none;
+}
+html[data-theme="dark"] .topline,
+html[data-theme="dark"] .dash-sidebar,
+html[data-theme="dark"] .brand-icon,
+html[data-theme="dark"] .role-card-icon { background: #1b3024; }
+html[data-theme="dark"] .main-nav,
+html[data-theme="dark"] .nav-actions,
+html[data-theme="dark"] .nav-language,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .demo-pill,
+html[data-theme="dark"] .dash-notification,
+html[data-theme="dark"] .dashboard-notice,
+html[data-theme="dark"] .inline-notice,
+html[data-theme="dark"] .listing-tags span,
+html[data-theme="dark"] .status-chip,
+html[data-theme="dark"] .demo-tag,
+html[data-theme="dark"] .availability-chip {
+  color: #dfe9e2;
+  background: #223128;
+  border-color: #3a4d40;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  color: #edf4ef;
+  background: #152019;
+  border-color: #405247;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #93a098; }
+html[data-theme="dark"] .table-card th,
+html[data-theme="dark"] .table-card td,
+html[data-theme="dark"] .table-toolbar,
+html[data-theme="dark"] .thread-head,
+html[data-theme="dark"] .message-contacts,
+html[data-theme="dark"] .contact-row,
+html[data-theme="dark"] .modal-head,
+html[data-theme="dark"] .filter-head,
+html[data-theme="dark"] .panel-title,
+html[data-theme="dark"] .chart-lines i { border-color: #34463a; }
+html[data-theme="dark"] .message-bubble,
+html[data-theme="dark"] .message-bubble.mine,
+html[data-theme="dark"] .listing-tags span,
+html[data-theme="dark"] .market-demo,
+html[data-theme="dark"] .search-box,
+html[data-theme="dark"] .select-shell { background: #1a261f; }
+html[data-theme="dark"] .button-solid,
+html[data-theme="dark"] .nav-actions .button-solid { color: #102016; background: #a8c5ad; border-color: #a8c5ad; }
+html[data-theme="dark"] .button-outline-dark,
+html[data-theme="dark"] .text-link,
+html[data-theme="dark"] .nav-login,
+html[data-theme="dark"] .main-nav a { color: #dbe8df; }
+html[data-theme="dark"] .button-outline-dark { border-color: #6f8877; }
+html[data-theme="dark"] .request-band,
+html[data-theme="dark"] .matching-section,
+html[data-theme="dark"] .impact-section,
+html[data-theme="dark"] .sourcing-section,
+html[data-theme="dark"] .trust-strip,
+html[data-theme="dark"] .logistics-teaser,
+html[data-theme="dark"] .auth-visual { background: #17241d; }
+html[data-theme="dark"] .hero-shade { background: linear-gradient(90deg, rgba(7,20,13,.96), rgba(10,31,20,.76), rgba(10,31,20,.22)); }
+html[data-theme="dark"] .role-card > span:not(.role-card-icon),
+html[data-theme="dark"] .role-card small { color: #b2beb5; }
+html[data-theme="dark"] .role-card:hover { border-color: #78a185; }
+@media (max-width: 760px) {
+  html[data-theme="dark"] .main-nav { background: #1a261f; border-color: #34463a; }
+  html[data-theme="dark"] .nav-actions .button { background: #a8c5ad; }
+  html[data-theme="dark"] .role-selection { grid-template-columns: 1fr; }
+  html[data-theme="dark"] .role-switch-row { align-items: stretch; flex-direction: column; }
 }

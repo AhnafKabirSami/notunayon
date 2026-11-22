@@ -83,6 +83,10 @@
     "listingUnavailableText": "It may have been removed from this demonstration marketplace."
   },
   "auth": {
+    "chooseOption": "Choose an option",
+    "changeRole": "Change role",
+    "buyerCardDescription": "Find useful materials.",
+    "sellerCardDescription": "List agricultural by-products.",
     "loginEyebrow": "Welcome back", "loginTitle": "Sign in to Notunayon.",
     "loginText": "Access your marketplace demonstration account.", "emailOrPhone": "Email or phone",
     "password": "Password", "passwordHint": "At least 6 characters", "remember": "Remember me",
