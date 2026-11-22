@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      try {
+        var theme = localStorage.getItem('notunayon-theme') === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.style.colorScheme = theme;
+      } catch (_) {}
+    </script>
     <meta name="description" content="Discover, buy, and sell agricultural by-products through Bangladesh's circular economy marketplace." />
     <title>Notunayon — Agricultural by-products, reimagined</title>
   </head>
