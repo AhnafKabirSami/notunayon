@@ -106,7 +106,7 @@ export default function Chatbot({ listings = listingsSeed }) {
         onClick={() => setOpen((current) => !current)}
       >
         {open ? <X size={23} /> : <MessageCircle size={23} />}
-        {!open && <span>{i18n.resolvedLanguage === 'bn' ? 'টোনু AI-এর কাছে জিজ্ঞাসা করুন' : 'Ask Tonu AI'}</span>}
+        {!open && <span>{i18n.resolvedLanguage === 'bn' ? 'তনু AI-এর কাছে জিজ্ঞাসা করুন' : 'Ask Tonu AI'}</span>}
       </button>
     </div>
   )

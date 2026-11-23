@@ -179,7 +179,7 @@ export function getDemoResponse(message, listings, previousContext = {}) {
 
   if (containsAny(lower, ['what is tonu ai', 'who are you', 'tonu ai', 'tonu'])) {
     return { text: language === 'bn'
-      ? 'আমি টোনু AI, Notunayon-এর জন্য একটি লোকাল ডেমো সহকারী। এখানে আমি আখরা বা নমুনা মার্কেটপ্লেস ডেটা ব্যবহার করে ফসলজ বর্জ্য ও নেভিগেশন বিষয়ে সাহায্য করি। আমি লাইভ AI বা বাহ্যিক সংযুক্ত সেবা নই।'
+      ? 'আমি তনু AI, Notunayon-এর জন্য একটি লোকাল ডেমো সহকারী। এখানে আমি আখরা বা নমুনা মার্কেটপ্লেস ডেটা ব্যবহার করে ফসলজ বর্জ্য ও নেভিগেশন বিষয়ে সাহায্য করি। আমি লাইভ AI বা বাহ্যিক সংযুক্ত সেবা নই।'
       : 'I’m Tonu AI, a local demonstration assistant for Notunayon. I use predefined knowledge and mock marketplace records for material searches and navigation. I’m not connected to a live AI model or external service.',
       context,
     }

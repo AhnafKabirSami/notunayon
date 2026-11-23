@@ -20,12 +20,11 @@
     "toggle": "Toggle navigation", "toBangla": "বাংলা", "toEnglish": "English"
   },
   "footer": {
+    "brandName": "NOTUNAYON",
     "tagline": "Making agricultural by-products easier to discover, exchange, and put to productive use across Bangladesh.",
     "browse": "Browse materials", "requests": "Buyer requests", "transport": "Transport partners",
     "getInTouch": "Get in touch", "question": "Questions about sourcing or listing?",
-    "prototypeContact": "Contact details shown for prototype demonstration.",
-    "copyright": "© 2026 Notunayon. Built for a more circular agricultural economy.",
-    "illustrative": "Prototype interface · All marketplace information is illustrative."
+    "copyright": "© 2026 Notunayon. Built for a more circular agricultural economy."
   },
   "home": {
     "kicker": "Bangladesh’s agricultural by-product marketplace",
@@ -162,7 +161,7 @@
     "enterHint": "Enter to send · Shift + Enter for a new line",
     "suggested": "Suggested questions",
     "welcome": "Hello! I'm Tonu AI, your Notunayon assistant. I can help you discover agricultural materials, find suppliers, understand by-products, and navigate our marketplace. How can I help you today?",
-    "welcomeBn": "হ্যালো! আমি টোনু AI, আপনার Notunayon সহকারী। কৃষিজ উপকরণ খুঁজে পাওয়া, বিক্রেতা খোঁজা, উপ-বর্জ্য সম্পর্কে জানা এবং মার্কেটপ্লেসে নেভিগেট করতে আমি আপনাকে সাহায্য করতে পারি। আজ কীভাবে সাহায্য করতে পারি?",
+    "welcomeBn": "হ্যালো! আমি তনু AI, আপনার Notunayon সহকারী। কৃষিজ উপকরণ খুঁজে পাওয়া, বিক্রেতা খোঁজা, উপ-বর্জ্য সম্পর্কে জানা এবং মার্কেটপ্লেসে নেভিগেট করতে আমি আপনাকে সাহায্য করতে পারি। আজ কীভাবে সাহায্য করতে পারি?",
     "s1": "Find rice husk near Rajshahi", "s2": "How can I sell cattle manure?",
     "s3": "What is poultry litter used for?", "s4": "How does Notunayon work?"
   },
