@@ -80,7 +80,30 @@
     "demoMarketplace": "Demo marketplace", "noTransactions": "No payments or transactions are processed here.",
     "similar": "Similar materials", "related": "Explore related listings",
     "listingUnavailable": "This listing isn’t available",
-    "listingUnavailableText": "It may have been removed from this demonstration marketplace."
+    "listingUnavailableText": "It may have been removed from this demonstration marketplace.",
+    "categories": {
+      "Animal manure": "Animal manure",
+      "Poultry waste": "Poultry waste",
+      "Rice by-products": "Rice by-products",
+      "Crop residues": "Crop residues",
+      "Coconut by-products": "Coconut by-products",
+      "Other agricultural residues": "Other agricultural residues"
+    },
+    "products": {
+      "Rice Husk": "Rice Husk",
+      "Cattle Manure": "Cattle Manure",
+      "Poultry Litter": "Poultry Litter",
+      "Rice Straw": "Rice Straw",
+      "Coconut Husk": "Coconut Husk",
+      "Wheat Straw": "Wheat Straw",
+      "Rice Bran": "Rice Bran",
+      "Maize Stover": "Maize Stover",
+      "Fish Processing By-product": "Fish Processing By-product",
+      "Mustard Stalk": "Mustard Stalk",
+      "Sugarcane Bagasse": "Sugarcane Bagasse",
+      "Paddy Straw": "Paddy Straw",
+      "Composted Cattle Manure": "Composted Cattle Manure"
+    }
   },
   "auth": {
     "chooseOption": "Choose an option",
