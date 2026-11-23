@@ -80,7 +80,30 @@
     "demoMarketplace": "ডেমো মার্কেটপ্লেস", "noTransactions": "এখানে কোনো পেমেন্ট বা লেনদেন হয় না।",
     "similar": "একই ধরনের উপকরণ", "related": "সম্পর্কিত তালিকা দেখুন",
     "listingUnavailable": "এই তালিকাটি পাওয়া যাচ্ছে না",
-    "listingUnavailableText": "এটি এই ডেমো মার্কেটপ্লেস থেকে সরানো হতে পারে."
+    "listingUnavailableText": "এটি এই ডেমো মার্কেটপ্লেস থেকে সরানো হতে পারে.",
+    "categories": {
+      "Animal manure": "পশুর গোবর",
+      "Poultry waste": "পোল্ট্রি বর্জ্য",
+      "Rice by-products": "ধানের উপজাত",
+      "Crop residues": "ফসলের অবশিষ্টাংশ",
+      "Coconut by-products": "নারকেলের উপজাত",
+      "Other agricultural residues": "অন্যান্য কৃষিজ অবশিষ্টাংশ"
+    },
+    "products": {
+      "Rice Husk": "ধানের তুষ",
+      "Cattle Manure": "গরুর গোবর",
+      "Poultry Litter": "পোল্ট্রি লিটার",
+      "Rice Straw": "ধানের খড়",
+      "Coconut Husk": "নারকেলের ছোবড়া",
+      "Wheat Straw": "গমের খড়",
+      "Rice Bran": "চালের কুঁড়া",
+      "Maize Stover": "ভুট্টার গাছের অবশিষ্টাংশ",
+      "Fish Processing By-product": "মাছ প্রক্রিয়াজাতকরণের উপজাত",
+      "Mustard Stalk": "সরিষার ডাঁটা",
+      "Sugarcane Bagasse": "আখের ছোবড়া",
+      "Paddy Straw": "ধানের খড়",
+      "Composted Cattle Manure": "কম্পোস্ট করা গরুর গোবর"
+    }
   },
   "auth": {
     "chooseOption": "একটি বিকল্প বেছে নিন",
