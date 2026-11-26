@@ -18,26 +18,26 @@ export default function Modal({ title, close, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0d1f16]/55 p-5"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-backdrop/55 p-5"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) close()
       }}
     >
       <section
-        className="w-full max-w-[500px] rounded-[5px] bg-white p-[22px] shadow-[0_24px_70px_rgba(0,0,0,0.2)] dark:border dark:border-[#34463a] dark:bg-[#1a261f]"
+        className="w-full max-w-[500px] rounded-[5px] border border-line bg-surface p-[22px] shadow-[0_24px_70px_rgba(0,0,0,0.2)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-heading"
       >
-        <div className="mb-4 flex items-start justify-between gap-3 dark:border-[#34463a]">
+        <div className="mb-4 flex items-start justify-between gap-3 border-line">
           <h2
             id="modal-heading"
-            className="mt-1 mb-0 font-serif text-[22px] font-medium tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]"
+            className="mt-1 mb-0 font-serif text-[22px] font-medium tracking-[-0.035em] text-ink"
           >
             {title}
           </h2>
           <button
-            className="inline-grid h-9 w-9 place-items-center rounded-[4px] border-0 bg-transparent text-[#536157] hover:bg-[#eef2ed] dark:text-[#b2beb5] dark:hover:bg-[#223128]"
+            className="inline-grid h-9 w-9 place-items-center rounded-[4px] border-0 bg-transparent text-muted hover:bg-surface-tint"
             onClick={close}
             aria-label="Close dialog"
           >

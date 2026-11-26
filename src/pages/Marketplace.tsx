@@ -43,14 +43,12 @@ function FilterSelect({
   const { t } = useTranslation()
   return (
     <div className="mb-4">
-      <label className="mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]">
-        {title}
-      </label>
-      <div className="relative flex items-center rounded-[3px] dark:bg-[#1a261f]">
+      <label className="mb-1.5 block text-[10px] font-[680] text-muted">{title}</label>
+      <div className="relative flex items-center rounded-[3px] bg-surface">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="h-[39px] w-full appearance-none rounded-[3px] border border-[#dfe5de] bg-white pr-[31px] pl-2.5 text-[10px] text-[#56635a] outline-none dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+          className="h-[39px] w-full appearance-none rounded-[3px] border border-input-border bg-input pr-[31px] pl-2.5 text-[10px] text-ink-soft outline-none"
         >
           <option value="">{placeholder}</option>
           {options.map((option) => (
@@ -61,7 +59,7 @@ function FilterSelect({
         </select>
         <ChevronDown
           size={16}
-          className="pointer-events-none absolute right-2.5 text-[#7a887d]"
+          className="pointer-events-none absolute right-2.5 text-subtle"
         />
       </div>
     </div>
@@ -120,16 +118,16 @@ export default function Marketplace() {
   ).length
 
   return (
-    <main className="min-h-[65vh] pt-[54px] pb-[85px] max-md:pt-[38px] max-md:pb-[60px] dark:bg-[#111915]">
+    <main className="min-h-[65vh] bg-canvas pt-[54px] pb-[85px] max-md:pt-[38px] max-md:pb-[60px]">
       <div className="mx-auto mb-8 flex w-[min(1190px,calc(100%-64px))] items-end justify-between gap-[22px] max-[1000px]:w-[min(100%-42px,850px)] max-md:mb-[22px] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:items-start max-[420px]:w-[calc(100%-28px)]">
         <div>
-          <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+          <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
             {t('marketplace.eyebrow')}
           </span>
-          <h1 className="my-2.5 mb-[9px] max-w-[760px] font-serif text-[clamp(36px,4vw,52px)] leading-[1.08] font-medium tracking-[-0.05em] text-[#252e28] max-md:text-[38px] dark:text-[#edf4ef]">
+          <h1 className="my-2.5 mb-[9px] max-w-[760px] font-serif text-[clamp(36px,4vw,52px)] leading-[1.08] font-medium tracking-[-0.05em] text-ink max-md:text-[38px]">
             {t('marketplace.title')}
           </h1>
-          <p className="m-0 text-[13px] leading-[1.7] text-[#737c75] max-md:text-[11px] dark:text-[#b2beb5]">
+          <p className="m-0 text-[13px] leading-[1.7] text-muted max-md:text-[11px]">
             {t('marketplace.intro')}
           </p>
         </div>
@@ -146,22 +144,22 @@ export default function Marketplace() {
             compact
             className="max-w-[820px] flex-1 max-md:w-full"
           />
-          <span className="inline-flex items-center gap-1.5 text-[10px] whitespace-nowrap text-[#7d897f] max-md:text-[9px] dark:bg-[#1a261f] dark:text-[#b2beb5]">
-            <ShieldCheck size={15} className="text-[#69856f]" /> {t('common.demoListingsOnly')}
+          <span className="inline-flex items-center gap-1.5 text-[10px] whitespace-nowrap text-muted max-md:text-[9px]">
+            <ShieldCheck size={15} className="text-eyebrow" /> {t('common.demoListingsOnly')}
           </span>
         </div>
         <div className="grid grid-cols-[235px_1fr] items-start gap-[25px] max-[1000px]:grid-cols-[205px_1fr] max-[1000px]:gap-[15px] max-md:block">
           <aside
-            className={`rounded-[4px] border border-[#e6eae4] bg-[#fbfcfa] p-[17px] max-md:fixed max-md:inset-y-0 max-md:right-0 max-md:left-auto max-md:z-40 max-md:w-[min(330px,88vw)] max-md:overflow-y-auto max-md:p-[22px] max-md:shadow-[-10px_0_35px_rgba(0,0,0,0.14)] dark:border-[#34463a] dark:bg-[#1a261f] ${
+            className={`rounded-[4px] border border-line bg-surface-subtle p-[17px] max-md:fixed max-md:inset-y-0 max-md:right-0 max-md:left-auto max-md:z-40 max-md:w-[min(330px,88vw)] max-md:overflow-y-auto max-md:p-[22px] max-md:shadow-[-10px_0_35px_rgba(0,0,0,0.14)] ${
               filtersOpen ? 'max-md:block' : 'max-md:hidden'
             }`}
           >
-            <div className="mb-[17px] flex items-center justify-between dark:border-[#34463a]">
-              <h3 className="m-0 flex items-center gap-[7px] text-[13px] font-semibold tracking-[-0.03em] text-[#252e28] dark:text-[#edf4ef]">
-                <SlidersHorizontal size={17} className="text-[#64816a]" /> {t('common.filters')}
+            <div className="mb-[17px] flex items-center justify-between border-line">
+              <h3 className="m-0 flex items-center gap-[7px] text-[13px] font-semibold tracking-[-0.03em] text-ink">
+                <SlidersHorizontal size={17} className="text-eyebrow" /> {t('common.filters')}
               </h3>
               <button
-                className="border-0 bg-transparent p-0 text-[10px] text-[#52775d] dark:text-[#a6c5ab]"
+                className="border-0 bg-transparent p-0 text-[10px] text-link"
                 onClick={clear}
               >
                 {t('common.clearAll')}
@@ -183,17 +181,17 @@ export default function Marketplace() {
               placeholder={t('common.allLocations')}
             />
             <div className="mb-4">
-              <label className="mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]">
+              <label className="mb-1.5 block text-[10px] font-[680] text-muted">
                 {t('marketplace.priceRange')}
               </label>
-              <div className="flex items-center gap-1.5 text-[10px] text-[#8b948b]">
+              <div className="flex items-center gap-1.5 text-[10px] text-subtle">
                 <input
                   aria-label={t('common.price')}
                   type="number"
                   placeholder={t('marketplace.min')}
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  className="h-[37px] w-1/2 min-w-0 rounded-[3px] border border-[#dfe5de] px-[9px] text-[10px] outline-none dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+                  className="h-[37px] w-1/2 min-w-0 rounded-[3px] border border-input-border bg-input px-[9px] text-[10px] text-ink outline-none"
                 />
                 <span>—</span>
                 <input
@@ -202,19 +200,19 @@ export default function Marketplace() {
                   placeholder={t('marketplace.max')}
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  className="h-[37px] w-1/2 min-w-0 rounded-[3px] border border-[#dfe5de] px-[9px] text-[10px] outline-none dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+                  className="h-[37px] w-1/2 min-w-0 rounded-[3px] border border-input-border bg-input px-[9px] text-[10px] text-ink outline-none"
                 />
               </div>
             </div>
             <div className="mb-4">
-              <label className="mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]">
+              <label className="mb-1.5 block text-[10px] font-[680] text-muted">
                 {t('marketplace.minimumQuantity')}
               </label>
-              <div className="relative flex items-center rounded-[3px] dark:bg-[#1a261f]">
+              <div className="relative flex items-center rounded-[3px] bg-surface">
                 <select
                   value={minQty}
                   onChange={(e) => setMinQty(e.target.value)}
-                  className="h-[39px] w-full appearance-none rounded-[3px] border border-[#dfe5de] bg-white pr-[31px] pl-2.5 text-[10px] text-[#56635a] outline-none dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+                  className="h-[39px] w-full appearance-none rounded-[3px] border border-input-border bg-input pr-[31px] pl-2.5 text-[10px] text-ink-soft outline-none"
                 >
                   <option value="">{t('common.anyQuantity')}</option>
                   <option value="1">1 MT or more</option>
@@ -223,7 +221,7 @@ export default function Marketplace() {
                 </select>
                 <ChevronDown
                   size={16}
-                  className="pointer-events-none absolute right-2.5 text-[#7a887d]"
+                  className="pointer-events-none absolute right-2.5 text-subtle"
                 />
               </div>
             </div>
@@ -255,31 +253,31 @@ export default function Marketplace() {
             <div className="mb-[13px] flex min-h-[42px] items-center justify-between max-[420px]:items-start max-[420px]:gap-2">
               <div className="flex items-center gap-[13px] max-md:gap-2">
                 <button
-                  className="hidden items-center gap-[5px] rounded-[3px] border-0 bg-[#edf3eb] px-2 py-1.5 text-[9px] text-[#4b6350] max-md:inline-flex dark:bg-[#223128] dark:text-[#dfe9e2]"
+                  className="hidden items-center gap-[5px] rounded-[3px] border-0 bg-surface-tint px-2 py-1.5 text-[9px] text-chip-text max-md:inline-flex"
                   onClick={() => setFiltersOpen(!filtersOpen)}
                 >
                   <Filter size={16} /> {t('common.filters')}{' '}
                   {activeCount > 0 && (
-                    <span className="inline-grid h-[15px] w-[15px] place-items-center rounded-full bg-[#4d7655] text-[8px] text-white">
+                    <span className="inline-grid h-[15px] w-[15px] place-items-center rounded-full bg-accent text-[8px] text-on-accent">
                       {activeCount}
                     </span>
                   )}
                 </button>
-                <p className="m-0 text-[11px] leading-[1.7] text-[#7d877f] max-md:text-[9px] dark:text-[#b2beb5]">
-                  <strong className="text-[#37473b] dark:text-[#edf4ef]">{result.length}</strong>{' '}
+                <p className="m-0 text-[11px] leading-[1.7] text-muted max-md:text-[9px]">
+                  <strong className="text-ink">{result.length}</strong>{' '}
                   {t('common.noResults') === 'কোনো ফল নেই'
                     ? 'টি উপকরণ পাওয়া গেছে'
                     : 'materials found'}
                 </p>
               </div>
               <div className="flex items-center gap-[9px] max-[420px]:gap-1">
-                <div className="relative flex min-w-[190px] items-center rounded-[3px] max-md:min-w-[155px] max-[420px]:min-w-[124px] dark:bg-[#1a261f]">
+                <div className="relative flex min-w-[190px] items-center rounded-[3px] bg-surface max-md:min-w-[155px] max-[420px]:min-w-[124px]">
                   <ArrowDownUp size={15} className="hidden" />
                   <select
                     aria-label={t('common.sort')}
                     value={sort}
                     onChange={(e) => setSort(e.target.value as SortOption)}
-                    className="h-9 w-full appearance-none rounded-[3px] border border-[#dfe5de] bg-white pr-[31px] pl-2.5 text-[10px] text-[#56635a] outline-none max-md:text-[8px] dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+                    className="h-9 w-full appearance-none rounded-[3px] border border-input-border bg-input pr-[31px] pl-2.5 text-[10px] text-ink-soft outline-none max-md:text-[8px]"
                   >
                     <option value="recommended">{t('marketplace.recommended')}</option>
                     <option value="price-low">{t('marketplace.priceLow')}</option>
@@ -288,16 +286,14 @@ export default function Marketplace() {
                   </select>
                   <ChevronDown
                     size={15}
-                    className="pointer-events-none absolute right-2.5 text-[#7a887d]"
+                    className="pointer-events-none absolute right-2.5 text-subtle"
                   />
                 </div>
-                <div className="flex rounded-[3px] border border-[#e1e7e0] max-md:hidden dark:border-[#34463a]">
+                <div className="flex rounded-[3px] border border-line max-md:hidden">
                   <button
                     aria-label={t('common.gridView')}
                     className={`h-[33px] w-8 border-0 text-[17px] ${
-                      !listView
-                        ? 'bg-[#eaf0e9] text-[#31583e] dark:bg-[#223128] dark:text-[#edf4ef]'
-                        : 'bg-white text-[#829086] dark:bg-[#1a261f]'
+                      !listView ? 'bg-surface-tint text-link' : 'bg-surface text-subtle'
                     }`}
                     onClick={() => setListView(false)}
                   >
@@ -306,9 +302,7 @@ export default function Marketplace() {
                   <button
                     aria-label={t('common.listView')}
                     className={`h-[33px] w-8 border-0 text-[17px] ${
-                      listView
-                        ? 'bg-[#eaf0e9] text-[#31583e] dark:bg-[#223128] dark:text-[#edf4ef]'
-                        : 'bg-white text-[#829086] dark:bg-[#1a261f]'
+                      listView ? 'bg-surface-tint text-link' : 'bg-surface text-subtle'
                     }`}
                     onClick={() => setListView(true)}
                   >
@@ -321,7 +315,7 @@ export default function Marketplace() {
               <div className="mb-3 flex gap-[7px]">
                 {query && (
                   <button
-                    className="inline-flex items-center gap-[5px] rounded-[3px] border-0 bg-[#eef3ec] px-[7px] py-[5px] text-[9px] text-[#526856] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                    className="inline-flex items-center gap-[5px] rounded-[3px] border-0 bg-surface-tint px-[7px] py-[5px] text-[9px] text-chip-text"
                     onClick={() => setSearchParams({})}
                   >
                     “{query}” <X size={13} />
@@ -329,7 +323,7 @@ export default function Marketplace() {
                 )}
                 {activeCount > 0 && (
                   <button
-                    className="inline-flex items-center gap-[5px] rounded-[3px] border-0 bg-[#eef3ec] px-[7px] py-[5px] text-[9px] text-[#526856] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                    className="inline-flex items-center gap-[5px] rounded-[3px] border-0 bg-surface-tint px-[7px] py-[5px] text-[9px] text-chip-text"
                     onClick={clear}
                   >
                     Clear {activeCount} filters <X size={13} />
@@ -359,7 +353,7 @@ export default function Marketplace() {
                 }
               />
             )}
-            <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-[#858c84] dark:text-[#b2beb5]">
+            <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-subtle">
               <CircleHelp size={15} className="mt-px shrink-0" /> {t('marketplace.demoDisclaimer')}
             </p>
           </section>

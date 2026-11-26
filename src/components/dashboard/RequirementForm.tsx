@@ -51,7 +51,7 @@ export default function RequirementForm() {
         text="Describe what you’re looking for to create a local demo buyer request."
       />
       {done ? (
-        <div className="min-w-0 max-w-[700px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 max-w-[700px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <SuccessState
             className="px-2.5 pt-[25px] pb-[15px]"
             title="Requirement posted."
@@ -67,7 +67,7 @@ export default function RequirementForm() {
         </div>
       ) : (
         <form
-          className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]"
+          className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]"
           onSubmit={submit}
         >
           <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
@@ -121,11 +121,11 @@ export default function RequirementForm() {
             as="textarea"
             placeholder="Share schedule, collection, or other details"
           />
-          <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+          <p className="-mt-1 min-h-0 text-[10px] text-danger">{error}</p>
           <Button type="submit" className="self-start">
             Post demo requirement <ArrowRight size={16} />
           </Button>
-          <p className="text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
+          <p className="text-[9px] leading-[1.5] text-subtle">
             The request is stored in this page state only. No suppliers are contacted.
           </p>
         </form>

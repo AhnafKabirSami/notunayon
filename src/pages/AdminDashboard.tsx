@@ -59,19 +59,19 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
         <StatCard icon={<ClipboardList />} label="Transactions" value="5" trend="Demo only" />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Recent profiles
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Sample buyer and seller accounts
               </p>
             </div>
             <Link
               to="/admin/users"
-              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-[#55765c] dark:text-[#dbe8df]"
+              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-link"
             >
               View users <ArrowRight size={15} />
             </Link>
@@ -80,43 +80,39 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
             {users.slice(0, 3).map((item) => (
               <div
                 key={item.name}
-                className="flex items-center gap-2 border-b border-[#edf0ec] py-[9px] dark:border-[#34463a]"
+                className="flex items-center gap-2 border-b border-line-soft py-[9px]"
               >
-                <i className="grid h-[29px] w-[29px] place-items-center rounded-full bg-[#edf3eb] text-[#65816b] dark:bg-[#223128] dark:text-[#a6c5ab]">
+                <i className="grid h-[29px] w-[29px] place-items-center rounded-full bg-surface-tint text-eyebrow">
                   <UserRound size={17} />
                 </i>
                 <span className="flex-1">
-                  <b className="block text-[8px] text-[#536157] dark:text-[#edf4ef]">
-                    {item.name}
-                  </b>
-                  <small className="mt-[3px] block text-[7px] text-[#98a198] dark:text-[#b2beb5]">
+                  <b className="block text-[8px] text-ink-soft">{item.name}</b>
+                  <small className="mt-[3px] block text-[7px] text-muted">
                     {item.type} · {item.location}
                   </small>
                 </span>
-                <span className="inline-flex rounded-[2px] bg-[#f6f2e7] px-1.5 py-1 text-[8px] whitespace-nowrap text-[#867544] dark:bg-[#223128] dark:text-[#dfe9e2]">
+                <span className="inline-flex rounded-[2px] bg-surface-warm px-1.5 py-1 text-[8px] whitespace-nowrap text-pending">
                   {item.status}
                 </span>
               </div>
             ))}
           </div>
         </div>
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Listing activity
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Illustrative listing distribution
               </p>
             </div>
           </div>
           <MiniChart />
-          <div className="flex justify-between border-t border-[#edf0ec] pt-2.5 text-[9px] text-[#838e84] dark:border-[#34463a] dark:text-[#b2beb5]">
+          <div className="flex justify-between border-t border-line-soft pt-2.5 text-[9px] text-muted">
             <span>Sample active listings</span>
-            <b className="text-[#46564a] dark:text-[#edf4ef]">
-              {listings.filter((item) => !item.paused).length}
-            </b>
+            <b className="text-ink-soft">{listings.filter((item) => !item.paused).length}</b>
           </div>
         </div>
       </div>
@@ -142,7 +138,7 @@ function AdminUsers({
         title={title}
         text="Review sample marketplace profiles and update demo status."
       />
-      <div className="overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f]">
+      <div className="overflow-hidden rounded-[3px] border border-line bg-surface">
         <div className="w-full overflow-x-auto">
           <table className="w-full min-w-[670px] border-collapse text-left">
             <thead>
@@ -151,7 +147,7 @@ function AdminUsers({
                   (head) => (
                     <th
                       key={head}
-                      className="bg-[#fbfcfa] px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]"
+                      className="bg-surface-subtle px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-muted uppercase"
                     >
                       {head}
                     </th>
@@ -162,28 +158,28 @@ function AdminUsers({
             <tbody>
               {users.map((item, index) => (
                 <tr key={item.name}>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] font-[650] text-[#44584a] dark:border-[#34463a] dark:text-[#edf4ef]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] font-[650] text-ink-soft">
                     {item.name}
-                    <small className="mt-1 block max-w-[225px] truncate text-[8px] font-normal text-[#9aa29a] dark:text-[#b2beb5]">
+                    <small className="mt-1 block max-w-[225px] truncate text-[8px] font-normal text-subtle">
                       Demo profile #{index + 1}
                     </small>
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.type}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.location}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
-                    <span className="inline-flex rounded-[2px] bg-[#f6f2e7] px-1.5 py-1 text-[8px] whitespace-nowrap text-[#867544] dark:bg-[#223128] dark:text-[#dfe9e2]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
+                    <span className="inline-flex rounded-[2px] bg-surface-warm px-1.5 py-1 text-[8px] whitespace-nowrap text-pending">
                       {item.status}
                     </span>
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <div className="flex gap-1">
                       <button
                         title="Approve demo profile"
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
@@ -197,7 +193,7 @@ function AdminUsers({
                       </button>
                       <button
                         title="Reject demo profile"
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
@@ -211,7 +207,7 @@ function AdminUsers({
                       </button>
                       <button
                         title="View demo profile"
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => setMessage(`Viewing sample profile for ${item.name}.`)}
                       >
                         <Eye size={15} />
@@ -246,7 +242,7 @@ function AdminListings({
         title="Marketplace listings"
         text="Review sample material records or remove one from this browser demo."
       />
-      <div className="overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f]">
+      <div className="overflow-hidden rounded-[3px] border border-line bg-surface">
         <div className="w-full overflow-x-auto">
           <table className="w-full min-w-[670px] border-collapse text-left">
             <thead>
@@ -254,7 +250,7 @@ function AdminListings({
                 {['Material', 'Seller', 'Location', 'Quantity', 'Price', 'Actions'].map((head) => (
                   <th
                     key={head}
-                    className="bg-[#fbfcfa] px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]"
+                    className="bg-surface-subtle px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-muted uppercase"
                   >
                     {head}
                   </th>
@@ -264,30 +260,30 @@ function AdminListings({
             <tbody>
               {listings.map((item) => (
                 <tr key={item.id}>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <Link
-                      className="font-[650] text-[#44584a] hover:text-[#2f7048] dark:text-[#edf4ef]"
+                      className="font-[650] text-ink-soft hover:text-link"
                       to={`/marketplace/${item.id}`}
                     >
                       {marketplaceLabel(t, item.name, { id: item.id })}
                     </Link>
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.seller}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.location}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.quantity} {item.quantityUnit}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {formatPrice(item.price)}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <div className="flex gap-1">
                       <button
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() =>
                           setMessage(
                             `Viewing listing ${marketplaceLabel(t, item.name, { id: item.id })}.`,
@@ -298,7 +294,7 @@ function AdminListings({
                         <Eye size={15} />
                       </button>
                       <button
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setListings((rows) => rows.filter((row) => row.id !== item.id))
                           setMessage(
@@ -337,17 +333,17 @@ function AdminCategories({ listings }: { listings: Listing[] }) {
         {categories.map((category, index) => (
           <div
             key={category}
-            className="flex flex-col items-start border border-[#e5eae4] bg-white p-[15px] dark:border-[#34463a] dark:bg-[#1a261f]"
+            className="flex flex-col items-start border border-line bg-surface p-[15px]"
           >
-            <span className="text-[9px] text-[#96a493]">0{index + 1}</span>
-            <b className="mt-[11px] mb-1 text-[10px] text-[#46564a] dark:text-[#edf4ef]">
+            <span className="text-[9px] text-eyebrow">0{index + 1}</span>
+            <b className="mt-[11px] mb-1 text-[10px] text-ink-soft">
               {marketplaceLabel(t, category, { type: 'category' })}
             </b>
-            <small className="text-[8px] text-[#929c92] dark:text-[#b2beb5]">
+            <small className="text-[8px] text-muted">
               {listings.filter((item) => item.category === category).length} sample listings
             </small>
             <button
-              className="mt-3 inline-flex items-center gap-[5px] border-0 bg-[#f0f5ee] px-[7px] py-1.5 text-[8px] text-[#5a735f] dark:bg-[#223128] dark:text-[#dfe9e2]"
+              className="mt-3 inline-flex items-center gap-[5px] border-0 bg-surface-tint px-[7px] py-1.5 text-[8px] text-chip-text"
               onClick={() =>
                 setMessage(
                   `${marketplaceLabel(t, category, { type: 'category' })} selected for demo editing.`,
@@ -421,7 +417,7 @@ export default function AdminDashboard() {
                 title="Reports"
                 text="A demonstration view for content and activity reports."
               />
-              <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+              <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
                 <EmptyState
                   icon={<CircleHelp />}
                   title="No open reports"
@@ -440,17 +436,17 @@ export default function AdminDashboard() {
                 title="Settings"
                 text="Prototype settings are intentionally not connected to a production service."
               />
-              <div className="max-w-[560px] min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
-                <Settings size={25} className="text-[#618064]" />
-                <h3 className="mt-3 mb-[5px] text-[13px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+              <div className="max-w-[560px] min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
+                <Settings size={25} className="text-eyebrow" />
+                <h3 className="mt-3 mb-[5px] text-[13px] font-semibold tracking-[-0.035em] text-ink">
                   Demo platform configuration
                 </h3>
-                <p className="mb-3 text-[10px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+                <p className="mb-3 text-[10px] leading-[1.7] text-muted">
                   Authentication, permissions, listings, and all sample records are frontend-only.
                   No admin controls or data persist to a server.
                 </p>
-                <label className="flex items-center gap-1.5 text-[9px] text-[#6d796f] dark:text-[#b2beb5]">
-                  <input type="checkbox" defaultChecked disabled className="accent-[#4c7953]" /> Show
+                <label className="flex items-center gap-1.5 text-[9px] text-muted">
+                  <input type="checkbox" defaultChecked disabled className="accent-eyebrow" /> Show
                   demonstration labels
                 </label>
               </div>

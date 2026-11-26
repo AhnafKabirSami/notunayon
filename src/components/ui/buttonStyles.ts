@@ -11,11 +11,11 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   solid:
-    'bg-[#173b2d] border-[#173b2d] text-white hover:bg-[#27563d] hover:border-[#27563d] dark:bg-[#a8c5ad] dark:border-[#a8c5ad] dark:text-[#102016] dark:hover:bg-[#b8d3bd] dark:hover:border-[#b8d3bd]',
+    'bg-accent border-accent text-on-accent hover:bg-accent-hover hover:border-accent-hover',
   'outline-dark':
-    'text-[#173b2d] border-[#b7c4b8] bg-transparent hover:bg-[#edf2ed] hover:border-[#829986] dark:text-[#dbe8df] dark:border-[#6f8877] dark:hover:bg-[#223128]',
+    'text-link border-line-strong bg-transparent hover:bg-surface-tint hover:border-eyebrow',
   light:
-    'text-[#173b2d] bg-white border-white hover:bg-[#e9f0e9] hover:border-[#e9f0e9] dark:text-[#102016] dark:bg-white dark:hover:bg-[#e9f0e9]',
+    'text-forest-dark bg-white border-white hover:bg-surface-tint hover:border-surface-tint',
   'outline-light':
     'text-white border-white/55 bg-white/[0.04] hover:bg-white/[0.13]',
 }

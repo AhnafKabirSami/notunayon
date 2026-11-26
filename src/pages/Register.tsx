@@ -38,15 +38,13 @@ export default function Register() {
   return (
     <AuthLayout>
       <div className="mb-[21px]">
-        <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+        <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
           {t('auth.registerEyebrow')}
         </span>
-        <h1 className="mt-2 mb-1.5 font-serif text-[34px] font-medium tracking-[-0.035em] text-[#252e28] max-md:text-[31px] dark:text-[#edf4ef]">
+        <h1 className="mt-2 mb-1.5 font-serif text-[34px] font-medium tracking-[-0.035em] text-ink max-md:text-[31px]">
           {type ? t('auth.registerTitle') : t('auth.chooseOption')}
         </h1>
-        <p className="m-0 text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
-          {t('auth.registerText')}
-        </p>
+        <p className="m-0 text-[11px] leading-[1.7] text-muted">{t('auth.registerText')}</p>
       </div>
       {success ? (
         <SuccessState
@@ -64,37 +62,29 @@ export default function Register() {
             type="button"
             role="radio"
             aria-checked="false"
-            className="flex min-h-[150px] flex-col items-start gap-[7px] rounded-[8px] border border-[#dde5dc] bg-white p-[18px] text-left text-[#252e28] transition duration-[180ms] hover:-translate-y-0.5 hover:border-[#88a58e] hover:shadow-[0_10px_24px_rgba(34,66,45,0.09)] dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#edf4ef] dark:hover:border-[#78a185] dark:hover:shadow-none"
+            className="flex min-h-[150px] flex-col items-start gap-[7px] rounded-[8px] border border-line bg-surface p-[18px] text-left text-ink transition duration-[180ms] hover:-translate-y-0.5 hover:border-eyebrow hover:shadow-[0_10px_24px_rgba(34,66,45,0.09)] dark:hover:shadow-none"
             onClick={() => setType('buyer')}
           >
-            <span className="grid h-[42px] w-[42px] place-items-center rounded-[8px] bg-[#edf3eb] text-[#173b2d] dark:bg-[#1b3024] dark:text-[#a6c5ab]">
+            <span className="grid h-[42px] w-[42px] place-items-center rounded-[8px] bg-surface-tint text-accent">
               <ShoppingBag size={24} />
             </span>
             <b className="mt-1 text-[15px]">{t('common.buyer')}</b>
-            <span className="text-[11px] text-[#526157] dark:text-[#b2beb5]">
-              {t('auth.buyerCardDescription')}
-            </span>
-            <small className="text-[9px] text-[#7c887f] dark:text-[#b2beb5]">
-              {t('auth.findUseful')}
-            </small>
+            <span className="text-[11px] text-muted">{t('auth.buyerCardDescription')}</span>
+            <small className="text-[9px] text-subtle">{t('auth.findUseful')}</small>
           </button>
           <button
             type="button"
             role="radio"
             aria-checked="false"
-            className="flex min-h-[150px] flex-col items-start gap-[7px] rounded-[8px] border border-[#dde5dc] bg-white p-[18px] text-left text-[#252e28] transition duration-[180ms] hover:-translate-y-0.5 hover:border-[#88a58e] hover:shadow-[0_10px_24px_rgba(34,66,45,0.09)] dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#edf4ef] dark:hover:border-[#78a185] dark:hover:shadow-none"
+            className="flex min-h-[150px] flex-col items-start gap-[7px] rounded-[8px] border border-line bg-surface p-[18px] text-left text-ink transition duration-[180ms] hover:-translate-y-0.5 hover:border-eyebrow hover:shadow-[0_10px_24px_rgba(34,66,45,0.09)] dark:hover:shadow-none"
             onClick={() => setType('seller')}
           >
-            <span className="grid h-[42px] w-[42px] place-items-center rounded-[8px] bg-[#edf3eb] text-[#173b2d] dark:bg-[#1b3024] dark:text-[#a6c5ab]">
+            <span className="grid h-[42px] w-[42px] place-items-center rounded-[8px] bg-surface-tint text-accent">
               <Wheat size={24} />
             </span>
             <b className="mt-1 text-[15px]">{t('common.seller')}</b>
-            <span className="text-[11px] text-[#526157] dark:text-[#b2beb5]">
-              {t('auth.sellerCardDescription')}
-            </span>
-            <small className="text-[9px] text-[#7c887f] dark:text-[#b2beb5]">
-              {t('auth.supplyByProducts')}
-            </small>
+            <span className="text-[11px] text-muted">{t('auth.sellerCardDescription')}</span>
+            <small className="text-[9px] text-subtle">{t('auth.supplyByProducts')}</small>
           </button>
         </div>
       ) : (
@@ -111,16 +101,14 @@ export default function Register() {
                 aria-checked={type === 'buyer'}
                 className={`grid grid-cols-[27px_1fr] items-center gap-x-2 gap-y-0.5 rounded-[3px] border p-[11px] text-left [&>svg]:row-span-2 ${
                   type === 'buyer'
-                    ? 'border-[#89a18a] bg-[#f1f6ef] text-[#315a3d] dark:border-[#78a185] dark:bg-[#223128] dark:text-[#edf4ef]'
-                    : 'border-[#e1e7df] bg-white text-[#69766c] dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]'
+                    ? 'border-eyebrow bg-surface-tint text-link'
+                    : 'border-line bg-surface text-muted'
                 }`}
                 onClick={() => setType('buyer')}
               >
                 <ShoppingBag size={19} />
                 <b className="text-[11px]">{t('common.buyer')}</b>
-                <small className="text-[9px] text-[#879187] dark:text-[#b2beb5]">
-                  {t('auth.findUseful')}
-                </small>
+                <small className="text-[9px] text-subtle">{t('auth.findUseful')}</small>
               </button>
               <button
                 type="button"
@@ -128,21 +116,19 @@ export default function Register() {
                 aria-checked={type === 'seller'}
                 className={`grid grid-cols-[27px_1fr] items-center gap-x-2 gap-y-0.5 rounded-[3px] border p-[11px] text-left [&>svg]:row-span-2 ${
                   type === 'seller'
-                    ? 'border-[#89a18a] bg-[#f1f6ef] text-[#315a3d] dark:border-[#78a185] dark:bg-[#223128] dark:text-[#edf4ef]'
-                    : 'border-[#e1e7df] bg-white text-[#69766c] dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]'
+                    ? 'border-eyebrow bg-surface-tint text-link'
+                    : 'border-line bg-surface text-muted'
                 }`}
                 onClick={() => setType('seller')}
               >
                 <Wheat size={19} />
                 <b className="text-[11px]">{t('common.seller')}</b>
-                <small className="text-[9px] text-[#879187] dark:text-[#b2beb5]">
-                  {t('auth.supplyByProducts')}
-                </small>
+                <small className="text-[9px] text-subtle">{t('auth.supplyByProducts')}</small>
               </button>
             </div>
             <button
               type="button"
-              className="inline-flex shrink-0 items-center gap-[7px] border-0 bg-transparent p-0 text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+              className="inline-flex shrink-0 items-center gap-[7px] border-0 bg-transparent p-0 text-[12px] font-[680] text-link hover:text-link-hover"
               onClick={() => setType(type === 'buyer' ? 'seller' : 'buyer')}
             >
               {t('auth.changeRole')}
@@ -184,7 +170,7 @@ export default function Register() {
           </div>
           <PasswordField />
           <div className="flex min-w-0 flex-col">
-            <label className="mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]">
+            <label className="mb-1.5 block text-[10px] font-[680] text-muted">
               {type === 'seller'
                 ? i18n.resolvedLanguage === 'bn'
                   ? 'যে উপকরণ সরবরাহ করবেন'
@@ -198,23 +184,21 @@ export default function Register() {
                   ? 'ধানের তুষ, গোবর…'
                   : 'Crop residues, rice by-products…'
               }
-              className="min-h-[41px] w-full rounded-[3px] border border-[#dfe5de] bg-white px-2.5 py-[9px] text-[11px] text-[#435147] outline-none placeholder:text-[#a0a9a0] focus:border-[#78977e] focus:ring-2 focus:ring-[#567f5c]/10 dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef] dark:placeholder:text-[#93a098]"
+              className="min-h-[41px] w-full rounded-[3px] border border-input-border bg-input px-2.5 py-[9px] text-[11px] text-ink-soft outline-none placeholder:text-placeholder focus:border-eyebrow focus:ring-2 focus:ring-eyebrow/15"
             />
           </div>
-          <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+          <p className="-mt-1 min-h-0 text-[10px] text-danger">{error}</p>
           <Button type="submit">
             {type === 'buyer' ? t('auth.createBuyer') : t('auth.createSeller')}{' '}
             <ArrowRight size={16} />
           </Button>
-          <p className="mt-0.5 mb-0 text-center text-[10px] text-[#748077] dark:text-[#b2beb5]">
+          <p className="mt-0.5 mb-0 text-center text-[10px] text-muted">
             {t('auth.already')}{' '}
-            <Link to="/login" className="font-bold text-[#386849] dark:text-[#dbe8df]">
+            <Link to="/login" className="font-bold text-link">
               {t('common.login')}
             </Link>
           </p>
-          <p className="m-0 text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
-            {t('auth.noAccount')}
-          </p>
+          <p className="m-0 text-[9px] leading-[1.5] text-subtle">{t('auth.noAccount')}</p>
         </form>
       )}
     </AuthLayout>

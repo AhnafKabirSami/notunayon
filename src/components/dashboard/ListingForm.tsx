@@ -69,7 +69,7 @@ export default function ListingForm() {
       />
       <div className="grid grid-cols-[minmax(0,1fr)_255px] items-start gap-3.5 max-md:grid-cols-1">
         {success ? (
-          <div className="min-w-0 max-w-[700px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <div className="min-w-0 max-w-[700px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
             <SuccessState
               className="px-2.5 pt-[25px] pb-[15px]"
               title={existing ? 'Listing updated.' : 'Your listing is live in the demo.'}
@@ -90,19 +90,19 @@ export default function ListingForm() {
         ) : (
           <form
             key={formKey}
-            className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]"
+            className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]"
             onSubmit={submit}
           >
             <div className="mb-[5px] flex items-start justify-between gap-2.5">
               <div>
-                <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+                <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                   Material details
                 </h2>
-                <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+                <p className="m-0 text-[9px] leading-[1.7] text-muted">
                   Fields marked with * are required.
                 </p>
               </div>
-              <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-[#f5f1e7] px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-[#827144] dark:bg-[#223128] dark:text-[#dfe9e2]">
+              <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
                 MOCK LISTING
               </span>
             </div>
@@ -171,13 +171,8 @@ export default function ListingForm() {
                 defaultValue={existing?.unit || 'kg'}
               />
             </div>
-            <label className="inline-flex items-center gap-1.5 text-[10px] text-[#647268] dark:text-[#b2beb5]">
-              <input
-                name="negotiable"
-                type="checkbox"
-                defaultChecked
-                className="accent-[#2e684a] dark:accent-[#77a887]"
-              />{' '}
+            <label className="inline-flex items-center gap-1.5 text-[10px] text-muted">
+              <input name="negotiable" type="checkbox" defaultChecked className="accent-eyebrow" />{' '}
               Price is negotiable
             </label>
             <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
@@ -230,10 +225,10 @@ export default function ListingForm() {
               defaultValue={existing?.minimum || 1}
             />
             <div className="flex min-w-0 flex-col">
-              <label className="mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]">
+              <label className="mb-1.5 block text-[10px] font-[680] text-muted">
                 Material image (optional)
               </label>
-              <label className="flex min-h-[90px] cursor-pointer flex-col items-center justify-center gap-[5px] border border-dashed border-[#cad7c8] bg-[#fafbf9] text-[#5d7663] dark:border-[#3a4d40] dark:bg-[#152019] dark:text-[#b2beb5]">
+              <label className="flex min-h-[90px] cursor-pointer flex-col items-center justify-center gap-[5px] border border-dashed border-line-strong bg-input text-muted">
                 <input
                   type="file"
                   accept="image/*"
@@ -247,7 +242,7 @@ export default function ListingForm() {
                 <span className="text-[10px] font-[650]">
                   {preview ? 'Choose a different image' : 'Upload an image from this device'}
                 </span>
-                <small className="text-[8px] text-[#939d94]">
+                <small className="text-[8px] text-subtle">
                   Image preview only; not uploaded to a server.
                 </small>
               </label>
@@ -259,7 +254,7 @@ export default function ListingForm() {
                 />
               )}
             </div>
-            <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+            <p className="-mt-1 min-h-0 text-[10px] text-danger">{error}</p>
             <div className="mt-[3px] flex justify-end gap-2">
               <Button
                 variant="outline-dark"
@@ -274,27 +269,27 @@ export default function ListingForm() {
             </div>
           </form>
         )}
-        <aside className="border border-[#e0e9dd] bg-[#eef3eb] p-[17px] max-md:-order-1 dark:border-[#34463a] dark:bg-[#1a261f]">
-          <span className="grid h-[34px] w-[34px] place-items-center rounded-[4px] bg-white text-[#47704d] dark:bg-[#223128] dark:text-[#a6c5ab] [&>svg]:w-[18px]">
+        <aside className="border border-line bg-surface-tint p-[17px] max-md:-order-1">
+          <span className="grid h-[34px] w-[34px] place-items-center rounded-[4px] bg-surface text-eyebrow [&>svg]:w-[18px]">
             <ShieldCheck />
           </span>
-          <h3 className="mt-3.5 mb-[5px] text-[13px] font-semibold tracking-[-0.03em] text-[#252e28] dark:text-[#edf4ef]">
+          <h3 className="mt-3.5 mb-[5px] text-[13px] font-semibold tracking-[-0.03em] text-ink">
             Make a clear listing
           </h3>
-          <p className="text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+          <p className="text-[9px] leading-[1.7] text-muted">
             Accurate details help buyers understand what you can supply. Do not include private
             information or unverified certification claims.
           </p>
-          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-[#627361] dark:text-[#b2beb5] [&>svg]:w-[15px] [&>svg]:text-[#608265]">
+          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-muted [&>svg]:w-[15px] [&>svg]:text-eyebrow">
             <CheckCircle2 /> Include a specific location
           </div>
-          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-[#627361] dark:text-[#b2beb5] [&>svg]:w-[15px] [&>svg]:text-[#608265]">
+          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-muted [&>svg]:w-[15px] [&>svg]:text-eyebrow">
             <CheckCircle2 /> Add condition and timing
           </div>
-          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-[#627361] dark:text-[#b2beb5] [&>svg]:w-[15px] [&>svg]:text-[#608265]">
+          <div className="mt-2.5 flex items-center gap-[7px] text-[9px] text-muted [&>svg]:w-[15px] [&>svg]:text-eyebrow">
             <CheckCircle2 /> Keep quantity and units clear
           </div>
-          <p className="mt-4 text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
+          <p className="mt-4 text-[9px] leading-[1.5] text-subtle">
             Your listing appears in this local browser demo only.
           </p>
         </aside>

@@ -73,19 +73,19 @@ function BuyerOverview() {
         />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Suggested materials
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Explore sample listings in the marketplace.
               </p>
             </div>
             <Link
               to="/buyer-dashboard/recommendations"
-              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-[#55765c] dark:text-[#dbe8df]"
+              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-link"
             >
               See matches <ArrowRight size={15} />
             </Link>
@@ -96,13 +96,13 @@ function BuyerOverview() {
             ))}
           </div>
         </div>
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Quick actions
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Continue your sourcing work.
               </p>
             </div>
@@ -110,21 +110,21 @@ function BuyerOverview() {
           <div className="grid gap-2">
             <Link
               to="/buyer-dashboard/browse"
-              className="flex items-center gap-2 border border-[#edf0ec] bg-[#f7f9f6] p-2.5 text-[9px] text-[#58685d] dark:border-[#34463a] dark:bg-[#223128] dark:text-[#edf4ef] [&>svg:first-child]:w-4 [&>svg:first-child]:text-[#598060] [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
+              className="flex items-center gap-2 border border-line-soft bg-surface-tint-soft p-2.5 text-[9px] text-ink-soft [&>svg:first-child]:w-4 [&>svg:first-child]:text-eyebrow [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
             >
               <Search />
               Browse materials <ArrowRight size={14} />
             </Link>
             <Link
               to="/buyer-dashboard/requirement"
-              className="flex items-center gap-2 border border-[#edf0ec] bg-[#f7f9f6] p-2.5 text-[9px] text-[#58685d] dark:border-[#34463a] dark:bg-[#223128] dark:text-[#edf4ef] [&>svg:first-child]:w-4 [&>svg:first-child]:text-[#598060] [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
+              className="flex items-center gap-2 border border-line-soft bg-surface-tint-soft p-2.5 text-[9px] text-ink-soft [&>svg:first-child]:w-4 [&>svg:first-child]:text-eyebrow [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
             >
               <Plus />
               Post a requirement <ArrowRight size={14} />
             </Link>
             <Link
               to="/buyer-dashboard/offers"
-              className="flex items-center gap-2 border border-[#edf0ec] bg-[#f7f9f6] p-2.5 text-[9px] text-[#58685d] dark:border-[#34463a] dark:bg-[#223128] dark:text-[#edf4ef] [&>svg:first-child]:w-4 [&>svg:first-child]:text-[#598060] [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
+              className="flex items-center gap-2 border border-line-soft bg-surface-tint-soft p-2.5 text-[9px] text-ink-soft [&>svg:first-child]:w-4 [&>svg:first-child]:text-eyebrow [&>svg:last-child]:ml-auto [&>svg:last-child]:w-3.5"
             >
               <HandCoins />
               Review my offers <ArrowRight size={14} />
@@ -152,7 +152,7 @@ export default function BuyerDashboard() {
                 text="Explore the same sample listings available in the public marketplace."
                 action={
                   <Link
-                    className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+                    className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover"
                     to="/marketplace"
                   >
                     Open full marketplace <ArrowUpRight size={15} />

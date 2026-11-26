@@ -39,35 +39,33 @@ export default function AnalyticsView({ type }: { type: DashboardRole }) {
         <StatCard icon={<CalendarDays />} label="Active days" value="22" trend="Sample period" />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 {buyer ? 'Sourcing activity' : 'Listing views'}
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Last 7 days · illustrative data
               </p>
             </div>
-            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-[#f5f1e7] px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-[#827144] dark:bg-[#223128] dark:text-[#dfe9e2]">
+            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
               DEMO
             </span>
           </div>
           <MiniChart tall />
-          <div className="flex justify-between border-t border-[#edf0ec] pt-2.5 text-[9px] text-[#838e84] dark:border-[#34463a] dark:text-[#b2beb5]">
+          <div className="flex justify-between border-t border-line-soft pt-2.5 text-[9px] text-muted">
             <span>Week to date</span>
-            <b className="text-[#46564a] dark:text-[#edf4ef]">
-              {buyer ? '12 actions' : '218 views'}
-            </b>
+            <b className="text-ink-soft">{buyer ? '12 actions' : '218 views'}</b>
           </div>
         </div>
-        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Category breakdown
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Sample marketplace activity
               </p>
             </div>
@@ -82,18 +80,16 @@ export default function AnalyticsView({ type }: { type: DashboardRole }) {
               ] as Array<[string, number]>
             ).map(([label, amount]) => (
               <div key={label} className="grid grid-cols-[100px_1fr_28px] items-center gap-[7px]">
-                <span className="text-[8px] text-[#65736a] dark:text-[#b2beb5]">
+                <span className="text-[8px] text-muted">
                   {marketplaceLabel(t, label, { type: 'category' })}
                 </span>
-                <div className="h-1.5 rounded-[5px] bg-[#eef2ec] dark:bg-[#223128]">
+                <div className="h-1.5 rounded-[5px] bg-surface-tint">
                   <i
-                    className="block h-full rounded-[5px] bg-[#749278]"
+                    className="block h-full rounded-[5px] bg-eyebrow"
                     style={{ width: `${amount}%` }}
                   />
                 </div>
-                <b className="text-right text-[8px] text-[#748176] dark:text-[#edf4ef]">
-                  {amount}%
-                </b>
+                <b className="text-right text-[8px] text-ink-soft">{amount}%</b>
               </div>
             ))}
           </div>

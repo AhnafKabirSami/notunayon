@@ -82,7 +82,7 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
         />
       ) : (
         <form className="flex flex-col gap-[13px]" onSubmit={submit}>
-          <p className="text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
+          <p className="text-[9px] leading-[1.5] text-subtle">
             This is a local demo. No real seller will be contacted.
           </p>
           {mode === 'contact' ? (
@@ -122,7 +122,7 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
               />
             </>
           )}
-          <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+          <p className="-mt-1 min-h-0 text-[10px] text-danger">{error}</p>
           <div className="mt-[3px] flex justify-end gap-2">
             <Button variant="outline-dark" type="button" onClick={close}>
               Cancel

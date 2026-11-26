@@ -75,55 +75,55 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
         />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
-        <section className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <section className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Recent offers
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Latest activity on your materials
               </p>
             </div>
             <Link
               to="/seller-dashboard/offers"
-              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-[#55765c] dark:text-[#dbe8df]"
+              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-link"
             >
               View all <ArrowRight size={15} />
             </Link>
           </div>
           <OffersTable rows={offers.slice(0, 4)} compact />
         </section>
-        <section className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+        <section className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
                 Listing performance
               </h2>
-              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              <p className="m-0 text-[9px] leading-[1.7] text-muted">
                 Views across the past seven days
               </p>
             </div>
-            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-[#f5f1e7] px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-[#827144] dark:bg-[#223128] dark:text-[#dfe9e2]">
+            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
               DEMO
             </span>
           </div>
           <MiniChart />
-          <div className="flex justify-between border-t border-[#edf0ec] pt-2.5 text-[9px] text-[#838e84] dark:border-[#34463a] dark:text-[#b2beb5]">
+          <div className="flex justify-between border-t border-line-soft pt-2.5 text-[9px] text-muted">
             <span>Listing views</span>
-            <b className="text-[#46564a] dark:text-[#edf4ef]">
-              218 <small className="text-[8px] font-[450] text-[#8f9990]">sample</small>
+            <b className="text-ink-soft">
+              218 <small className="text-[8px] font-[450] text-subtle">sample</small>
             </b>
           </div>
         </section>
       </div>
-      <div className="mt-3.5 min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+      <div className="mt-3.5 min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
         <div className="mb-[15px] flex items-start justify-between gap-2.5">
           <div>
-            <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+            <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
               Quick actions
             </h2>
-            <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="m-0 text-[9px] leading-[1.7] text-muted">
               Keep your marketplace presence up to date.
             </p>
           </div>
@@ -131,30 +131,24 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
         <div className="grid grid-cols-3 gap-2.5 max-md:grid-cols-1">
           <Link
             to="/seller-dashboard/create-listing"
-            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-[#edf0eb] bg-[#f8faf7] p-3 dark:border-[#34463a] dark:bg-[#223128] [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-[#5c7d63]"
+            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-line-soft bg-surface-tint-soft p-3 [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-eyebrow"
           >
-            <Plus /> <b className="text-[9px] text-[#425146] dark:text-[#edf4ef]">Create a listing</b>
-            <span className="text-[8px] text-[#929b93] dark:text-[#b2beb5]">
-              Add another material to your catalog.
-            </span>
+            <Plus /> <b className="text-[9px] text-ink-soft">Create a listing</b>
+            <span className="text-[8px] text-muted">Add another material to your catalog.</span>
           </Link>
           <Link
             to="/seller-dashboard/listings"
-            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-[#edf0eb] bg-[#f8faf7] p-3 dark:border-[#34463a] dark:bg-[#223128] [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-[#5c7d63]"
+            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-line-soft bg-surface-tint-soft p-3 [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-eyebrow"
           >
-            <Package /> <b className="text-[9px] text-[#425146] dark:text-[#edf4ef]">Manage listings</b>
-            <span className="text-[8px] text-[#929b93] dark:text-[#b2beb5]">
-              Review active supply and updates.
-            </span>
+            <Package /> <b className="text-[9px] text-ink-soft">Manage listings</b>
+            <span className="text-[8px] text-muted">Review active supply and updates.</span>
           </Link>
           <Link
             to="/seller-dashboard/offers"
-            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-[#edf0eb] bg-[#f8faf7] p-3 dark:border-[#34463a] dark:bg-[#223128] [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-[#5c7d63]"
+            className="grid grid-cols-[30px_1fr] gap-x-2 gap-y-1 border border-line-soft bg-surface-tint-soft p-3 [&>svg]:row-span-2 [&>svg]:w-[19px] [&>svg]:text-eyebrow"
           >
-            <HandCoins /> <b className="text-[9px] text-[#425146] dark:text-[#edf4ef]">Review offers</b>
-            <span className="text-[8px] text-[#929b93] dark:text-[#b2beb5]">
-              Respond to buyer interest.
-            </span>
+            <HandCoins /> <b className="text-[9px] text-ink-soft">Review offers</b>
+            <span className="text-[8px] text-muted">Respond to buyer interest.</span>
           </Link>
         </div>
       </div>
@@ -187,16 +181,14 @@ function SellerListings() {
         }
       />
       {notice && <InlineNotice text={notice} className="mb-3" />}
-      <div className="overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f]">
-        <div className="flex items-center justify-between gap-3 border-b border-[#edf0ec] px-3.5 py-3 max-md:flex-col max-md:items-start dark:border-[#34463a]">
-          <b className="text-[10px] text-[#58665b] dark:text-[#edf4ef]">
-            {ownListings.length} listings
-          </b>
+      <div className="overflow-hidden rounded-[3px] border border-line bg-surface">
+        <div className="flex items-center justify-between gap-3 border-b border-line-soft px-3.5 py-3 max-md:flex-col max-md:items-start">
+          <b className="text-[10px] text-ink-soft">{ownListings.length} listings</b>
           <div className="relative flex w-[200px] flex-none items-center max-md:w-full">
-            <Search size={15} className="absolute left-[11px] text-[#7b8b7e]" />
+            <Search size={15} className="absolute left-[11px] text-subtle" />
             <input
               placeholder="Search my listings"
-              className="h-8 w-full rounded-[3px] border border-[#dfe5de] pr-3 pl-[34px] text-[9px] outline-none dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+              className="h-8 w-full rounded-[3px] border border-input-border bg-input pr-3 pl-[34px] text-[9px] text-ink outline-none"
             />
           </div>
         </div>
@@ -207,7 +199,7 @@ function SellerListings() {
                 {['Material', 'Location', 'Quantity', 'Price', 'Status', 'Actions'].map((head) => (
                   <th
                     key={head}
-                    className="bg-[#fbfcfa] px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]"
+                    className="bg-surface-subtle px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-muted uppercase"
                   >
                     {head}
                   </th>
@@ -217,42 +209,40 @@ function SellerListings() {
             <tbody>
               {ownListings.map((item) => (
                 <tr key={item.id}>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <Link
-                      className="font-[650] text-[#44584a] hover:text-[#2f7048] dark:text-[#edf4ef]"
+                      className="font-[650] text-ink-soft hover:text-link"
                       to={`/marketplace/${item.id}`}
                     >
                       {item.name}
                     </Link>
-                    <small className="mt-1 block max-w-[225px] truncate text-[8px] text-[#9aa29a] dark:text-[#b2beb5]">
+                    <small className="mt-1 block max-w-[225px] truncate text-[8px] text-subtle">
                       {item.seller}
                     </small>
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.location}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {item.quantity} {item.quantityUnit}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     {formatPrice(item.price, item.unit)}
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <span
                       className={`inline-flex rounded-[2px] px-1.5 py-1 text-[8px] whitespace-nowrap ${
-                        item.paused
-                          ? 'bg-[#f6f2e7] text-[#867544] dark:bg-[#223128] dark:text-[#dfe9e2]'
-                          : 'bg-[#edf4e9] text-[#47704d] dark:bg-[#223128] dark:text-[#dfe9e2]'
+                        item.paused ? 'bg-surface-warm text-pending' : 'bg-surface-tint text-chip-text'
                       }`}
                     >
                       {item.paused ? 'Paused' : 'Active'}
                     </span>
                   </td>
-                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                  <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <div className="flex gap-1">
                       <button
                         title="Edit listing"
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setNotice(`Edit demo opened for ${item.name}.`)
                           nav(`/seller-dashboard/create-listing?id=${item.id}`)
@@ -262,7 +252,7 @@ function SellerListings() {
                       </button>
                       <button
                         title={item.paused ? 'Activate listing' : 'Pause listing'}
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setListings((rows) =>
                             rows.map((row) =>
@@ -278,7 +268,7 @@ function SellerListings() {
                       </button>
                       <button
                         title="Delete listing"
-                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setListings((rows) => rows.filter((row) => row.id !== item.id))
                           setNotice(`${item.name} removed from the local demo.`)

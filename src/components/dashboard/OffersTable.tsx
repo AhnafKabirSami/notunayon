@@ -15,10 +15,10 @@ interface OffersTableProps {
 }
 
 const statusClasses: Record<OfferStatus, string> = {
-  Accepted: 'text-[#47704d] bg-[#edf4e9] dark:text-[#dfe9e2] dark:bg-[#223128]',
-  Rejected: 'text-[#99574e] bg-[#f8eeeb] dark:text-[#f2b8b0] dark:bg-[#3a2220]',
-  Countered: 'text-[#596d91] bg-[#eef1f7] dark:text-[#c7d5ec] dark:bg-[#222a38]',
-  Pending: 'text-[#867544] bg-[#f6f2e7] dark:text-[#dfe9e2] dark:bg-[#223128]',
+  Accepted: 'text-chip-text bg-surface-tint',
+  Rejected: 'text-danger bg-danger-soft',
+  Countered: 'text-info bg-info-soft',
+  Pending: 'text-pending bg-surface-warm',
 }
 
 export default function OffersTable({
@@ -44,7 +44,7 @@ export default function OffersTable({
 
   return (
     <div
-      className={`overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f] ${
+      className={`overflow-hidden rounded-[3px] border border-line bg-surface ${
         compact ? 'max-h-[330px] overflow-auto' : ''
       }`}
     >
@@ -56,7 +56,7 @@ export default function OffersTable({
                 (head) => (
                   <th
                     key={head}
-                    className={`bg-[#fbfcfa] text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5] ${
+                    className={`bg-surface-subtle text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-muted uppercase ${
                       compact ? 'px-2 py-[9px]' : 'px-3 py-2.5'
                     }`}
                   >
@@ -70,13 +70,13 @@ export default function OffersTable({
             {rows.map((offer) => (
               <tr key={offer.id}>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] font-[650] text-[#44584a] dark:border-[#34463a] dark:text-[#edf4ef] ${
+                  className={`border-t border-line-soft align-middle text-[9px] font-[650] text-ink-soft ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
                   {seller ? offer.buyer : offer.id}
                   <small
-                    className={`mt-1 block truncate text-[8px] font-normal text-[#9aa29a] dark:text-[#b2beb5] ${
+                    className={`mt-1 block truncate text-[8px] font-normal text-subtle ${
                       compact ? 'max-w-[170px]' : 'max-w-[225px]'
                     }`}
                   >
@@ -84,35 +84,35 @@ export default function OffersTable({
                   </small>
                 </td>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5] ${
+                  className={`border-t border-line-soft align-middle text-[9px] text-muted ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
                   {marketplaceLabel(t, offer.material, { id: offer.id })}
                 </td>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5] ${
+                  className={`border-t border-line-soft align-middle text-[9px] text-muted ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
                   ৳{offer.price} / kg
                 </td>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5] ${
+                  className={`border-t border-line-soft align-middle text-[9px] text-muted ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
                   {offer.quantity}
                 </td>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5] ${
+                  className={`border-t border-line-soft align-middle text-[9px] text-muted ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
                   {offer.date}
                 </td>
                 <td
-                  className={`border-t border-[#f0f2ef] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5] ${
+                  className={`border-t border-line-soft align-middle text-[9px] text-muted ${
                     compact ? 'px-2 py-[9px]' : 'px-3 py-[11px]'
                   }`}
                 >
@@ -128,7 +128,7 @@ export default function OffersTable({
                       <div className="flex gap-1">
                         <button
                           title="Accept offer"
-                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                           onClick={() => {
                             update((items) =>
                               items.map((item) =>
@@ -142,7 +142,7 @@ export default function OffersTable({
                         </button>
                         <button
                           title="Reject offer"
-                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                           onClick={() => {
                             update((items) =>
                               items.map((item) =>
@@ -156,7 +156,7 @@ export default function OffersTable({
                         </button>
                         <button
                           title="Counteroffer"
-                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                          className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                           onClick={() => {
                             update((items) =>
                               items.map((item) =>

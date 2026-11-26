@@ -21,7 +21,7 @@ export default function ProfileSettings({ type }: { type: UserRole }) {
       />
       {saved ? <InlineNotice text="Profile updated in this local demo." /> : null}
       <form
-        className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]"
+        className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]"
         onSubmit={(e) => {
           e.preventDefault()
           const data = new FormData(e.currentTarget)
@@ -37,14 +37,12 @@ export default function ProfileSettings({ type }: { type: UserRole }) {
       >
         <div className="mb-[15px] flex items-start justify-between gap-2.5">
           <div>
-            <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+            <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
               Basic information
             </h2>
-            <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
-              Demo user profile
-            </p>
+            <p className="m-0 text-[9px] leading-[1.7] text-muted">Demo user profile</p>
           </div>
-          <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-[#f5f1e7] px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-[#827144] dark:bg-[#223128] dark:text-[#dfe9e2]">
+          <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
             LOCAL
           </span>
         </div>

@@ -78,7 +78,7 @@ export default function Home() {
 
   return (
     <main>
-      <section className="relative min-h-[660px] overflow-hidden bg-[#193d2d] text-white max-md:min-h-[635px] max-[420px]:min-h-[670px]">
+      <section className="relative min-h-[660px] overflow-hidden bg-hero-bg text-white max-md:min-h-[635px] max-[420px]:min-h-[670px]">
         <div
           className="absolute inset-0 scale-[1.015] bg-[center_52%] bg-cover"
           style={{
@@ -104,8 +104,8 @@ export default function Home() {
         />
         <div className="relative mx-auto flex min-h-[660px] w-[min(1190px,calc(100%-64px))] flex-col justify-center pt-[38px] pb-[49px] max-[1000px]:w-[min(100%-42px,850px)] max-md:min-h-[635px] max-md:w-[calc(100%-36px)] max-md:pt-7 max-md:pb-[35px] max-[420px]:min-h-[670px] max-[420px]:w-[calc(100%-28px)]">
           <div className="max-w-[680px] pb-[35px]">
-            <span className="inline-flex items-center gap-[9px] text-[11px] font-[650] tracking-[0.075em] text-[#e5eee4] uppercase max-md:text-[9px]">
-              <span className="h-[7px] w-[7px] rounded-full bg-[#b0c88b] shadow-[0_0_0_4px_rgba(200,225,164,0.16)]" />{' '}
+            <span className="inline-flex items-center gap-[9px] text-[11px] font-[650] tracking-[0.075em] text-hero-kicker uppercase max-md:text-[9px]">
+              <span className="h-[7px] w-[7px] rounded-full bg-hero-dot shadow-[0_0_0_4px_rgba(200,225,164,0.16)]" />{' '}
               {t('home.kicker')}
             </span>
             <h1 className="mt-[18px] mb-[17px] max-w-[670px] font-serif text-[clamp(43px,5.3vw,68px)] leading-[1.04] font-medium tracking-[-0.048em] text-white normal-case max-md:max-w-[580px] max-md:text-[clamp(43px,10vw,60px)] max-[420px]:text-[43px]">
@@ -123,14 +123,12 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="w-[min(760px,100%)] rounded-[5px] bg-white px-[18px] pt-[17px] pb-[14px] text-[#252e28] shadow-[0_15px_44px_rgba(0,0,0,0.19)] max-md:p-[13px] max-[420px]:mt-[3px] dark:border dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#edf4ef]">
+          <div className="w-[min(760px,100%)] rounded-[5px] border border-line bg-surface px-[18px] pt-[17px] pb-[14px] text-ink shadow-[0_15px_44px_rgba(0,0,0,0.19)] max-md:p-[13px] max-[420px]:mt-[3px]">
             <div className="mb-2.5 flex items-center justify-between">
-              <span className="inline-flex items-center gap-[9px] text-[10px] font-[650] tracking-[0.075em] text-[#526257] uppercase dark:text-[#b2beb5]">
-                <Sparkles size={16} className="text-[#8d733f]" /> Smart material search
+              <span className="inline-flex items-center gap-[9px] text-[10px] font-[650] tracking-[0.075em] text-muted uppercase">
+                <Sparkles size={16} className="text-ochre" /> Smart material search
               </span>
-              <small className="text-[10px] text-[#89938b] dark:text-[#b2beb5]">
-                Demo experience
-              </small>
+              <small className="text-[10px] text-subtle">Demo experience</small>
             </div>
             <SearchBox
               onSearch={(query) =>
@@ -138,11 +136,11 @@ export default function Home() {
               }
             />
             <div className="flex flex-wrap items-center gap-[7px] pt-3 max-md:gap-[5px]">
-              <span className="mr-0.5 text-[10px] text-[#89928b]">Try</span>
+              <span className="mr-0.5 text-[10px] text-subtle">Try</span>
               {examples.map((item) => (
                 <button
                   key={item}
-                  className="rounded-[3px] border border-[#e8ede7] bg-[#f3f5f1] px-2 py-[5px] text-[10px] text-[#59695e] hover:border-[#b9cbb9] hover:text-[#173b2d] max-md:text-[8px] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                  className="rounded-[3px] border border-line bg-surface-tint px-2 py-[5px] text-[10px] text-chip-text hover:border-eyebrow hover:text-accent max-md:text-[8px]"
                   onClick={() => navigate(`/marketplace?q=${encodeURIComponent(item)}`)}
                 >
                   {item}
@@ -159,25 +157,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-[#ebeee8] bg-[#f5f6f1] dark:border-[#34463a] dark:bg-[#17241d]">
-        <div className="mx-auto flex min-h-[68px] w-[min(1190px,calc(100%-64px))] items-center justify-between gap-4 text-[11px] text-[#7a857c] max-[1000px]:w-[min(100%-42px,850px)] max-md:min-h-auto max-md:w-[calc(100%-36px)] max-md:flex-wrap max-md:justify-start max-md:gap-x-[18px] max-md:gap-y-3 max-md:py-[15px] max-[420px]:w-[calc(100%-28px)] dark:text-[#b2beb5]">
+      <section className="border-b border-line bg-surface-band">
+        <div className="mx-auto flex min-h-[68px] w-[min(1190px,calc(100%-64px))] items-center justify-between gap-4 text-[11px] text-muted max-[1000px]:w-[min(100%-42px,850px)] max-md:min-h-auto max-md:w-[calc(100%-36px)] max-md:flex-wrap max-md:justify-start max-md:gap-x-[18px] max-md:gap-y-3 max-md:py-[15px] max-[420px]:w-[calc(100%-28px)]">
           <span className="tracking-[0.04em] max-md:w-full">Connecting Bangladesh’s</span>
-          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
-            <Wheat size={18} className="text-[#698673]" /> Producers
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-ink-soft max-md:text-[10px]">
+            <Wheat size={18} className="text-eyebrow" /> Producers
           </div>
-          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
-            <Recycle size={18} className="text-[#698673]" /> Circular businesses
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-ink-soft max-md:text-[10px]">
+            <Recycle size={18} className="text-eyebrow" /> Circular businesses
           </div>
-          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
-            <Truck size={18} className="text-[#698673]" /> Local logistics
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-ink-soft max-md:text-[10px]">
+            <Truck size={18} className="text-eyebrow" /> Local logistics
           </div>
-          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
-            <Sprout size={18} className="text-[#698673]" /> Resource innovators
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-ink-soft max-md:text-[10px]">
+            <Sprout size={18} className="text-eyebrow" /> Resource innovators
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-[91px] max-md:py-[62px] dark:bg-[#111915]" id="discover">
+      <section className="bg-canvas py-[91px] max-md:py-[62px]" id="discover">
         <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Find supply around you"
@@ -185,7 +183,7 @@ export default function Home() {
             text="Explore sample supply areas and discover agricultural by-products across Bangladesh."
             action={
               <Link
-                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3 dark:text-[#dbe8df]"
+                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3"
                 to="/marketplace"
               >
                 Explore marketplace <ArrowRight size={16} />
@@ -196,19 +194,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white pt-0.5 pb-[83px] max-md:pb-[55px] dark:bg-[#111915]">
+      <section className="bg-canvas pt-0.5 pb-[83px] max-md:pb-[55px]">
         <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-2 gap-5 max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-3 max-[420px]:w-[calc(100%-28px)]">
-          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-[#e7eae3] bg-[#eef3ea] px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px] dark:border-[#34463a] dark:bg-[#1a261f]">
-            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-[#dde8da] text-[#315c3f] max-md:mb-4 dark:bg-[#223128] dark:text-[#a6c5ab]">
+          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-line bg-surface-tint px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px]">
+            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-sage-fill text-eyebrow max-md:mb-4">
               <Wheat size={24} />
             </span>
-            <span className="text-[9px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[9px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               For producers
             </span>
-            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[29px] dark:text-[#edf4ef]">
+            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-md:text-[29px]">
               Turn your by-products into income.
             </h2>
-            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-muted">
               Connect farm, mill, and processing residues with businesses looking for practical local
               supply.
             </p>
@@ -221,7 +219,7 @@ export default function Home() {
               ].map((pill) => (
                 <span
                   key={pill}
-                  className="rounded-[3px] border border-[#dfe8dc] bg-white/[0.72] px-[9px] py-1.5 text-[9px] text-[#506252] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                  className="rounded-[3px] border border-line bg-surface/[0.82] px-[9px] py-1.5 text-[9px] text-chip-text"
                 >
                   {pill}
                 </span>
@@ -233,33 +231,33 @@ export default function Home() {
             >
               List your by-products <ArrowRight size={17} />
             </Link>
-            <div className="absolute -right-[15px] -bottom-7 -rotate-[15deg] text-[#547f51]/[0.08]">
+            <div className="absolute -right-[15px] -bottom-7 -rotate-[15deg] text-eyebrow/10">
               <Sprout size={150} />
             </div>
           </article>
-          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-[#e7eae3] bg-[#fbf8f0] px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px] dark:border-[#34463a] dark:bg-[#1a261f]">
-            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-[#efe7d5] text-[#886b39] max-md:mb-4 dark:bg-[#223128] dark:text-[#a6c5ab]">
+          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-line bg-surface-sand px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px]">
+            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-ochre-soft text-ochre max-md:mb-4">
               <Boxes size={24} />
             </span>
-            <span className="text-[9px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[9px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               For buyers
             </span>
-            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[29px] dark:text-[#edf4ef]">
+            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-md:text-[29px]">
               Find the right material for your business.
             </h2>
-            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-muted">
               Compare available materials by type, quantity, price, location, condition, and supply
               schedule.
             </p>
-            <ul className="my-5 mb-6 grid list-none gap-[11px] p-0 text-[11px] text-[#56645a] dark:text-[#b2beb5]">
+            <ul className="my-5 mb-6 grid list-none gap-[11px] p-0 text-[11px] text-muted">
               <li className="flex items-center gap-[9px]">
-                <Check size={16} className="text-[#5a825f]" /> Browse locally listed supply
+                <Check size={16} className="text-eyebrow" /> Browse locally listed supply
               </li>
               <li className="flex items-center gap-[9px]">
-                <Check size={16} className="text-[#5a825f]" /> Compare suppliers and quantities
+                <Check size={16} className="text-eyebrow" /> Compare suppliers and quantities
               </li>
               <li className="flex items-center gap-[9px]">
-                <Check size={16} className="text-[#5a825f]" /> Start a direct conversation
+                <Check size={16} className="text-eyebrow" /> Start a direct conversation
               </li>
             </ul>
             <Link
@@ -272,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#f8f7f2] pt-[67px] pb-[91px] max-md:py-[62px] dark:bg-[#111915]" id="listings">
+      <section className="bg-surface-cream pt-[67px] pb-[91px] max-md:py-[62px]" id="listings">
         <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Fresh on the market"
@@ -280,7 +278,7 @@ export default function Home() {
             text="A selection of recent sample listings from producers around the country."
             action={
               <Link
-                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3 dark:text-[#dbe8df]"
+                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3"
                 to="/marketplace"
               >
                 View all materials <ArrowRight size={16} />
@@ -292,17 +290,17 @@ export default function Home() {
               <ListingCard key={item.id} listing={item} />
             ))}
           </div>
-          <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-[#858c84] dark:text-[#b2beb5]">
+          <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-subtle">
             <CircleHelp size={15} className="mt-px shrink-0" /> Prices and availability are
             illustrative demo data, not verified market quotations.
           </p>
         </div>
       </section>
 
-      <section className="bg-[#173b2d] py-[45px] text-white max-md:py-8 dark:bg-[#17241d]">
+      <section className="bg-forest-section py-[45px] text-white max-md:py-8">
         <div className="mx-auto flex w-[min(1190px,calc(100%-64px))] items-center justify-between gap-[22px] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:items-start max-[420px]:w-[calc(100%-28px)]">
           <div>
-            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#b4c9ac] uppercase">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-kicker-sage uppercase">
               Buyer requests
             </span>
             <h2 className="mt-[9px] mb-1 font-serif text-[28px] font-medium tracking-[-0.035em] text-white max-md:text-[25px]">
@@ -318,7 +316,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-[91px] max-md:py-[62px] dark:bg-[#111915]" id="how-it-works">
+      <section className="bg-canvas py-[91px] max-md:py-[62px]" id="how-it-works">
         <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Straightforward by design"
@@ -328,42 +326,40 @@ export default function Home() {
           <div className="grid grid-cols-4 gap-4 pt-1 max-md:grid-cols-2 max-md:gap-[9px]">
             {processSteps.map(([icon, no, title, text]) => (
               <div
-                className="relative min-h-[204px] border-t border-[#dfe6dc] bg-[#fafbf8] p-[22px] max-md:min-h-[183px] max-md:p-4 dark:border-[#34463a] dark:bg-[#1a261f]"
+                className="relative min-h-[204px] border-t border-line bg-surface-subtle p-[22px] max-md:min-h-[183px] max-md:p-4"
                 key={no}
               >
-                <div className="grid h-[37px] w-[37px] place-items-center rounded-[4px] bg-[#e9f0e8] text-[#406849] dark:bg-[#223128] dark:text-[#a6c5ab] [&>svg]:w-[19px]">
+                <div className="grid h-[37px] w-[37px] place-items-center rounded-[4px] bg-surface-tint text-eyebrow [&>svg]:w-[19px]">
                   {icon}
                 </div>
-                <span className="absolute top-6 right-[22px] font-serif text-[14px] text-[#bac6bb]">
+                <span className="absolute top-6 right-[22px] font-serif text-[14px] text-subtle">
                   {no}
                 </span>
-                <h3 className="mt-[25px] mb-1.5 text-[15px] font-[680] tracking-[-0.035em] text-[#252e28] max-md:mt-5 dark:text-[#edf4ef]">
+                <h3 className="mt-[25px] mb-1.5 text-[15px] font-[680] tracking-[-0.035em] text-ink max-md:mt-5">
                   {title}
                 </h3>
-                <p className="m-0 text-[11px] leading-[1.65] text-[#737c75] dark:text-[#b2beb5]">
-                  {text}
-                </p>
+                <p className="m-0 text-[11px] leading-[1.65] text-muted">{text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f3f6f1] py-[75px] max-md:py-[58px] dark:bg-[#17241d]">
+      <section className="bg-surface-band py-[75px] max-md:py-[58px]">
         <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-[0.87fr_1.13fr] items-center gap-[55px] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-[25px] max-[420px]:w-[calc(100%-28px)]">
           <div>
-            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               Thoughtful supplier discovery
             </span>
-            <h2 className="my-3 max-w-[425px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:max-w-[500px] max-md:text-[32px] dark:text-[#edf4ef]">
+            <h2 className="my-3 max-w-[425px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-md:max-w-[500px] max-md:text-[32px]">
               Find promising material matches, faster.
             </h2>
-            <p className="mb-[18px] max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="mb-[18px] max-w-[440px] text-[12px] leading-[1.7] text-muted">
               Explore suppliers based on material fit, location, available quantity, listed price,
               and condition. Recommendations are a frontend demonstration—not a live AI service.
             </p>
             <Link
-              className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+              className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover"
               to="/buyer-dashboard/recommendations"
             >
               Explore matching preview <ArrowRight size={16} />
@@ -373,29 +369,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-[91px] max-md:py-[62px] max-md:pb-14 dark:bg-[#17241d]">
+      <section className="bg-canvas py-[91px] max-md:py-[62px] max-md:pb-14">
         <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-[0.82fr_1.18fr] items-start gap-16 max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-[25px] max-[420px]:w-[calc(100%-28px)]">
           <div className="pt-[22px] max-md:pt-0">
-            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               Supply desk
             </span>
-            <h2 className="mt-2.5 mb-2.5 max-w-[410px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:max-w-[500px] max-md:text-[32px] dark:text-[#edf4ef]">
+            <h2 className="mt-2.5 mb-2.5 max-w-[410px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-md:max-w-[500px] max-md:text-[32px]">
               Need help sourcing for your business?
             </h2>
-            <p className="mt-3 mb-5 max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="mt-3 mb-5 max-w-[440px] text-[12px] leading-[1.7] text-muted">
               Share what your team is looking for. Our sourcing request demo helps organize your
               material, volume, and delivery needs.
             </p>
-            <div className="grid gap-[11px] text-[11px] text-[#53665a] dark:text-[#b2beb5]">
+            <div className="grid gap-[11px] text-[11px] text-muted">
               <span className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-[#628568]" /> Share your volume and location
+                <CheckCircle2 size={18} className="text-eyebrow" /> Share your volume and location
               </span>
               <span className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-[#628568]" /> Describe your quality
+                <CheckCircle2 size={18} className="text-eyebrow" /> Describe your quality
                 preferences
               </span>
               <span className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-[#628568]" /> Receive a local confirmation
+                <CheckCircle2 size={18} className="text-eyebrow" /> Receive a local confirmation
               </span>
             </div>
           </div>
@@ -403,8 +399,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white pt-[30px] pb-20 max-md:pb-14 dark:bg-[#17241d]">
-        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-2 overflow-hidden rounded-[5px] border border-[#e3e9e2] bg-[#f4f6f1] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-[420px]:w-[calc(100%-28px)] dark:border-[#34463a] dark:bg-[#1a261f]">
+      <section className="bg-canvas pt-[30px] pb-20 max-md:pb-14">
+        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-2 overflow-hidden rounded-[5px] border border-line bg-surface-tint-soft max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-[420px]:w-[calc(100%-28px)]">
           <div
             className="min-h-[350px] bg-cover bg-center max-md:min-h-[240px]"
             style={{
@@ -413,13 +409,13 @@ export default function Home() {
             }}
           />
           <div className="flex flex-col items-start justify-center p-[43px] max-md:p-[25px]">
-            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               Moving resources forward
             </span>
-            <h2 className="mt-2.5 mb-2.5 max-w-[440px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[32px] dark:text-[#edf4ef]">
+            <h2 className="mt-2.5 mb-2.5 max-w-[440px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-md:text-[32px]">
               Local logistics can connect supply with demand.
             </h2>
-            <p className="mb-[21px] max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="mb-[21px] max-w-[440px] text-[12px] leading-[1.7] text-muted">
               Transport providers can support collection, consolidation, and delivery between
               agricultural producers and material buyers.
             </p>
@@ -430,20 +426,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#f7f8f4] pt-[65px] pb-[74px] dark:bg-[#17241d]">
+      <section className="bg-surface-band pt-[65px] pb-[74px]">
         <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <div className="text-center">
-            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
               An early-stage idea with room to grow
             </span>
-            <h2 className="mt-[11px] mb-1.5 font-serif text-[34px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-[420px]:text-[28px] dark:text-[#edf4ef]">
+            <h2 className="mt-[11px] mb-1.5 font-serif text-[34px] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-[420px]:text-[28px]">
               Better use starts with better connections.
             </h2>
-            <p className="m-0 text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+            <p className="m-0 text-[11px] leading-[1.7] text-muted">
               Illustrative demonstration figures for this frontend prototype.
             </p>
           </div>
-          <div className="mt-[35px] grid grid-cols-4 border-y border-[#dfe5de] max-md:grid-cols-2 dark:border-[#34463a]">
+          <div className="mt-[35px] grid grid-cols-4 border-y border-line max-md:grid-cols-2">
             {[
               ['12', 'Sample listings'],
               ['5.2 MT', 'Illustrative materials exchanged'],
@@ -453,23 +449,13 @@ export default function Home() {
               <div
                 key={label}
                 className={`flex flex-col items-center px-2.5 py-[22px] ${
-                  index < 3
-                    ? 'border-r border-[#dfe5de] dark:border-[#34463a]'
-                    : ''
-                } ${
-                  index === 1 ? 'max-md:border-r-0' : ''
-                } ${
-                  index < 2
-                    ? 'max-md:border-b max-md:border-[#dfe5de] max-md:dark:border-[#34463a]'
-                    : ''
+                  index < 3 ? 'border-r border-line' : ''
+                } ${index === 1 ? 'max-md:border-r-0' : ''} ${
+                  index < 2 ? 'max-md:border-b max-md:border-line' : ''
                 }`}
               >
-                <strong className="font-serif text-[29px] font-medium text-[#2a5c3c] dark:text-[#edf4ef]">
-                  {value}
-                </strong>
-                <span className="mt-1 text-center text-[10px] text-[#728076] dark:text-[#b2beb5]">
-                  {label}
-                </span>
+                <strong className="font-serif text-[29px] font-medium text-accent">{value}</strong>
+                <span className="mt-1 text-center text-[10px] text-muted">{label}</span>
               </div>
             ))}
           </div>

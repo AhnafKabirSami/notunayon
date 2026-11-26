@@ -120,7 +120,7 @@ export default function Chatbot({ listings = listingsSeed }: { listings?: Listin
   )
 
   return (
-    <div className="fixed right-6 bottom-6 z-[80] font-sans text-[#252e28] max-[600px]:right-[15px] max-[600px]:bottom-[max(15px,env(safe-area-inset-bottom))]">
+    <div className="fixed right-6 bottom-6 z-[80] font-sans text-ink max-[600px]:right-[15px] max-[600px]:bottom-[max(15px,env(safe-area-inset-bottom))]">
       <ChatWindow
         open={open}
         messages={messages}
@@ -130,7 +130,7 @@ export default function Chatbot({ listings = listingsSeed }: { listings?: Listin
         onSend={sendMessage}
       />
       <button
-        className={`inline-flex items-center justify-center gap-2.5 border border-white/30 bg-[#173b2d] text-[13px] font-[680] text-white shadow-[0_8px_24px_rgba(20,54,36,0.26)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#24583d] hover:shadow-[0_11px_28px_rgba(20,54,36,0.3)] focus-visible:outline-[3px] focus-visible:outline-offset-[3px] focus-visible:outline-[#b6d2a8] motion-reduce:transition-none dark:bg-[#1b3024] ${
+        className={`inline-flex items-center justify-center gap-2.5 border border-white/30 bg-forest text-[13px] font-[680] text-white shadow-[0_8px_24px_rgba(20,54,36,0.26)] transition duration-200 hover:-translate-y-0.5 hover:bg-forest-hover hover:shadow-[0_11px_28px_rgba(20,54,36,0.3)] focus-visible:outline-[3px] focus-visible:outline-offset-[3px] focus-visible:outline-sage-ring motion-reduce:transition-none ${
           open
             ? 'h-12 w-12 min-w-12 rounded-full p-0 max-[600px]:h-[46px] max-[600px]:w-[46px] max-[600px]:min-w-[46px]'
             : 'h-[58px] min-w-[62px] rounded-[30px] px-[17px] max-[600px]:h-[54px] max-[600px]:w-[54px] max-[600px]:min-w-[54px] max-[600px]:p-0'

@@ -15,7 +15,7 @@ export default function Logo({ light = false, footerBrand = false, compact = fal
     <Link
       to="/"
       className={`inline-flex shrink-0 items-center gap-[9px] ${
-        light ? 'text-[#f3f7f2]' : 'text-[#173b2d] dark:text-[#a6c5ab]'
+        light ? 'text-footer-text' : 'text-accent'
       }`}
       aria-label="Notunayon home"
     >
@@ -24,8 +24,8 @@ export default function Logo({ light = false, footerBrand = false, compact = fal
           compact ? 'h-[34px] w-[34px]' : 'h-[38px] w-[38px] max-md:h-[34px] max-md:w-[34px]'
         } ${
           light
-            ? 'bg-[#dbe8da] text-[#173b2d]'
-            : 'bg-[#173b2d] text-white dark:bg-[#1b3024]'
+            ? 'bg-sage-fill text-forest-dark'
+            : 'bg-forest text-white'
         }`}
       >
         <Sprout size={22} strokeWidth={2.2} />
@@ -44,7 +44,7 @@ export default function Logo({ light = false, footerBrand = false, compact = fal
         {!footerBrand && (
           <small
             className={`mt-1 text-[10px] tracking-[0.08em] ${
-              light ? 'text-[#a7b9a7]' : 'text-[#77877b] dark:text-[#b2beb5]'
+              light ? 'text-footer-link' : 'text-muted'
             }`}
           >
             নতুনায়ন

@@ -4,10 +4,9 @@ import { ChevronDown, Eye } from 'lucide-react'
 import { marketplaceLabel } from '../../utils/marketplace.ts'
 
 const inputBaseClass =
-  'w-full min-h-[41px] rounded-[3px] border border-[#dfe5de] bg-white px-2.5 py-2 text-[11px] text-[#435147] outline-none placeholder:text-[#a0a9a0] focus:border-[#78977e] focus:ring-2 focus:ring-[#567f5c]/10 dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef] dark:placeholder:text-[#93a098]'
+  'w-full min-h-[41px] rounded-[3px] border border-input-border bg-input px-2.5 py-2 text-[11px] text-ink-soft outline-none placeholder:text-placeholder focus:border-eyebrow focus:ring-2 focus:ring-eyebrow/15'
 
-const labelBaseClass =
-  'mb-1.5 block text-[10px] font-[680] text-[#58665c] dark:text-[#b2beb5]'
+const labelBaseClass = 'mb-1.5 block text-[10px] font-[680] text-muted'
 
 interface FieldProps {
   label: string
@@ -53,12 +52,12 @@ export function Field({
           className={`${inputBaseClass} min-h-[82px] resize-y leading-[1.5]`}
         />
       ) : as === 'select' ? (
-        <div className="relative flex items-center rounded-[3px] dark:bg-[#1a261f]">
+        <div className="relative flex items-center rounded-[3px] bg-surface">
           <select
             id={id}
             name={name}
             required={required}
-            className="h-[39px] w-full appearance-none rounded-[3px] border border-[#dfe5de] bg-white pr-8 pl-2.5 text-[10px] text-[#56635a] outline-none focus:border-[#78977e] focus:ring-2 focus:ring-[#567f5c]/10 dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+            className="h-[39px] w-full appearance-none rounded-[3px] border border-input-border bg-input pr-8 pl-2.5 text-[10px] text-ink-soft outline-none focus:border-eyebrow focus:ring-2 focus:ring-eyebrow/15"
           >
             {options?.map((option) => (
               <option key={option}>{option}</option>
@@ -66,7 +65,7 @@ export function Field({
           </select>
           <ChevronDown
             size={15}
-            className="pointer-events-none absolute right-2.5 text-[#7a887d]"
+            className="pointer-events-none absolute right-2.5 text-subtle"
           />
         </div>
       ) : (
@@ -110,13 +109,13 @@ export function SelectField({
       <label htmlFor={`field-${name}`} className={labelBaseClass}>
         {label}
       </label>
-      <div className="relative flex items-center rounded-[3px] dark:bg-[#1a261f]">
+      <div className="relative flex items-center rounded-[3px] bg-surface">
         <select
           id={`field-${name}`}
           name={name}
           defaultValue={defaultValue || options[0]}
           required={required}
-          className="h-[39px] w-full appearance-none rounded-[3px] border border-[#dfe5de] bg-white pr-8 pl-2.5 text-[10px] text-[#56635a] outline-none focus:border-[#78977e] focus:ring-2 focus:ring-[#567f5c]/10 dark:border-[#405247] dark:bg-[#152019] dark:text-[#edf4ef]"
+          className="h-[39px] w-full appearance-none rounded-[3px] border border-input-border bg-input pr-8 pl-2.5 text-[10px] text-ink-soft outline-none focus:border-eyebrow focus:ring-2 focus:ring-eyebrow/15"
         >
           {options.map((option) => (
             <option key={option} value={option}>
@@ -126,7 +125,7 @@ export function SelectField({
         </select>
         <ChevronDown
           size={15}
-          className="pointer-events-none absolute right-2.5 text-[#7a887d]"
+          className="pointer-events-none absolute right-2.5 text-subtle"
         />
       </div>
     </div>
@@ -153,7 +152,7 @@ export function PasswordField() {
         />
         <button
           type="button"
-          className="absolute top-[3px] right-1 grid h-[34px] w-[33px] place-items-center border-0 bg-transparent text-[#7d897f]"
+          className="absolute top-[3px] right-1 grid h-[34px] w-[33px] place-items-center border-0 bg-transparent text-subtle"
           aria-label={
             shown
               ? i18n.resolvedLanguage === 'bn'
