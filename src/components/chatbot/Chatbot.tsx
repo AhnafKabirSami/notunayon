@@ -6,7 +6,6 @@ import type { ChatMessageItem, ConversationContext, Listing } from '../../types/
 import { getDemoResponse } from './chatbotResponses.ts'
 import ChatWindow from './ChatWindow.tsx'
 import { createConversationContext } from './conversationContext.ts'
-import './chatbot.css'
 
 const STORAGE_KEY = 'tonu-ai-conversation'
 const CONTEXT_STORAGE_KEY = 'tonu-ai-context'
@@ -121,7 +120,7 @@ export default function Chatbot({ listings = listingsSeed }: { listings?: Listin
   )
 
   return (
-    <div className="notu-chatbot">
+    <div className="fixed right-6 bottom-6 z-[80] font-sans text-[#252e28] max-[600px]:right-[15px] max-[600px]:bottom-[max(15px,env(safe-area-inset-bottom))]">
       <ChatWindow
         open={open}
         messages={messages}
@@ -131,7 +130,11 @@ export default function Chatbot({ listings = listingsSeed }: { listings?: Listin
         onSend={sendMessage}
       />
       <button
-        className={`notu-chat-launcher ${open ? 'notu-chat-launcher-open' : ''}`}
+        className={`inline-flex items-center justify-center gap-2.5 border border-white/30 bg-[#173b2d] text-[13px] font-[680] text-white shadow-[0_8px_24px_rgba(20,54,36,0.26)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#24583d] hover:shadow-[0_11px_28px_rgba(20,54,36,0.3)] focus-visible:outline-[3px] focus-visible:outline-offset-[3px] focus-visible:outline-[#b6d2a8] motion-reduce:transition-none dark:bg-[#1b3024] ${
+          open
+            ? 'h-12 w-12 min-w-12 rounded-full p-0 max-[600px]:h-[46px] max-[600px]:w-[46px] max-[600px]:min-w-[46px]'
+            : 'h-[58px] min-w-[62px] rounded-[30px] px-[17px] max-[600px]:h-[54px] max-[600px]:w-[54px] max-[600px]:min-w-[54px] max-[600px]:p-0'
+        }`}
         type="button"
         aria-label={open ? t('chatbot.close') : t('chatbot.open')}
         aria-expanded={open}
@@ -139,7 +142,9 @@ export default function Chatbot({ listings = listingsSeed }: { listings?: Listin
       >
         {open ? <X size={23} /> : <MessageCircle size={23} />}
         {!open && (
-          <span>{i18n.resolvedLanguage === 'bn' ? 'তনু AI-এর কাছে জিজ্ঞাসা করুন' : 'Ask Tonu AI'}</span>
+          <span className="max-[600px]:hidden">
+            {i18n.resolvedLanguage === 'bn' ? 'তনু AI-এর কাছে জিজ্ঞাসা করুন' : 'Ask Tonu AI'}
+          </span>
         )}
       </button>
     </div>

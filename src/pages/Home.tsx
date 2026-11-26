@@ -24,6 +24,7 @@ import ListingCard from '../components/block/ListingCard.tsx'
 import MatchingPreview from '../components/block/MatchingPreview.tsx'
 import SearchBox from '../components/block/SearchBox.tsx'
 import SupplyMap from '../components/block/SupplyMap.tsx'
+import { buttonClasses } from '../components/ui/buttonStyles.ts'
 import SectionHeading from '../components/ui/SectionHeading.tsx'
 
 export default function Home() {
@@ -77,42 +78,71 @@ export default function Home() {
 
   return (
     <main>
-      <section className="hero">
-        <div className="hero-photo" role="img" aria-label="Lush green farmland in Bangladesh" />
-        <div className="hero-shade" />
-        <div className="container hero-content">
-          <div className="hero-copy">
-            <span className="hero-kicker">
-              <span className="kicker-dot" /> {t('home.kicker')}
+      <section className="relative min-h-[660px] overflow-hidden bg-[#193d2d] text-white max-md:min-h-[635px] max-[420px]:min-h-[670px]">
+        <div
+          className="absolute inset-0 scale-[1.015] bg-[center_52%] bg-cover"
+          style={{
+            backgroundImage:
+              'url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2200&q=88")',
+          }}
+          role="img"
+          aria-label="Lush green farmland in Bangladesh"
+        />
+        <div
+          className="absolute inset-0 dark:hidden"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(10,38,27,.88) 0%, rgba(12,40,28,.76) 42%, rgba(14,39,30,.24) 100%), linear-gradient(0deg, rgba(11,33,25,.48), transparent 49%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden dark:block"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(7,20,13,.96), rgba(10,31,20,.76), rgba(10,31,20,.22))',
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[660px] w-[min(1190px,calc(100%-64px))] flex-col justify-center pt-[38px] pb-[49px] max-[1000px]:w-[min(100%-42px,850px)] max-md:min-h-[635px] max-md:w-[calc(100%-36px)] max-md:pt-7 max-md:pb-[35px] max-[420px]:min-h-[670px] max-[420px]:w-[calc(100%-28px)]">
+          <div className="max-w-[680px] pb-[35px]">
+            <span className="inline-flex items-center gap-[9px] text-[11px] font-[650] tracking-[0.075em] text-[#e5eee4] uppercase max-md:text-[9px]">
+              <span className="h-[7px] w-[7px] rounded-full bg-[#b0c88b] shadow-[0_0_0_4px_rgba(200,225,164,0.16)]" />{' '}
+              {t('home.kicker')}
             </span>
-            <h1>{t('home.title')}</h1>
-            <p>{t('home.subtitle')}</p>
-            <div className="hero-ctas">
-              <Link className="button button-light" to="/marketplace">
+            <h1 className="mt-[18px] mb-[17px] max-w-[670px] font-serif text-[clamp(43px,5.3vw,68px)] leading-[1.04] font-medium tracking-[-0.048em] text-white normal-case max-md:max-w-[580px] max-md:text-[clamp(43px,10vw,60px)] max-[420px]:text-[43px]">
+              {t('home.title')}
+            </h1>
+            <p className="m-0 max-w-[540px] text-[16px] leading-[1.7] text-white/[0.82] max-md:text-[13px]">
+              {t('home.subtitle')}
+            </p>
+            <div className="mt-[27px] flex flex-wrap gap-[11px]">
+              <Link className={buttonClasses({ variant: 'light' })} to="/marketplace">
                 {t('home.findMaterials')} <ArrowRight size={17} />
               </Link>
-              <Link className="button button-outline-light" to="/register">
+              <Link className={buttonClasses({ variant: 'outline-light' })} to="/register">
                 {t('home.listByProducts')}
               </Link>
             </div>
           </div>
-          <div className="hero-search-panel">
-            <div className="search-panel-label">
-              <span>
-                <Sparkles size={16} /> Smart material search
+          <div className="w-[min(760px,100%)] rounded-[5px] bg-white px-[18px] pt-[17px] pb-[14px] text-[#252e28] shadow-[0_15px_44px_rgba(0,0,0,0.19)] max-md:p-[13px] max-[420px]:mt-[3px] dark:border dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#edf4ef]">
+            <div className="mb-2.5 flex items-center justify-between">
+              <span className="inline-flex items-center gap-[9px] text-[10px] font-[650] tracking-[0.075em] text-[#526257] uppercase dark:text-[#b2beb5]">
+                <Sparkles size={16} className="text-[#8d733f]" /> Smart material search
               </span>
-              <small>Demo experience</small>
+              <small className="text-[10px] text-[#89938b] dark:text-[#b2beb5]">
+                Demo experience
+              </small>
             </div>
             <SearchBox
               onSearch={(query) =>
                 navigate(`/marketplace${query ? `?q=${encodeURIComponent(query)}` : ''}`)
               }
             />
-            <div className="search-suggestions">
-              <span>Try</span>
+            <div className="flex flex-wrap items-center gap-[7px] pt-3 max-md:gap-[5px]">
+              <span className="mr-0.5 text-[10px] text-[#89928b]">Try</span>
               {examples.map((item) => (
                 <button
                   key={item}
+                  className="rounded-[3px] border border-[#e8ede7] bg-[#f3f5f1] px-2 py-[5px] text-[10px] text-[#59695e] hover:border-[#b9cbb9] hover:text-[#173b2d] max-md:text-[8px] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                   onClick={() => navigate(`/marketplace?q=${encodeURIComponent(item)}`)}
                 >
                   {item}
@@ -120,8 +150,8 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="hero-footnote">
-            <span>
+          <div className="mt-5 flex w-[min(760px,100%)] justify-between text-[10px] text-white/[0.72] max-md:text-[8px] max-[420px]:flex-col max-[420px]:items-start max-[420px]:gap-1.5">
+            <span className="inline-flex items-center gap-1.5">
               <ShieldCheck size={16} /> Local listings and supplier discovery
             </span>
             <span>Illustrative marketplace data</span>
@@ -129,32 +159,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="trust-strip">
-        <div className="container trust-inner">
-          <span>Connecting Bangladesh’s</span>
-          <div>
-            <Wheat size={18} /> Producers
+      <section className="border-b border-[#ebeee8] bg-[#f5f6f1] dark:border-[#34463a] dark:bg-[#17241d]">
+        <div className="mx-auto flex min-h-[68px] w-[min(1190px,calc(100%-64px))] items-center justify-between gap-4 text-[11px] text-[#7a857c] max-[1000px]:w-[min(100%-42px,850px)] max-md:min-h-auto max-md:w-[calc(100%-36px)] max-md:flex-wrap max-md:justify-start max-md:gap-x-[18px] max-md:gap-y-3 max-md:py-[15px] max-[420px]:w-[calc(100%-28px)] dark:text-[#b2beb5]">
+          <span className="tracking-[0.04em] max-md:w-full">Connecting Bangladesh’s</span>
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
+            <Wheat size={18} className="text-[#698673]" /> Producers
           </div>
-          <div>
-            <Recycle size={18} /> Circular businesses
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
+            <Recycle size={18} className="text-[#698673]" /> Circular businesses
           </div>
-          <div>
-            <Truck size={18} /> Local logistics
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
+            <Truck size={18} className="text-[#698673]" /> Local logistics
           </div>
-          <div>
-            <Sprout size={18} /> Resource innovators
+          <div className="flex items-center gap-2 text-[12px] font-[620] text-[#4c6052] max-md:text-[10px] dark:text-[#dbe8df]">
+            <Sprout size={18} className="text-[#698673]" /> Resource innovators
           </div>
         </div>
       </section>
 
-      <section className="section discovery-section" id="discover">
-        <div className="container">
+      <section className="bg-white py-[91px] max-md:py-[62px] dark:bg-[#111915]" id="discover">
+        <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Find supply around you"
             title="A better way to source local materials."
             text="Explore sample supply areas and discover agricultural by-products across Bangladesh."
             action={
-              <Link className="text-link" to="/marketplace">
+              <Link
+                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3 dark:text-[#dbe8df]"
+                to="/marketplace"
+              >
                 Explore marketplace <ArrowRight size={16} />
               </Link>
             }
@@ -163,126 +196,176 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section split-opportunity">
-        <div className="container opportunity-grid">
-          <article className="opportunity-card producer-card">
-            <span className="op-icon">
+      <section className="bg-white pt-0.5 pb-[83px] max-md:pb-[55px] dark:bg-[#111915]">
+        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-2 gap-5 max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-3 max-[420px]:w-[calc(100%-28px)]">
+          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-[#e7eae3] bg-[#eef3ea] px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-[#dde8da] text-[#315c3f] max-md:mb-4 dark:bg-[#223128] dark:text-[#a6c5ab]">
               <Wheat size={24} />
             </span>
-            <span className="eyebrow">For producers</span>
-            <h2>Turn your by-products into income.</h2>
-            <p>
+            <span className="text-[9px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              For producers
+            </span>
+            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[29px] dark:text-[#edf4ef]">
+              Turn your by-products into income.
+            </h2>
+            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
               Connect farm, mill, and processing residues with businesses looking for practical local
               supply.
             </p>
-            <div className="material-pills">
-              <span>{marketplaceLabel(t, 'Rice Husk', { fixed: true })}</span>
-              <span>{marketplaceLabel(t, 'Cattle Manure', { fixed: true })}</span>
-              <span>{marketplaceLabel(t, 'Poultry Litter', { fixed: true })}</span>
-              <span>{marketplaceLabel(t, 'Crop residues', { type: 'category' })}</span>
+            <div className="my-4 mb-5 flex flex-wrap gap-1.5">
+              {[
+                marketplaceLabel(t, 'Rice Husk', { fixed: true }),
+                marketplaceLabel(t, 'Cattle Manure', { fixed: true }),
+                marketplaceLabel(t, 'Poultry Litter', { fixed: true }),
+                marketplaceLabel(t, 'Crop residues', { type: 'category' }),
+              ].map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-[3px] border border-[#dfe8dc] bg-white/[0.72] px-[9px] py-1.5 text-[9px] text-[#506252] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
+                >
+                  {pill}
+                </span>
+              ))}
             </div>
-            <Link className="button button-solid" to="/register">
+            <Link
+              className={buttonClasses({ variant: 'solid', className: 'relative z-[1]' })}
+              to="/register"
+            >
               List your by-products <ArrowRight size={17} />
             </Link>
-            <div className="opportunity-watermark">
+            <div className="absolute -right-[15px] -bottom-7 -rotate-[15deg] text-[#547f51]/[0.08]">
               <Sprout size={150} />
             </div>
           </article>
-          <article className="opportunity-card buyer-card">
-            <span className="op-icon">
+          <article className="relative min-h-[379px] overflow-hidden rounded-[5px] border border-[#e7eae3] bg-[#fbf8f0] px-[35px] py-[34px] max-md:min-h-0 max-md:p-[25px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <span className="mb-[25px] grid h-11 w-11 place-items-center rounded-[4px] bg-[#efe7d5] text-[#886b39] max-md:mb-4 dark:bg-[#223128] dark:text-[#a6c5ab]">
               <Boxes size={24} />
             </span>
-            <span className="eyebrow">For buyers</span>
-            <h2>Find the right material for your business.</h2>
-            <p>
+            <span className="text-[9px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              For buyers
+            </span>
+            <h2 className="my-[9px] max-w-[410px] font-serif text-[32px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[29px] dark:text-[#edf4ef]">
+              Find the right material for your business.
+            </h2>
+            <p className="relative z-[1] mb-4 max-w-[430px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
               Compare available materials by type, quantity, price, location, condition, and supply
               schedule.
             </p>
-            <ul className="check-list">
-              <li>
-                <Check size={16} /> Browse locally listed supply
+            <ul className="my-5 mb-6 grid list-none gap-[11px] p-0 text-[11px] text-[#56645a] dark:text-[#b2beb5]">
+              <li className="flex items-center gap-[9px]">
+                <Check size={16} className="text-[#5a825f]" /> Browse locally listed supply
               </li>
-              <li>
-                <Check size={16} /> Compare suppliers and quantities
+              <li className="flex items-center gap-[9px]">
+                <Check size={16} className="text-[#5a825f]" /> Compare suppliers and quantities
               </li>
-              <li>
-                <Check size={16} /> Start a direct conversation
+              <li className="flex items-center gap-[9px]">
+                <Check size={16} className="text-[#5a825f]" /> Start a direct conversation
               </li>
             </ul>
-            <Link className="button button-outline-dark" to="/marketplace">
+            <Link
+              className={buttonClasses({ variant: 'outline-dark', className: 'relative z-[1]' })}
+              to="/marketplace"
+            >
               Browse materials <ArrowRight size={17} />
             </Link>
           </article>
         </div>
       </section>
 
-      <section className="section listings-section" id="listings">
-        <div className="container">
+      <section className="bg-[#f8f7f2] pt-[67px] pb-[91px] max-md:py-[62px] dark:bg-[#111915]" id="listings">
+        <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Fresh on the market"
             title="By-products with new potential."
             text="A selection of recent sample listings from producers around the country."
             action={
-              <Link className="text-link" to="/marketplace">
+              <Link
+                className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3 dark:text-[#dbe8df]"
+                to="/marketplace"
+              >
                 View all materials <ArrowRight size={16} />
               </Link>
             }
           />
-          <div className="listing-grid">
+          <div className="grid grid-cols-3 gap-[17px] max-[1000px]:grid-cols-2 max-md:gap-2.5">
             {fresh.map((item) => (
               <ListingCard key={item.id} listing={item} />
             ))}
           </div>
-          <p className="demo-disclaimer">
-            <CircleHelp size={15} /> Prices and availability are illustrative demo data, not verified
-            market quotations.
+          <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-[#858c84] dark:text-[#b2beb5]">
+            <CircleHelp size={15} className="mt-px shrink-0" /> Prices and availability are
+            illustrative demo data, not verified market quotations.
           </p>
         </div>
       </section>
 
-      <section className="request-band">
-        <div className="container request-band-inner">
+      <section className="bg-[#173b2d] py-[45px] text-white max-md:py-8 dark:bg-[#17241d]">
+        <div className="mx-auto flex w-[min(1190px,calc(100%-64px))] items-center justify-between gap-[22px] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:items-start max-[420px]:w-[calc(100%-28px)]">
           <div>
-            <span className="eyebrow">Buyer requests</span>
-            <h2>Searching for a material that isn’t listed?</h2>
-            <p>See what businesses are sourcing or post a requirement of your own.</p>
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#b4c9ac] uppercase">
+              Buyer requests
+            </span>
+            <h2 className="mt-[9px] mb-1 font-serif text-[28px] font-medium tracking-[-0.035em] text-white max-md:text-[25px]">
+              Searching for a material that isn’t listed?
+            </h2>
+            <p className="m-0 text-[12px] leading-[1.7] text-white/[0.72]">
+              See what businesses are sourcing or post a requirement of your own.
+            </p>
           </div>
-          <Link className="button button-light" to="/requests">
+          <Link className={buttonClasses({ variant: 'light' })} to="/requests">
             Explore buyer requests <ArrowRight size={17} />
           </Link>
         </div>
       </section>
 
-      <section className="section process-section" id="how-it-works">
-        <div className="container">
+      <section className="bg-white py-[91px] max-md:py-[62px] dark:bg-[#111915]" id="how-it-works">
+        <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <SectionHeading
             eyebrow="Straightforward by design"
             title="A simple path from supply to use."
             text="Notunayon helps people find one another. Buyers and sellers agree on the details directly."
           />
-          <div className="step-grid">
+          <div className="grid grid-cols-4 gap-4 pt-1 max-md:grid-cols-2 max-md:gap-[9px]">
             {processSteps.map(([icon, no, title, text]) => (
-              <div className="step-card" key={no}>
-                <div className="step-icon">{icon}</div>
-                <span className="step-number">{no}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+              <div
+                className="relative min-h-[204px] border-t border-[#dfe6dc] bg-[#fafbf8] p-[22px] max-md:min-h-[183px] max-md:p-4 dark:border-[#34463a] dark:bg-[#1a261f]"
+                key={no}
+              >
+                <div className="grid h-[37px] w-[37px] place-items-center rounded-[4px] bg-[#e9f0e8] text-[#406849] dark:bg-[#223128] dark:text-[#a6c5ab] [&>svg]:w-[19px]">
+                  {icon}
+                </div>
+                <span className="absolute top-6 right-[22px] font-serif text-[14px] text-[#bac6bb]">
+                  {no}
+                </span>
+                <h3 className="mt-[25px] mb-1.5 text-[15px] font-[680] tracking-[-0.035em] text-[#252e28] max-md:mt-5 dark:text-[#edf4ef]">
+                  {title}
+                </h3>
+                <p className="m-0 text-[11px] leading-[1.65] text-[#737c75] dark:text-[#b2beb5]">
+                  {text}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="matching-section">
-        <div className="container matching-grid">
-          <div className="matching-copy">
-            <span className="eyebrow">Thoughtful supplier discovery</span>
-            <h2>Find promising material matches, faster.</h2>
-            <p>
+      <section className="bg-[#f3f6f1] py-[75px] max-md:py-[58px] dark:bg-[#17241d]">
+        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-[0.87fr_1.13fr] items-center gap-[55px] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-[25px] max-[420px]:w-[calc(100%-28px)]">
+          <div>
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              Thoughtful supplier discovery
+            </span>
+            <h2 className="my-3 max-w-[425px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:max-w-[500px] max-md:text-[32px] dark:text-[#edf4ef]">
+              Find promising material matches, faster.
+            </h2>
+            <p className="mb-[18px] max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
               Explore suppliers based on material fit, location, available quantity, listed price,
               and condition. Recommendations are a frontend demonstration—not a live AI service.
             </p>
-            <Link className="text-link" to="/buyer-dashboard/recommendations">
+            <Link
+              className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+              to="/buyer-dashboard/recommendations"
+            >
               Explore matching preview <ArrowRight size={16} />
             </Link>
           </div>
@@ -290,24 +373,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section sourcing-section">
-        <div className="container sourcing-grid">
-          <div className="sourcing-copy">
-            <span className="eyebrow">Supply desk</span>
-            <h2>Need help sourcing for your business?</h2>
-            <p>
+      <section className="bg-white py-[91px] max-md:py-[62px] max-md:pb-14 dark:bg-[#17241d]">
+        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-[0.82fr_1.18fr] items-start gap-16 max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-md:gap-[25px] max-[420px]:w-[calc(100%-28px)]">
+          <div className="pt-[22px] max-md:pt-0">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              Supply desk
+            </span>
+            <h2 className="mt-2.5 mb-2.5 max-w-[410px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:max-w-[500px] max-md:text-[32px] dark:text-[#edf4ef]">
+              Need help sourcing for your business?
+            </h2>
+            <p className="mt-3 mb-5 max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
               Share what your team is looking for. Our sourcing request demo helps organize your
               material, volume, and delivery needs.
             </p>
-            <div className="sourcing-benefits">
-              <span>
-                <CheckCircle2 size={18} /> Share your volume and location
+            <div className="grid gap-[11px] text-[11px] text-[#53665a] dark:text-[#b2beb5]">
+              <span className="flex items-center gap-2">
+                <CheckCircle2 size={18} className="text-[#628568]" /> Share your volume and location
               </span>
-              <span>
-                <CheckCircle2 size={18} /> Describe your quality preferences
+              <span className="flex items-center gap-2">
+                <CheckCircle2 size={18} className="text-[#628568]" /> Describe your quality
+                preferences
               </span>
-              <span>
-                <CheckCircle2 size={18} /> Receive a local confirmation
+              <span className="flex items-center gap-2">
+                <CheckCircle2 size={18} className="text-[#628568]" /> Receive a local confirmation
               </span>
             </div>
           </div>
@@ -315,40 +403,73 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="logistics-teaser">
-        <div className="container logistics-teaser-inner">
-          <div className="logistics-image" />
-          <div className="logistics-copy">
-            <span className="eyebrow">Moving resources forward</span>
-            <h2>Local logistics can connect supply with demand.</h2>
-            <p>
+      <section className="bg-white pt-[30px] pb-20 max-md:pb-14 dark:bg-[#17241d]">
+        <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-2 overflow-hidden rounded-[5px] border border-[#e3e9e2] bg-[#f4f6f1] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-[420px]:w-[calc(100%-28px)] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <div
+            className="min-h-[350px] bg-cover bg-center max-md:min-h-[240px]"
+            style={{
+              backgroundImage:
+                'url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1000&q=85")',
+            }}
+          />
+          <div className="flex flex-col items-start justify-center p-[43px] max-md:p-[25px]">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              Moving resources forward
+            </span>
+            <h2 className="mt-2.5 mb-2.5 max-w-[440px] font-serif text-[clamp(31px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-md:text-[32px] dark:text-[#edf4ef]">
+              Local logistics can connect supply with demand.
+            </h2>
+            <p className="mb-[21px] max-w-[440px] text-[12px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
               Transport providers can support collection, consolidation, and delivery between
               agricultural producers and material buyers.
             </p>
-            <Link className="button button-outline-dark" to="/logistics">
+            <Link className={buttonClasses({ variant: 'outline-dark' })} to="/logistics">
               Explore logistics <ArrowRight size={17} />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="impact-section">
-        <div className="container">
-          <div className="impact-head">
-            <span className="eyebrow">An early-stage idea with room to grow</span>
-            <h2>Better use starts with better connections.</h2>
-            <p>Illustrative demonstration figures for this frontend prototype.</p>
+      <section className="bg-[#f7f8f4] pt-[65px] pb-[74px] dark:bg-[#17241d]">
+        <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
+          <div className="text-center">
+            <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+              An early-stage idea with room to grow
+            </span>
+            <h2 className="mt-[11px] mb-1.5 font-serif text-[34px] leading-[1.12] font-medium tracking-[-0.045em] text-[#252e28] max-[420px]:text-[28px] dark:text-[#edf4ef]">
+              Better use starts with better connections.
+            </h2>
+            <p className="m-0 text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+              Illustrative demonstration figures for this frontend prototype.
+            </p>
           </div>
-          <div className="impact-stats">
+          <div className="mt-[35px] grid grid-cols-4 border-y border-[#dfe5de] max-md:grid-cols-2 dark:border-[#34463a]">
             {[
               ['12', 'Sample listings'],
               ['5.2 MT', 'Illustrative materials exchanged'],
               ['18', 'Demo producer profiles'],
               ['24', 'Demo buyer profiles'],
-            ].map(([value, label]) => (
-              <div key={label}>
-                <strong>{value}</strong>
-                <span>{label}</span>
+            ].map(([value, label], index) => (
+              <div
+                key={label}
+                className={`flex flex-col items-center px-2.5 py-[22px] ${
+                  index < 3
+                    ? 'border-r border-[#dfe5de] dark:border-[#34463a]'
+                    : ''
+                } ${
+                  index === 1 ? 'max-md:border-r-0' : ''
+                } ${
+                  index < 2
+                    ? 'max-md:border-b max-md:border-[#dfe5de] max-md:dark:border-[#34463a]'
+                    : ''
+                }`}
+              >
+                <strong className="font-serif text-[29px] font-medium text-[#2a5c3c] dark:text-[#edf4ef]">
+                  {value}
+                </strong>
+                <span className="mt-1 text-center text-[10px] text-[#728076] dark:text-[#b2beb5]">
+                  {label}
+                </span>
               </div>
             ))}
           </div>

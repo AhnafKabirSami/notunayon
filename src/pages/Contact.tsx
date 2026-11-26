@@ -11,69 +11,89 @@ export default function Contact() {
   const [sent, setSent] = useState(false)
 
   return (
-    <main className="page-main contact-page">
-      <div className="page-intro container">
+    <main className="min-h-[65vh] pt-[54px] pb-[85px] max-md:pt-[38px] max-md:pb-[60px] dark:bg-[#111915]">
+      <div className="mx-auto mb-8 flex w-[min(1190px,calc(100%-64px))] items-end justify-between gap-[22px] max-[1000px]:w-[min(100%-42px,850px)] max-md:mb-[22px] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:items-start max-[420px]:w-[calc(100%-28px)]">
         <div>
-          <span className="eyebrow">{t('common.contact')}</span>
-          <h1>
+          <span className="text-[10px] font-[760] tracking-[0.13em] text-[#63806b] uppercase dark:text-[#a6c5ab]">
+            {t('common.contact')}
+          </span>
+          <h1 className="my-2.5 mb-[9px] max-w-[760px] font-serif text-[clamp(36px,4vw,52px)] leading-[1.08] font-medium tracking-[-0.05em] text-[#252e28] max-md:text-[38px] dark:text-[#edf4ef]">
             {bn
               ? 'ভালো উপকরণ সংযোগ নিয়ে কথা বলুন।'
               : 'Let’s talk about better material connections.'}
           </h1>
-          <p>
+          <p className="m-0 text-[13px] leading-[1.7] text-[#737c75] max-md:text-[11px] dark:text-[#b2beb5]">
             {bn
               ? 'সরবরাহ, তালিকাভুক্তি বা পরিবহন নিয়ে প্রশ্ন? এই ডেমো ফর্মে বার্তা লিখুন।'
               : 'Questions about sourcing, listing, or logistics? Send a message through this frontend demo.'}
           </p>
         </div>
       </div>
-      <div className="container contact-grid">
-        <div className="contact-info">
-          <div className="contact-info-card">
-            <Mail />
+      <div className="mx-auto grid w-[min(1190px,calc(100%-64px))] grid-cols-[0.8fr_1.2fr] items-start gap-7 max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:grid-cols-1 max-[420px]:w-[calc(100%-28px)]">
+        <div className="grid gap-[11px]">
+          <div className="flex items-center gap-3 border border-[#e6ebe4] p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <Mail className="h-[35px] w-[35px] rounded-[3px] bg-[#edf3eb] p-[9px] text-[#537359] dark:bg-[#223128] dark:text-[#a6c5ab]" />
             <div>
-              <span>{t('auth.email')}</span>
-              <b>hello@notunayon.example</b>
-              <small>
+              <span className="block text-[9px] text-[#849087] dark:text-[#b2beb5]">
+                {t('auth.email')}
+              </span>
+              <b className="mt-[3px] block text-[11px] text-[#394a3e] dark:text-[#edf4ef]">
+                hello@notunayon.example
+              </b>
+              <small className="mt-[3px] block text-[9px] text-[#99a198] dark:text-[#b2beb5]">
                 {bn ? 'প্রোটোটাইপের নমুনা যোগাযোগ' : 'Placeholder contact for prototype'}
               </small>
             </div>
           </div>
-          <div className="contact-info-card">
-            <Phone />
+          <div className="flex items-center gap-3 border border-[#e6ebe4] p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <Phone className="h-[35px] w-[35px] rounded-[3px] bg-[#edf3eb] p-[9px] text-[#537359] dark:bg-[#223128] dark:text-[#a6c5ab]" />
             <div>
-              <span>{t('auth.phone')}</span>
-              <b>+880 1700-000000</b>
-              <small>{bn ? 'নমুনা ফোন নম্বর' : 'Placeholder contact for prototype'}</small>
+              <span className="block text-[9px] text-[#849087] dark:text-[#b2beb5]">
+                {t('auth.phone')}
+              </span>
+              <b className="mt-[3px] block text-[11px] text-[#394a3e] dark:text-[#edf4ef]">
+                +880 1700-000000
+              </b>
+              <small className="mt-[3px] block text-[9px] text-[#99a198] dark:text-[#b2beb5]">
+                {bn ? 'নমুনা ফোন নম্বর' : 'Placeholder contact for prototype'}
+              </small>
             </div>
           </div>
-          <div className="contact-info-card">
-            <MapPin />
+          <div className="flex items-center gap-3 border border-[#e6ebe4] p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <MapPin className="h-[35px] w-[35px] rounded-[3px] bg-[#edf3eb] p-[9px] text-[#537359] dark:bg-[#223128] dark:text-[#a6c5ab]" />
             <div>
-              <span>{bn ? 'স্মূলে' : 'Based in'}</span>
-              <b>{bn ? 'বাংলাদেশ' : 'Bangladesh'}</b>
-              <small>
+              <span className="block text-[9px] text-[#849087] dark:text-[#b2beb5]">
+                {bn ? 'স্মূলে' : 'Based in'}
+              </span>
+              <b className="mt-[3px] block text-[11px] text-[#394a3e] dark:text-[#edf4ef]">
+                {bn ? 'বাংলাদেশ' : 'Bangladesh'}
+              </b>
+              <small className="mt-[3px] block text-[9px] text-[#99a198] dark:text-[#b2beb5]">
                 {bn
                   ? 'সারা দেশের কৃষি সম্প্রদায়ের জন্য'
                   : 'Serving agricultural communities nationwide'}
               </small>
             </div>
           </div>
-          <div className="faq-card">
-            <h3>{bn ? 'প্রায়শই জিজ্ঞাসিত' : 'Frequently asked'}</h3>
-            <details>
-              <summary>{bn ? 'তালিকাগুলো যাচাই করা কি?' : 'Are listings verified?'}</summary>
-              <p>
+          <div className="border border-[#e6ebe4] p-[18px] dark:border-[#34463a] dark:bg-[#1a261f]">
+            <h3 className="mb-2.5 text-[14px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+              {bn ? 'প্রায়শই জিজ্ঞাসিত' : 'Frequently asked'}
+            </h3>
+            <details className="border-t border-[#edf0ec] py-2.5 dark:border-[#34463a]">
+              <summary className="cursor-pointer text-[10px] font-[650] text-[#4a594d] dark:text-[#edf4ef]">
+                {bn ? 'তালিকাগুলো যাচাই করা কি?' : 'Are listings verified?'}
+              </summary>
+              <p className="mt-1.5 mb-0 text-[10px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
                 {bn
                   ? 'না। এই প্রোটোটাইপের সব তথ্য নমুনা।'
                   : 'No. All supplier and material details on this prototype are sample information.'}
               </p>
             </details>
-            <details>
-              <summary>
+            <details className="border-t border-[#edf0ec] py-2.5 dark:border-[#34463a]">
+              <summary className="cursor-pointer text-[10px] font-[650] text-[#4a594d] dark:text-[#edf4ef]">
                 {bn ? 'এখানে লেনদেন করা যাবে?' : 'Can I complete a transaction here?'}
               </summary>
-              <p>
+              <p className="mt-1.5 mb-0 text-[10px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
                 {bn
                   ? 'না। পেমেন্ট বা আসল লেনদেন হচ্ছে না।'
                   : 'No payments or real transactions are processed. Offers are frontend demonstrations.'}
@@ -81,7 +101,7 @@ export default function Contact() {
             </details>
           </div>
         </div>
-        <div className="contact-form-card">
+        <div className="border border-[#e4e9e2] bg-[#fafbf8] p-[23px] max-md:p-[17px] dark:border-[#34463a] dark:bg-[#1a261f]">
           {sent ? (
             <SuccessState
               title={bn ? 'বার্তা পেয়েছি।' : 'Message received.'}
@@ -93,19 +113,21 @@ export default function Contact() {
             />
           ) : (
             <form
-              className="form-stack"
+              className="flex flex-col gap-[13px]"
               onSubmit={(e) => {
                 e.preventDefault()
                 setSent(true)
               }}
             >
-              <h2>{bn ? 'আমাদের কাছে লিখুন' : 'Send us a message'}</h2>
-              <p className="form-help">
+              <h2 className="m-0 font-serif text-[22px] font-medium tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+                {bn ? 'আমাদের কাছে লিখুন' : 'Send us a message'}
+              </h2>
+              <p className="m-0 text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
                 {bn
                   ? 'চিহ্নিত ঘরগুলো এই ডেমোতে প্রয়োজন।'
                   : 'Fields marked required are needed for this demo.'}
               </p>
-              <div className="form-row">
+              <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
                 <Field label={bn ? 'আপনার নাম' : 'Your name'} name="name" required />
                 <Field label={bn ? 'ইমেইল' : 'Email address'} name="email" type="email" required />
               </div>
@@ -140,7 +162,7 @@ export default function Contact() {
                   bn ? 'আপনার প্রয়োজন সংক্ষেপে লিখুন' : 'Tell us a little about what you need'
                 }
               />
-              <Button type="submit">
+              <Button type="submit" className="self-start">
                 {bn ? 'বার্তা পাঠান' : 'Send message'} <ArrowRight size={17} />
               </Button>
             </form>

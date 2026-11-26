@@ -5,6 +5,7 @@ import { useApp } from '../../context/useApp.ts'
 import { filterListings } from '../../utils.ts'
 import ListingCard from '../block/ListingCard.tsx'
 import SearchBox from '../block/SearchBox.tsx'
+import { buttonClasses } from '../ui/buttonStyles.ts'
 
 export default function MarketplaceEmbedded() {
   const { listings } = useApp()
@@ -14,12 +15,12 @@ export default function MarketplaceEmbedded() {
   return (
     <>
       <SearchBox onSearch={setQuery} compact />
-      <div className="listing-grid dash-listing-grid">
+      <div className="my-[15px] grid grid-cols-3 gap-[17px] max-[1000px]:grid-cols-2 max-md:gap-2.5">
         {rows.map((item) => (
           <ListingCard key={item.id} listing={item} />
         ))}
       </div>
-      <Link className="button button-outline-dark" to="/marketplace">
+      <Link className={buttonClasses({ variant: 'outline-dark' })} to="/marketplace">
         Open marketplace filters <ArrowRight size={16} />
       </Link>
     </>

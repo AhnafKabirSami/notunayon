@@ -17,25 +17,38 @@ export default function ListingCard({ listing, horizontal = false }: ListingCard
   const isSaved = saved.includes(listing.id)
 
   return (
-    <article className={`listing-card ${horizontal ? 'listing-horizontal' : ''}`}>
+    <article
+      className={`group overflow-hidden rounded-[4px] border border-[#e8ebe6] bg-white transition duration-150 ease-out hover:-translate-y-[3px] hover:shadow-[0_12px_35px_rgba(29,48,37,0.08)] dark:border-[#34463a] dark:bg-[#1a261f] dark:hover:shadow-none ${
+        horizontal
+          ? 'grid grid-cols-[190px_1fr] max-md:grid-cols-[110px_1fr] max-[420px]:grid-cols-[92px_1fr]'
+          : ''
+      }`}
+    >
       <Link
         to={`/marketplace/${listing.id}`}
-        className="listing-image"
+        className={`relative block overflow-hidden bg-[#c1ae81] ${
+          horizontal
+            ? 'h-full min-h-[190px] max-md:min-h-[185px]'
+            : 'h-[184px] max-md:h-[145px] max-[420px]:h-[125px]'
+        }`}
         style={{ backgroundColor: listing.color }}
       >
         <img
           src={photo(listing.image, 650)}
           alt={marketplaceLabel(t, listing.name, { id: listing.id })}
           loading="lazy"
+          className="block h-full w-full object-cover transition duration-350 group-hover:scale-[1.03]"
           onError={(e) => {
             e.currentTarget.style.display = 'none'
           }}
         />
-        <span className="listing-category">
+        <span className="listing-category absolute top-[11px] left-[11px] rounded-[2px] bg-white/[0.94] px-[7px] py-[5px] text-[9px] font-[620] text-[#44594a]">
           {marketplaceLabel(t, listing.category, { type: 'category' })}
         </span>
         <button
-          className={`save-button ${isSaved ? 'is-saved' : ''}`}
+          className={`absolute top-2.5 right-2.5 grid h-[31px] w-[31px] place-items-center rounded-full border-0 bg-white hover:text-[#ab5948] ${
+            isSaved ? 'text-[#ab5948]' : 'text-[#506358]'
+          }`}
           type="button"
           aria-label={isSaved ? t('common.save') : t('marketplace.save')}
           onClick={(e) => {
@@ -48,29 +61,51 @@ export default function ListingCard({ listing, horizontal = false }: ListingCard
           <Heart size={17} fill={isSaved ? 'currentColor' : 'none'} />
         </button>
       </Link>
-      <div className="listing-body">
-        <div className="listing-title-row">
-          <Link className="listing-title" to={`/marketplace/${listing.id}`}>
+      <div
+        className={
+          horizontal
+            ? 'p-[19px] max-md:p-[11px]'
+            : 'px-4 pt-[15px] pb-[13px] max-md:p-3'
+        }
+      >
+        <div className="flex items-start justify-between gap-2 max-md:flex-col max-md:gap-1">
+          <Link
+            className="listing-title text-[15px] font-[720] text-[#27382d] max-md:text-[12px] dark:text-[#edf4ef]"
+            to={`/marketplace/${listing.id}`}
+          >
             {marketplaceLabel(t, listing.name, { id: listing.id })}
           </Link>
-          <strong>{formatPrice(listing.price, listing.unit)}</strong>
+          <strong className="mt-0.5 text-[11px] whitespace-nowrap text-[#264d36] max-md:text-[10px] dark:text-[#edf4ef]">
+            {formatPrice(listing.price, listing.unit)}
+          </strong>
         </div>
-        <span className="listing-seller">{listing.seller}</span>
-        <div className="listing-meta">
-          <span>
-            <MapPin size={14} />
+        <span className="listing-seller mt-[5px] block text-[10px] text-[#858e87] dark:text-[#b2beb5]">
+          {listing.seller}
+        </span>
+        <div className="listing-meta mt-3.5 flex gap-4 text-[10px] text-[#68756c] max-md:mt-2.5 max-md:flex-col max-md:gap-1.5 max-[420px]:text-[8px] dark:text-[#b2beb5]">
+          <span className="flex items-center gap-[5px]">
+            <MapPin size={14} className="text-[#829286]" />
             {listing.location}
           </span>
-          <span>
-            <Package size={14} />
+          <span className="flex items-center gap-[5px]">
+            <Package size={14} className="text-[#829286]" />
             {listing.quantity} {listing.quantityUnit}
           </span>
         </div>
-        <div className="listing-tags">
-          <span>{listing.condition}</span>
-          <span>{listing.availability}</span>
+        <div className="listing-tags mt-[13px] flex flex-wrap gap-1.5 max-[420px]:gap-[3px]">
+          <span className="rounded-[2px] bg-[#f2f5f1] px-1.5 py-1 text-[9px] text-[#667366] max-md:text-[7px] max-[420px]:px-1 max-[420px]:py-[3px] dark:bg-[#1a261f] dark:text-[#dfe9e2]">
+            {listing.condition}
+          </span>
+          <span className="rounded-[2px] bg-[#f2f5f1] px-1.5 py-1 text-[9px] text-[#667366] max-md:text-[7px] max-[420px]:px-1 max-[420px]:py-[3px] dark:bg-[#1a261f] dark:text-[#dfe9e2]">
+            {listing.availability}
+          </span>
         </div>
-        <Link className="listing-link" to={`/marketplace/${listing.id}`}>
+        <Link
+          className={`mt-3.5 flex items-center justify-between border-t border-[#edf0ec] pt-[11px] text-[10px] font-bold text-[#356349] max-md:mt-2.5 dark:border-[#34463a] dark:text-[#dbe8df] ${
+            horizontal ? 'max-w-[280px]' : ''
+          }`}
+          to={`/marketplace/${listing.id}`}
+        >
           {t('common.view')} {t('common.more')} <ArrowUpRight size={15} />
         </Link>
       </div>

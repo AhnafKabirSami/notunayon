@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { useApp } from '../../context/useApp.ts'
 import { categories } from '../../data/mockData.ts'
 import Button from '../ui/Button.tsx'
+import { buttonClasses } from '../ui/buttonStyles.ts'
 import { Field, SelectField } from '../ui/FormFields.tsx'
 import SuccessState from '../ui/SuccessState.tsx'
 import DashPageHeader from './DashPageHeader.tsx'
@@ -50,19 +51,26 @@ export default function RequirementForm() {
         text="Describe what you’re looking for to create a local demo buyer request."
       />
       {done ? (
-        <div className="dash-panel listing-success">
+        <div className="min-w-0 max-w-[700px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
           <SuccessState
+            className="px-2.5 pt-[25px] pb-[15px]"
             title="Requirement posted."
             text="Your request is now listed in the local buyer requests demo."
             close={() => setDone(false)}
           />
-          <Link className="button button-outline-dark" to="/requests">
+          <Link
+            className={buttonClasses({ variant: 'outline-dark', className: 'mx-auto mb-3 flex w-fit' })}
+            to="/requests"
+          >
             View buyer requests
           </Link>
         </div>
       ) : (
-        <form className="dash-panel form-stack requirement-form" onSubmit={submit}>
-          <div className="form-row">
+        <form
+          className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]"
+          onSubmit={submit}
+        >
+          <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
             <Field
               label="Material required *"
               name="material"
@@ -76,7 +84,7 @@ export default function RequirementForm() {
               translateCategories
             />
           </div>
-          <div className="form-row">
+          <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
             <Field
               label="Quantity *"
               name="quantity"
@@ -88,7 +96,7 @@ export default function RequirementForm() {
             />
             <SelectField label="Unit" name="unit" options={['MT', 'tonnes', 'kg']} />
           </div>
-          <div className="form-row">
+          <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
             <Field
               label="Target price (৳ / kg)"
               name="price"
@@ -103,7 +111,7 @@ export default function RequirementForm() {
               required
             />
           </div>
-          <div className="form-row">
+          <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
             <Field label="Required condition" name="condition" placeholder="e.g. dry, sorted" />
             <Field label="Delivery date" name="date" type="date" />
           </div>
@@ -113,11 +121,11 @@ export default function RequirementForm() {
             as="textarea"
             placeholder="Share schedule, collection, or other details"
           />
-          <p className="form-error">{error}</p>
-          <Button type="submit">
+          <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+          <Button type="submit" className="self-start">
             Post demo requirement <ArrowRight size={16} />
           </Button>
-          <p className="form-help">
+          <p className="text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
             The request is stored in this page state only. No suppliers are contacted.
           </p>
         </form>

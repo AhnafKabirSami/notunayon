@@ -81,8 +81,10 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
           close={close}
         />
       ) : (
-        <form className="form-stack" onSubmit={submit}>
-          <p className="form-help">This is a local demo. No real seller will be contacted.</p>
+        <form className="flex flex-col gap-[13px]" onSubmit={submit}>
+          <p className="text-[9px] leading-[1.5] text-[#89938a] dark:text-[#b2beb5]">
+            This is a local demo. No real seller will be contacted.
+          </p>
           {mode === 'contact' ? (
             <Field
               label="Message to seller"
@@ -101,7 +103,7 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
                 defaultValue={listing.price}
                 required
               />
-              <div className="form-row">
+              <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
                 <Field
                   label="Required quantity"
                   name="quantity"
@@ -120,8 +122,8 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
               />
             </>
           )}
-          <p className="form-error">{error}</p>
-          <div className="modal-actions">
+          <p className="-mt-1 min-h-0 text-[10px] text-[#a74b43]">{error}</p>
+          <div className="mt-[3px] flex justify-end gap-2">
             <Button variant="outline-dark" type="button" onClick={close}>
               Cancel
             </Button>

@@ -40,7 +40,7 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
         title="Marketplace at a glance."
         text="A compact overview of illustrative users, listings, and exchange activity."
       />
-      <div className="stats-grid">
+      <div className="mb-4 grid grid-cols-4 gap-3 max-md:mb-2.5 max-md:grid-cols-2 max-md:gap-2">
         <StatCard icon={<Users />} label="Total users" value="42" trend="Sample profiles" />
         <StatCard icon={<ShoppingBag />} label="Buyers" value="24" trend="Illustrative" />
         <StatCard icon={<Wheat />} label="Sellers" value="18" trend="Illustrative" />
@@ -58,45 +58,65 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
         />
         <StatCard icon={<ClipboardList />} label="Transactions" value="5" trend="Demo only" />
       </div>
-      <div className="dashboard-two-col">
-        <div className="dash-panel">
-          <div className="panel-title">
+      <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
+        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2>Recent profiles</h2>
-              <p>Sample buyer and seller accounts</p>
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+                Recent profiles
+              </h2>
+              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+                Sample buyer and seller accounts
+              </p>
             </div>
-            <Link to="/admin/users">
+            <Link
+              to="/admin/users"
+              className="inline-flex items-center gap-1 text-[9px] font-[650] whitespace-nowrap text-[#55765c] dark:text-[#dbe8df]"
+            >
               View users <ArrowRight size={15} />
             </Link>
           </div>
-          <div className="admin-user-list">
+          <div className="grid">
             {users.slice(0, 3).map((item) => (
-              <div key={item.name}>
-                <i>
+              <div
+                key={item.name}
+                className="flex items-center gap-2 border-b border-[#edf0ec] py-[9px] dark:border-[#34463a]"
+              >
+                <i className="grid h-[29px] w-[29px] place-items-center rounded-full bg-[#edf3eb] text-[#65816b] dark:bg-[#223128] dark:text-[#a6c5ab]">
                   <UserRound size={17} />
                 </i>
-                <span>
-                  <b>{item.name}</b>
-                  <small>
+                <span className="flex-1">
+                  <b className="block text-[8px] text-[#536157] dark:text-[#edf4ef]">
+                    {item.name}
+                  </b>
+                  <small className="mt-[3px] block text-[7px] text-[#98a198] dark:text-[#b2beb5]">
                     {item.type} · {item.location}
                   </small>
                 </span>
-                <span className="status-chip status-pending">{item.status}</span>
+                <span className="inline-flex rounded-[2px] bg-[#f6f2e7] px-1.5 py-1 text-[8px] whitespace-nowrap text-[#867544] dark:bg-[#223128] dark:text-[#dfe9e2]">
+                  {item.status}
+                </span>
               </div>
             ))}
           </div>
         </div>
-        <div className="dash-panel">
-          <div className="panel-title">
+        <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <div className="mb-[15px] flex items-start justify-between gap-2.5">
             <div>
-              <h2>Listing activity</h2>
-              <p>Illustrative listing distribution</p>
+              <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-[#252e28] dark:text-[#edf4ef]">
+                Listing activity
+              </h2>
+              <p className="m-0 text-[9px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+                Illustrative listing distribution
+              </p>
             </div>
           </div>
           <MiniChart />
-          <div className="chart-foot">
+          <div className="flex justify-between border-t border-[#edf0ec] pt-2.5 text-[9px] text-[#838e84] dark:border-[#34463a] dark:text-[#b2beb5]">
             <span>Sample active listings</span>
-            <b>{listings.filter((item) => !item.paused).length}</b>
+            <b className="text-[#46564a] dark:text-[#edf4ef]">
+              {listings.filter((item) => !item.paused).length}
+            </b>
           </div>
         </div>
       </div>
@@ -122,34 +142,48 @@ function AdminUsers({
         title={title}
         text="Review sample marketplace profiles and update demo status."
       />
-      <div className="table-card">
-        <div className="table-scroll">
-          <table>
+      <div className="overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="w-full overflow-x-auto">
+          <table className="w-full min-w-[670px] border-collapse text-left">
             <thead>
               <tr>
-                <th>Business / user</th>
-                <th>Account type</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Actions</th>
+                {['Business / user', 'Account type', 'Location', 'Status', 'Actions'].map(
+                  (head) => (
+                    <th
+                      key={head}
+                      className="bg-[#fbfcfa] px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]"
+                    >
+                      {head}
+                    </th>
+                  ),
+                )}
               </tr>
             </thead>
             <tbody>
               {users.map((item, index) => (
                 <tr key={item.name}>
-                  <td className="table-primary">
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] font-[650] text-[#44584a] dark:border-[#34463a] dark:text-[#edf4ef]">
                     {item.name}
-                    <small>Demo profile #{index + 1}</small>
+                    <small className="mt-1 block max-w-[225px] truncate text-[8px] font-normal text-[#9aa29a] dark:text-[#b2beb5]">
+                      Demo profile #{index + 1}
+                    </small>
                   </td>
-                  <td>{item.type}</td>
-                  <td>{item.location}</td>
-                  <td>
-                    <span className="status-chip status-pending">{item.status}</span>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    {item.type}
                   </td>
-                  <td>
-                    <div className="table-actions">
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    {item.location}
+                  </td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    <span className="inline-flex rounded-[2px] bg-[#f6f2e7] px-1.5 py-1 text-[8px] whitespace-nowrap text-[#867544] dark:bg-[#223128] dark:text-[#dfe9e2]">
+                      {item.status}
+                    </span>
+                  </td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    <div className="flex gap-1">
                       <button
                         title="Approve demo profile"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
@@ -163,6 +197,7 @@ function AdminUsers({
                       </button>
                       <button
                         title="Reject demo profile"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
@@ -176,6 +211,7 @@ function AdminUsers({
                       </button>
                       <button
                         title="View demo profile"
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                         onClick={() => setMessage(`Viewing sample profile for ${item.name}.`)}
                       >
                         <Eye size={15} />
@@ -210,36 +246,48 @@ function AdminListings({
         title="Marketplace listings"
         text="Review sample material records or remove one from this browser demo."
       />
-      <div className="table-card">
-        <div className="table-scroll">
-          <table>
+      <div className="overflow-hidden rounded-[3px] border border-[#e5eae4] bg-white dark:border-[#34463a] dark:bg-[#1a261f]">
+        <div className="w-full overflow-x-auto">
+          <table className="w-full min-w-[670px] border-collapse text-left">
             <thead>
               <tr>
-                <th>Material</th>
-                <th>Seller</th>
-                <th>Location</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Actions</th>
+                {['Material', 'Seller', 'Location', 'Quantity', 'Price', 'Actions'].map((head) => (
+                  <th
+                    key={head}
+                    className="bg-[#fbfcfa] px-3 py-2.5 text-[8px] font-bold tracking-[0.04em] whitespace-nowrap text-[#8a948b] uppercase dark:border-[#34463a] dark:bg-[#1a261f] dark:text-[#b2beb5]"
+                  >
+                    {head}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {listings.map((item) => (
                 <tr key={item.id}>
-                  <td>
-                    <Link className="table-primary" to={`/marketplace/${item.id}`}>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    <Link
+                      className="font-[650] text-[#44584a] hover:text-[#2f7048] dark:text-[#edf4ef]"
+                      to={`/marketplace/${item.id}`}
+                    >
                       {marketplaceLabel(t, item.name, { id: item.id })}
                     </Link>
                   </td>
-                  <td>{item.seller}</td>
-                  <td>{item.location}</td>
-                  <td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    {item.seller}
+                  </td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    {item.location}
+                  </td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
                     {item.quantity} {item.quantityUnit}
                   </td>
-                  <td>{formatPrice(item.price)}</td>
-                  <td>
-                    <div className="table-actions">
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    {formatPrice(item.price)}
+                  </td>
+                  <td className="border-t border-[#f0f2ef] px-3 py-[11px] align-middle text-[9px] text-[#68756b] dark:border-[#34463a] dark:text-[#b2beb5]">
+                    <div className="flex gap-1">
                       <button
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                         onClick={() =>
                           setMessage(
                             `Viewing listing ${marketplaceLabel(t, item.name, { id: item.id })}.`,
@@ -250,6 +298,7 @@ function AdminListings({
                         <Eye size={15} />
                       </button>
                       <button
+                        className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-[#e8ece6] bg-[#f5f7f4] text-[#65746a] hover:border-[#a4baa4] hover:text-[#315e3d] dark:border-[#3a4d40] dark:bg-[#223128] dark:text-[#dfe9e2]"
                         onClick={() => {
                           setListings((rows) => rows.filter((row) => row.id !== item.id))
                           setMessage(
@@ -284,15 +333,21 @@ function AdminCategories({ listings }: { listings: Listing[] }) {
         title="Material categories"
         text="Categories used across the mock marketplace."
       />
-      <div className="admin-category-grid">
+      <div className="grid grid-cols-3 gap-2.5 max-md:grid-cols-2">
         {categories.map((category, index) => (
-          <div key={category}>
-            <span>0{index + 1}</span>
-            <b>{marketplaceLabel(t, category, { type: 'category' })}</b>
-            <small>
+          <div
+            key={category}
+            className="flex flex-col items-start border border-[#e5eae4] bg-white p-[15px] dark:border-[#34463a] dark:bg-[#1a261f]"
+          >
+            <span className="text-[9px] text-[#96a493]">0{index + 1}</span>
+            <b className="mt-[11px] mb-1 text-[10px] text-[#46564a] dark:text-[#edf4ef]">
+              {marketplaceLabel(t, category, { type: 'category' })}
+            </b>
+            <small className="text-[8px] text-[#929c92] dark:text-[#b2beb5]">
               {listings.filter((item) => item.category === category).length} sample listings
             </small>
             <button
+              className="mt-3 inline-flex items-center gap-[5px] border-0 bg-[#f0f5ee] px-[7px] py-1.5 text-[8px] text-[#5a735f] dark:bg-[#223128] dark:text-[#dfe9e2]"
               onClick={() =>
                 setMessage(
                   `${marketplaceLabel(t, category, { type: 'category' })} selected for demo editing.`,
@@ -366,7 +421,7 @@ export default function AdminDashboard() {
                 title="Reports"
                 text="A demonstration view for content and activity reports."
               />
-              <div className="dash-panel">
+              <div className="min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
                 <EmptyState
                   icon={<CircleHelp />}
                   title="No open reports"
@@ -385,15 +440,18 @@ export default function AdminDashboard() {
                 title="Settings"
                 text="Prototype settings are intentionally not connected to a production service."
               />
-              <div className="dash-panel settings-demo">
-                <Settings size={25} />
-                <h3>Demo platform configuration</h3>
-                <p>
+              <div className="max-w-[560px] min-w-0 rounded-[3px] border border-[#e5eae4] bg-white p-[17px] max-md:p-[13px] dark:border-[#34463a] dark:bg-[#1a261f]">
+                <Settings size={25} className="text-[#618064]" />
+                <h3 className="mt-3 mb-[5px] text-[13px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+                  Demo platform configuration
+                </h3>
+                <p className="mb-3 text-[10px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
                   Authentication, permissions, listings, and all sample records are frontend-only.
                   No admin controls or data persist to a server.
                 </p>
-                <label>
-                  <input type="checkbox" defaultChecked disabled /> Show demonstration labels
+                <label className="flex items-center gap-1.5 text-[9px] text-[#6d796f] dark:text-[#b2beb5]">
+                  <input type="checkbox" defaultChecked disabled className="accent-[#4c7953]" /> Show
+                  demonstration labels
                 </label>
               </div>
             </>

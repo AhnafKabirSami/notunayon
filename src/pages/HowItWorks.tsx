@@ -60,37 +60,54 @@ export default function HowItWorks() {
       intro={t('home.processText')}
       image="photo-1464226184884-fa280b87c399"
     >
-      <div className="journey-flow">
+      <div className="grid grid-cols-4 gap-4 max-md:grid-cols-2 max-md:gap-[9px]">
         {steps.map(([num, title, text]) => (
-          <article className="journey-step" key={num}>
-            <span>{num}</span>
+          <article
+            className="border-t-2 border-[#b6c8b3] bg-[#f6f8f3] p-[22px] max-md:p-4 dark:border-[#34463a] dark:bg-[#1a261f]"
+            key={num}
+          >
+            <span className="font-serif text-[22px] text-[#79947a]">{num}</span>
             <div>
-              <h3>{title}</h3>
-              <p>{text}</p>
+              <h3 className="mt-[18px] mb-1.5 text-[14px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+                {title}
+              </h3>
+              <p className="m-0 text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
+                {text}
+              </p>
             </div>
           </article>
         ))}
       </div>
-      <div className="two-callouts">
-        <div>
-          <h3>{bn ? 'উৎপাদকদের জন্য' : 'For producers'}</h3>
-          <p>
+      <div className="mt-[22px] grid grid-cols-2 gap-[15px] max-md:grid-cols-1">
+        <div className="border border-[#e4eae2] p-[21px] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <h3 className="mb-1 text-[15px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+            {bn ? 'উৎপাদকদের জন্য' : 'For producers'}
+          </h3>
+          <p className="mb-[11px] text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
             {bn
               ? 'অতিরিক্ত উপ-বর্জ্য নতুন ক্রেতাদের কাছে সহজে পৌঁছে দিন।'
               : 'Make surplus and by-products easier for new buyers to find.'}
           </p>
-          <Link className="text-link" to="/register">
+          <Link
+            className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+            to="/register"
+          >
             {bn ? 'ডেমো তালিকা শুরু করুন' : 'Start a demo listing'} <ArrowRight size={15} />
           </Link>
         </div>
-        <div>
-          <h3>{bn ? 'ক্রেতাদের জন্য' : 'For buyers'}</h3>
-          <p>
+        <div className="border border-[#e4eae2] p-[21px] dark:border-[#34463a] dark:bg-[#1a261f]">
+          <h3 className="mb-1 text-[15px] font-semibold tracking-[-0.035em] text-[#252e28] dark:text-[#edf4ef]">
+            {bn ? 'ক্রেতাদের জন্য' : 'For buyers'}
+          </h3>
+          <p className="mb-[11px] text-[11px] leading-[1.7] text-[#737c75] dark:text-[#b2beb5]">
             {bn
               ? 'স্থানীয় সরবরাহের বিকল্প তুলনা করুন ও প্রয়োজন পাঠান।'
               : 'Compare local supply options and send a sourcing request.'}
           </p>
-          <Link className="text-link" to="/marketplace">
+          <Link
+            className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-[#285d41] hover:text-[#173b2d] dark:text-[#dbe8df]"
+            to="/marketplace"
+          >
             {t('footer.browse')} <ArrowRight size={15} />
           </Link>
         </div>
