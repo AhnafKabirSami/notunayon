@@ -11,7 +11,6 @@ import {
   HandCoins,
   Recycle,
   Search,
-  ShieldCheck,
   Sparkles,
   Sprout,
   Truck,
