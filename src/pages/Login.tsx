@@ -26,7 +26,7 @@ export default function Login() {
       return
     }
     const account: DemoUser = {
-      name: identity.split('@')[0] || 'Demo User',
+      name: identity.split('@')[0] || 'Marketplace User',
       type: 'buyer',
     }
     localStorage.setItem('notunayon-demo-user', JSON.stringify(account))

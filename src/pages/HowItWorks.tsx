@@ -22,7 +22,7 @@ export default function HowItWorks() {
         [
           '03',
           'অফার আলোচনা করুন',
-          'ক্রেতা স্থানীয় ডেমো অফার পাঠাবে ও শর্ত আলোচনা হবে।',
+          'ক্রেতা অফার পাঠাবেন ও উভয় পক্ষ সরাসরি শর্ত আলোচনা করবেন।',
         ],
         [
           '04',
@@ -44,7 +44,7 @@ export default function HowItWorks() {
         [
           '03',
           'Discuss an offer',
-          'A buyer submits a local demo offer; both sides can discuss the terms directly.',
+          'Buyers submit an offer or enquiry; both sides can discuss the terms directly.',
         ],
         [
           '04',
@@ -90,7 +90,7 @@ export default function HowItWorks() {
             className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover"
             to="/register"
           >
-            {bn ? 'ডেমো তালিকা শুরু করুন' : 'Start a demo listing'} <ArrowRight size={15} />
+            {bn ? 'তালিকা তৈরি শুরু করুন' : 'Start listing supply'} <ArrowRight size={15} />
           </Link>
         </div>
         <div className="border border-line bg-surface p-[21px]">

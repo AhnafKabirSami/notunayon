@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Menu, Moon, Plus, Sun, X } from 'lucide-react'
+import { Globe, Menu, Moon, Plus, Sun, X } from 'lucide-react'
 import { useApp } from '../../context/useApp.ts'
 import { changeWebsiteLanguage } from '../../i18n/i18n.ts'
 import { useTheme } from '../../theme/useTheme.ts'
@@ -29,14 +29,11 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-surface/[0.97] backdrop-blur-md">
-      <div className="flex h-[29px] items-center justify-between bg-forest px-[max(32px,calc((100%-1190px)/2))] text-[10px] tracking-[0.045em] text-topline max-md:px-[18px] max-[420px]:px-3">
+      {/* <div className="flex h-[29px] items-center justify-between bg-forest px-[max(32px,calc((100%-1190px)/2))] text-[10px] tracking-[0.045em] text-topline max-md:px-[18px] max-[420px]:px-3">
         <span className="max-md:truncate max-[420px]:max-w-[57%] max-[420px]:text-[8px]">
           {t('nav.topline')}
         </span>
-        <span className="inline-flex w-fit items-center gap-[7px] rounded-[3px] bg-surface-tint px-2 py-[5px] text-[9px] font-[750] tracking-[0.095em] text-chip-text max-md:px-1.5 max-md:py-1 max-md:text-[7px]">
-          {t('nav.demoPlatform')} · {t('common.sampleData')}
-        </span>
-      </div>
+      </div> */}
 
       <div className="mx-auto flex h-[76px] w-[min(1190px,calc(100%-64px))] items-center justify-between gap-[30px] max-[1000px]:w-[min(100%-42px,850px)] max-[1000px]:gap-[18px] max-md:h-16 max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)] max-[420px]:gap-2">
         <Logo />
@@ -106,7 +103,11 @@ export default function Navbar() {
             onClick={toggleLanguage}
             aria-label={i18n.resolvedLanguage === 'bn' ? 'Switch to English' : 'বাংলায় পরিবর্তন করুন'}
           >
-            {i18n.resolvedLanguage === 'bn' ? 'English' : 'বাংলা'}
+            <Globe
+              size={16}
+              className="inline mr-1.5 -mt-0.5"
+            />
+            {i18n.resolvedLanguage === 'bn' ? 'বাং' : 'En'}
           </button>
 
           <Link

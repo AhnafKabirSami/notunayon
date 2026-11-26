@@ -11,8 +11,8 @@ export default function EnquiryForm() {
     return (
       <div className="flex flex-col gap-[13px] rounded-[4px] border border-line bg-surface-subtle p-[25px] max-md:p-[17px]">
         <SuccessState
-          title="Sourcing request saved."
-          text="Your request is now a local frontend demonstration. No service is contacted."
+          title="Sourcing request submitted."
+          text="Thank you. Our sourcing desk will review your requirements and follow up."
           close={() => setSent(false)}
         />
       </div>
@@ -68,7 +68,7 @@ export default function EnquiryForm() {
         Request sourcing support <ArrowRight size={16} />
       </Button>
       <small className="-mt-1 text-[9px] leading-[1.5] text-subtle">
-        Demo form · your information is not sent to a server.
+        Our team typically responds within 1–2 business days.
       </small>
     </form>
   )

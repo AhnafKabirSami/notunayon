@@ -7,7 +7,6 @@ import {
   Bell,
   Boxes,
   ChevronRight,
-  CircleHelp,
   ClipboardList,
   FileText,
   HandCoins,
@@ -99,7 +98,6 @@ export default function DashboardLayout({
         ]
 
   const [menuOpen, setMenuOpen] = useState(false)
-  const [showNotice, setShowNotice] = useState(!isAdmin)
 
   function logout() {
     localStorage.removeItem('notunayon-demo-user')
@@ -191,10 +189,10 @@ export default function DashboardLayout({
             </span>
             <div className="min-w-0 flex-1">
               <b className="block truncate text-[9px] text-ink-soft">
-                {isAdmin ? 'Demo administrator' : t('dashboard.demoUser')}
+                {isAdmin ? 'Administrator' : t('dashboard.demoUser')}
               </b>
               <small className="mt-[3px] block truncate text-[8px] text-subtle">
-                {type} · prototype
+                {type} account
               </small>
             </div>
             <MoreHorizontal size={17} className="text-subtle" />
@@ -231,10 +229,6 @@ export default function DashboardLayout({
             >
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-            <span className="inline-flex w-fit items-center gap-[7px] rounded-[3px] bg-surface-tint px-2 py-[5px] text-[9px] font-[750] tracking-[0.095em] text-chip-text max-md:text-[7px]">
-              <i className="inline-block h-1.5 w-1.5 rounded-full bg-sage-dot" />{' '}
-              {t('common.demoMode')}
-            </span>
             <button
               aria-label={t('common.notifications')}
               className="relative inline-grid h-9 w-9 place-items-center rounded-[4px] border-0 bg-transparent text-muted hover:bg-surface-tint max-md:hidden"
@@ -251,21 +245,6 @@ export default function DashboardLayout({
           </div>
         </header>
         <main className="mx-auto max-w-[1420px] bg-canvas px-7 pt-[25px] pb-[55px] max-[1000px]:px-5 max-md:px-[13px] max-md:pt-4 max-md:pb-[38px]">
-          {showNotice && !isAdmin && (
-            <div className="mb-5 flex items-center gap-[9px] rounded-[3px] border border-line bg-surface-tint px-3 py-2.5 text-[9px] leading-[1.5] text-chip-text max-md:mb-3.5 max-md:items-start">
-              <CircleHelp size={17} className="shrink-0" />
-              <span>
-                <b>{t('dashboard.demoNotice')}</b> — {t('dashboard.demoNoticeText')}
-              </span>
-              <button
-                onClick={() => setShowNotice(false)}
-                aria-label={t('common.close')}
-                className="ml-auto grid h-7 w-7 shrink-0 place-items-center border-0 bg-transparent text-muted"
-              >
-                <X size={15} />
-              </button>
-            </div>
-          )}
           {children}
         </main>
       </div>

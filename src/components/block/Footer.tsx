@@ -115,7 +115,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto flex w-[min(1190px,calc(100%-64px))] justify-between gap-5 border-t border-white/[0.12] py-[15px] pb-[17px] text-[9px] text-footer-subtle max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:gap-[7px] max-md:text-[8px] max-[420px]:w-[calc(100%-28px)]">
+      <div className="mx-auto flex w-[min(1190px,calc(100%-64px))] justify-between gap-5 border-t border-white/[0.12] py-[15px] pb-[17px] text-[9px] text-footer-subtle max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-md:flex-col max-md:gap-[7px] max-md:text-[10px] max-[420px]:w-[calc(100%-28px)]">
         <span>{t('footer.copyright')}</span>
       </div>
     </footer>

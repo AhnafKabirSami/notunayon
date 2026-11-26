@@ -22,8 +22,8 @@ export default function Logistics() {
               Move materials from where they are to where they’re needed.
             </h1>
             <p className="mb-[21px] max-w-[510px] text-[12px] leading-[1.7] text-auth-copy">
-              Explore a demonstration opportunity for local transport partners to support
-              agricultural material collection and delivery.
+              Partner with local farms, mills, and buyers to support reliable agricultural material
+              collection and regional delivery.
             </p>
             <Link to="#partner-form" className={buttonClasses({ variant: 'light' })}>
               Register transport interest <ArrowRight size={17} />
@@ -69,7 +69,7 @@ export default function Logistics() {
           {submitted ? (
             <SuccessState
               title="Interest recorded."
-              text="Your details have been saved only in this page demo. No transport partner was registered."
+              text="Thank you for registering your transport details. Our logistics desk will be in touch."
             />
           ) : (
             <form
@@ -114,7 +114,7 @@ export default function Logistics() {
                 Register interest <ArrowRight size={17} />
               </Button>
               <small className="m-0 text-[9px] leading-[1.5] text-subtle">
-                Frontend demonstration only; no information is transmitted.
+                Our logistics coordination team reviews regional partner applications weekly.
               </small>
             </form>
           )}

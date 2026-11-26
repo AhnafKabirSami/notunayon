@@ -10,16 +10,16 @@ import DashPageHeader from './DashPageHeader.tsx'
 export default function ProfileSettings({ type }: { type: UserRole }) {
   const { user, setUser } = useApp()
   const [saved, setSaved] = useState(false)
-  const account: DemoUser = user || { name: 'Demo User', type }
+  const account: DemoUser = user || { name: 'Marketplace User', type }
 
   return (
     <>
       <DashPageHeader
         eyebrow={`${type} workspace`}
         title="Profile settings"
-        text="Update a local demonstration profile. No data leaves this browser."
+        text="Keep your marketplace account details up to date."
       />
-      {saved ? <InlineNotice text="Profile updated in this local demo." /> : null}
+      {saved ? <InlineNotice text="Profile updated successfully." /> : null}
       <form
         className="flex max-w-[850px] min-w-0 flex-col gap-[13px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]"
         onSubmit={(e) => {
@@ -40,10 +40,10 @@ export default function ProfileSettings({ type }: { type: UserRole }) {
             <h2 className="m-0 mb-[3px] text-[13px] font-bold tracking-[-0.02em] text-ink">
               Basic information
             </h2>
-            <p className="m-0 text-[9px] leading-[1.7] text-muted">Demo user profile</p>
+            <p className="m-0 text-[9px] leading-[1.7] text-muted">Account profile</p>
           </div>
-          <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
-            LOCAL
+          <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-tint px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-chip-text">
+            ACTIVE
           </span>
         </div>
         <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
@@ -63,7 +63,7 @@ export default function ProfileSettings({ type }: { type: UserRole }) {
           />
         </div>
         <Button type="submit" className="self-start">
-          <Check size={16} /> Save local changes
+          <Check size={16} /> Save changes
         </Button>
       </form>
     </>

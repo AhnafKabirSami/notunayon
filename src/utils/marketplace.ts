@@ -9,7 +9,9 @@ const demoProductNamesById: Record<string, string> = Object.fromEntries([
 ])
 
 export const photo = (id: string, width = 900): string =>
-  `https://images.unsplash.com/${id.startsWith('photo-') ? id : `photo-${id}`}?auto=format&fit=crop&w=${width}&q=82`
+  id.startsWith('/') || id.startsWith('http') || id.startsWith('blob:') || id.startsWith('data:')
+    ? id
+    : `https://images.unsplash.com/${id.startsWith('photo-') ? id : `photo-${id}`}?auto=format&fit=crop&w=${width}&q=82`
 
 interface MarketplaceLabelOptions {
   type?: 'product' | 'category'

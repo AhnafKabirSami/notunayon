@@ -66,8 +66,8 @@ export default function About() {
           </h3>
           <p className="m-0 text-[10px] leading-[1.7] text-mission-muted">
             {bn
-              ? 'প্রোটোটাইপের মূলনীতি: ব্যবহারিক সংযোগ, স্বচ্ছ তালিকা ও দায়িত্বশীল ব্যবহার।'
-              : 'Prototype values: practical connections, transparent listings, and responsible material use.'}
+              ? 'আমাদের মূলনীতি: ব্যবহারিক সংযোগ, স্বচ্ছ তালিকা ও দায়িত্বশীল ব্যবহার।'
+              : 'Our values: practical connections, transparent listings, and responsible material use.'}
           </p>
         </div>
       </div>

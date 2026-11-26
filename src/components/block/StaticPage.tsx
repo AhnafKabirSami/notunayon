@@ -32,7 +32,7 @@ export default function StaticPage({ eyebrow, title, intro, image, children }: S
             }}
           />
           <span className="absolute right-2.5 bottom-2.5 bg-white/[0.88] px-2 py-1.5 text-[9px] text-forest-dark">
-            Notunayon · Demo prototype
+            Notunayon · Bangladesh
           </span>
         </div>
       </div>

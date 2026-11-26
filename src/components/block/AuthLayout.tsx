@@ -24,15 +24,16 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             Give good materials another place to grow.
           </h2>
           <p className="text-[12px] leading-[1.7] text-auth-copy">
-            Explore a local demonstration marketplace connecting Bangladesh’s agricultural producers
-            and businesses.
+            Connect directly with Bangladesh’s agricultural producers, mills, and circular economy
+            businesses.
           </p>
           <div className="mt-5 grid gap-2.5 text-[10px] text-auth-point">
             <span className="flex items-center gap-2">
-              <CheckCircle2 size={17} className="text-auth-icon" /> Explore sample supply
+              <CheckCircle2 size={17} className="text-auth-icon" /> Explore regional supply
             </span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 size={17} className="text-auth-icon" /> Test a local marketplace flow
+              <CheckCircle2 size={17} className="text-auth-icon" /> Negotiate directly with buyers
+              and sellers
             </span>
           </div>
         </div>
@@ -43,7 +44,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         </div>
         {children}
         <div className="mt-[27px] border-t border-line pt-[13px] text-center text-[9px] leading-[1.5] text-subtle">
-          By continuing, you’re using a frontend demonstration. No production account is created.
+          By continuing, you agree to participate respectfully in the Notunayon marketplace.
         </div>
       </section>
     </main>

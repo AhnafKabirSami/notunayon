@@ -10,6 +10,15 @@ import { Field, SelectField } from '../ui/FormFields.tsx'
 import SuccessState from '../ui/SuccessState.tsx'
 import DashPageHeader from './DashPageHeader.tsx'
 
+const defaultCategoryPhoto: Record<string, string> = {
+  'Animal manure': '/products/cattle-manure.jpg',
+  'Poultry waste': '/products/poultry-litter.jpg',
+  'Rice by-products': '/products/rice-husk.jpg',
+  'Crop residues': '/products/rice-straw.jpg',
+  'Coconut by-products': '/products/coconut-husk.jpg',
+  'Other agricultural residues': '/products/sugarcane-bagasse.jpg',
+}
+
 export default function ListingForm() {
   const { listings, setListings } = useApp()
   const navigate = useNavigate()
@@ -31,25 +40,26 @@ export default function ListingForm() {
       setError('Enter a material name, price, and positive quantity.')
       return
     }
+    const category = data.get('category')?.toString() || categories[0]
     const record: Listing = {
       ...(existing || {}),
-      id: existing?.id || `demo-${Date.now()}`,
+      id: existing?.id || `listing-${Date.now()}`,
       name,
-      category: data.get('category')?.toString() || categories[0],
+      category,
       price,
       unit: data.get('priceUnit')?.toString() || 'kg',
       quantity,
       quantityUnit: data.get('quantityUnit')?.toString() || 'MT',
-      seller: data.get('business')?.toString() || 'Demo Farm Collective',
+      seller: data.get('business')?.toString() || 'Green Valley Agro',
       location: data.get('location')?.toString() || '',
       condition: data.get('condition')?.toString() || 'Dry',
       availability: data.get('availability')?.toString() || 'Available now',
       frequency: data.get('frequency')?.toString() || 'One-time',
       minimum: Number(data.get('minimum')) || 1,
       description: data.get('description')?.toString() || '',
-      image: existing?.image || 'photo-1464226184884-fa280b87c399',
+      image: preview || existing?.image || defaultCategoryPhoto[category] || '/products/rice-husk.jpg',
       color: existing?.color || '#98764f',
-      tags: ['Seller demo'],
+      tags: ['Listed online'],
     }
     setListings((rows) =>
       existing
@@ -72,8 +82,8 @@ export default function ListingForm() {
           <div className="min-w-0 max-w-[700px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
             <SuccessState
               className="px-2.5 pt-[25px] pb-[15px]"
-              title={existing ? 'Listing updated.' : 'Your listing is live in the demo.'}
-              text="The listing is now visible in the local marketplace and your seller workspace."
+              title={existing ? 'Listing updated.' : 'Your listing is now live.'}
+              text="The listing is now visible in the marketplace and your seller workspace."
               close={() => navigate('/seller-dashboard/listings')}
             />
             <Button
@@ -102,8 +112,8 @@ export default function ListingForm() {
                   Fields marked with * are required.
                 </p>
               </div>
-              <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
-                MOCK LISTING
+              <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-tint px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-chip-text">
+                NEW LISTING
               </span>
             </div>
             <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
@@ -243,7 +253,7 @@ export default function ListingForm() {
                   {preview ? 'Choose a different image' : 'Upload an image from this device'}
                 </span>
                 <small className="text-[8px] text-subtle">
-                  Image preview only; not uploaded to a server.
+                  Accepted formats: JPG, PNG, or WEBP.
                 </small>
               </label>
               {preview && (
@@ -264,7 +274,7 @@ export default function ListingForm() {
                 Cancel
               </Button>
               <Button type="submit">
-                <Check size={16} /> {existing ? 'Save changes' : 'Publish demo listing'}
+                <Check size={16} /> {existing ? 'Save changes' : 'Publish listing'}
               </Button>
             </div>
           </form>
@@ -290,7 +300,7 @@ export default function ListingForm() {
             <CheckCircle2 /> Keep quantity and units clear
           </div>
           <p className="mt-4 text-[9px] leading-[1.5] text-subtle">
-            Your listing appears in this local browser demo only.
+            Listings appear immediately in the marketplace for local buyers.
           </p>
         </aside>
       </div>

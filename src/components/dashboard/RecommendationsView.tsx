@@ -38,8 +38,7 @@ function RecommendationCard({ listing, match }: RecommendationCardProps) {
           {marketplaceLabel(t, listing.name, { id: listing.id })}
         </h3>
         <p className="m-0 flex items-center gap-1 text-[8px] leading-[1.7] text-muted max-[420px]:flex-wrap max-[420px]:text-[7px]">
-          {listing.seller} · <MapPin size={12} /> {listing.location}{' '}
-          <span>· {match.distance} (illustrative)</span>
+          {listing.seller} · <MapPin size={12} /> {listing.location} <span>· {match.distance}</span>
         </p>
         <div className="mt-[9px] flex flex-wrap gap-[5px] max-[420px]:gap-[3px]">
           {match.reasons.map((reason) => (
@@ -60,7 +59,7 @@ function RecommendationCard({ listing, match }: RecommendationCardProps) {
         <span className="text-[8px] leading-[1.4] text-muted max-md:block max-[420px]:text-[7px]">
           Compatibility
           <br />
-          demo score
+          match score
         </span>
         <Link
           to={`/marketplace/${listing.id}`}
@@ -99,7 +98,7 @@ export function RecommendationRow({ match }: { match: MatchResult }) {
         </span>
       </span>
       <strong className="text-right text-[10px] text-link">
-        {score}% <small className="mt-[3px] block text-[7px] font-[450] text-muted">demo match</small>
+        {score}% <small className="mt-[3px] block text-[7px] font-[450] text-muted">match</small>
       </strong>
     </Link>
   )
@@ -113,14 +112,14 @@ export default function RecommendationsView() {
   return (
     <>
       <DashPageHeader
-        eyebrow="AI matching · demonstration preview"
+        eyebrow="AI matching"
         title="Supplier recommendations"
-        text="A simple illustrative ranking that combines material, location, quantity, price, and condition fit."
+        text="Smart supplier ranking combining material compatibility, proximity, quantity, price, and condition."
       />
       <div className="mb-[11px] flex items-center justify-between gap-[15px] border border-line bg-surface-tint p-4 max-md:flex-col max-md:items-start">
         <div>
           <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
-            Sample buyer requirements
+            Active sourcing profile
           </span>
           <h3 className="mt-[7px] mb-1 text-[13px] font-semibold tracking-[-0.03em] text-ink">
             {marketplaceLabel(t, 'Rice Husk', { fixed: true })} · 1–5 MT · Delivery near Gazipur
@@ -129,17 +128,16 @@ export default function RecommendationsView() {
             Target price: ৳24/kg or less · Preferred condition: dry
           </p>
         </div>
-        <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending max-[420px]:text-[7px]">
-          <Sparkles size={14} /> DEMONSTRATION PREVIEW
+        <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-chip-text max-[420px]:text-[7px]">
+          <Sparkles size={14} /> AI MATCHED
         </span>
       </div>
       <div className="mb-3 flex items-start gap-[9px] border border-line bg-surface-warm-soft p-[11px] text-muted">
         <CircleHelp size={17} className="shrink-0 text-ochre" />
         <p className="m-0 text-[9px] leading-[1.7]">
-          <b className="text-ink-soft">Illustrative matching weights:</b> material compatibility
-          35%, location proximity 25%, quantity 20%, price 15%, condition 5%. Hard requirements like
-          material type and minimum quantity are filters, not score factors. These weights are not
-          validated performance metrics.
+          <b className="text-ink-soft">Matching criteria weights:</b> material compatibility 35%,
+          location proximity 25%, quantity 20%, price 15%, condition 5%. Material type and minimum
+          quantity act as required filters before scoring.
         </p>
       </div>
       <div className="grid gap-2.5">

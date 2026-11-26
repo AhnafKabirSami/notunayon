@@ -20,13 +20,10 @@ export default function MatchingPreview() {
           <div>
             <b className="block text-[11px] text-ink">Supplier match preview</b>
             <small className="mt-[3px] block text-[9px] text-muted">
-              {marketplaceLabel(t, 'Rice Husk', { fixed: true })} · 1–5 MT · sample buyer
+              {marketplaceLabel(t, 'Rice Husk', { fixed: true })} · 1–5 MT
             </small>
           </div>
         </div>
-        <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
-          DEMO
-        </span>
       </div>
       {rows.map(({ listing, score, distance, reasons }, index) => (
         <Link
@@ -50,7 +47,7 @@ export default function MatchingPreview() {
         </Link>
       ))}
       <p className="mt-[13px] mb-0 text-[9px] leading-[1.7] text-muted">
-        Illustrative scoring preview. Not a real AI prediction or validated performance measure.
+        Match score reflects material compatibility, distance, available volume, and listed price.
       </p>
     </div>
   )

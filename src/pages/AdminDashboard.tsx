@@ -38,25 +38,25 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
       <DashPageHeader
         eyebrow="Admin overview"
         title="Marketplace at a glance."
-        text="A compact overview of illustrative users, listings, and exchange activity."
+        text="Overview of registered users, active listings, and exchange activity."
       />
       <div className="mb-4 grid grid-cols-4 gap-3 max-md:mb-2.5 max-md:grid-cols-2 max-md:gap-2">
-        <StatCard icon={<Users />} label="Total users" value="42" trend="Sample profiles" />
-        <StatCard icon={<ShoppingBag />} label="Buyers" value="24" trend="Illustrative" />
-        <StatCard icon={<Wheat />} label="Sellers" value="18" trend="Illustrative" />
+        <StatCard icon={<Users />} label="Total users" value="42" trend="Registered accounts" />
+        <StatCard icon={<ShoppingBag />} label="Buyers" value="24" trend="Active buyers" />
+        <StatCard icon={<Wheat />} label="Sellers" value="18" trend="Active producers" />
         <StatCard
           icon={<Package />}
           label="Active listings"
           value={listings.filter((item) => !item.paused).length}
-          trend="Local demo data"
+          trend="Live supply"
         />
         <StatCard
           icon={<ShieldCheck />}
           label="Pending verifications"
           value="3"
-          trend="Sample records"
+          trend="Needs review"
         />
-        <StatCard icon={<ClipboardList />} label="Transactions" value="5" trend="Demo only" />
+        <StatCard icon={<ClipboardList />} label="Transactions" value="5" trend="Recorded orders" />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
         <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
@@ -66,7 +66,7 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
                 Recent profiles
               </h2>
               <p className="m-0 text-[9px] leading-[1.7] text-muted">
-                Sample buyer and seller accounts
+                Latest buyer and seller accounts
               </p>
             </div>
             <Link
@@ -105,13 +105,13 @@ function AdminOverview({ listings, users }: { listings: Listing[]; users: SeedUs
                 Listing activity
               </h2>
               <p className="m-0 text-[9px] leading-[1.7] text-muted">
-                Illustrative listing distribution
+                Weekly listing activity distribution
               </p>
             </div>
           </div>
           <MiniChart />
           <div className="flex justify-between border-t border-line-soft pt-2.5 text-[9px] text-muted">
-            <span>Sample active listings</span>
+            <span>Active listings</span>
             <b className="text-ink-soft">{listings.filter((item) => !item.paused).length}</b>
           </div>
         </div>
@@ -134,9 +134,9 @@ function AdminUsers({
   return (
     <>
       <DashPageHeader
-        eyebrow="Admin demonstration"
+        eyebrow="Admin workspace"
         title={title}
-        text="Review sample marketplace profiles and update demo status."
+        text="Review registered marketplace profiles and manage verification status."
       />
       <div className="overflow-hidden rounded-[3px] border border-line bg-surface">
         <div className="w-full overflow-x-auto">
@@ -161,7 +161,7 @@ function AdminUsers({
                   <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] font-[650] text-ink-soft">
                     {item.name}
                     <small className="mt-1 block max-w-[225px] truncate text-[8px] font-normal text-subtle">
-                      Demo profile #{index + 1}
+                      Account #{index + 1}
                     </small>
                   </td>
                   <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
@@ -178,37 +178,37 @@ function AdminUsers({
                   <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">
                     <div className="flex gap-1">
                       <button
-                        title="Approve demo profile"
+                        title="Approve profile"
                         className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
-                              i === index ? { ...user, status: 'Approved demo' } : user,
+                              i === index ? { ...user, status: 'Approved' } : user,
                             ),
                           )
-                          setMessage(`${item.name} approved in local demo.`)
+                          setMessage(`${item.name} approved.`)
                         }}
                       >
                         <Check size={15} />
                       </button>
                       <button
-                        title="Reject demo profile"
+                        title="Reject profile"
                         className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setUsers((rows) =>
                             rows.map((user, i) =>
-                              i === index ? { ...user, status: 'Declined demo' } : user,
+                              i === index ? { ...user, status: 'Declined' } : user,
                             ),
                           )
-                          setMessage(`${item.name} declined in local demo.`)
+                          setMessage(`${item.name} declined.`)
                         }}
                       >
                         <X size={15} />
                       </button>
                       <button
-                        title="View demo profile"
+                        title="View profile"
                         className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
-                        onClick={() => setMessage(`Viewing sample profile for ${item.name}.`)}
+                        onClick={() => setMessage(`Viewing profile for ${item.name}.`)}
                       >
                         <Eye size={15} />
                       </button>
@@ -238,9 +238,9 @@ function AdminListings({
   return (
     <>
       <DashPageHeader
-        eyebrow="Admin demonstration"
+        eyebrow="Admin workspace"
         title="Marketplace listings"
-        text="Review sample material records or remove one from this browser demo."
+        text="Review published material listings or remove items as needed."
       />
       <div className="overflow-hidden rounded-[3px] border border-line bg-surface">
         <div className="w-full overflow-x-auto">
@@ -298,7 +298,7 @@ function AdminListings({
                         onClick={() => {
                           setListings((rows) => rows.filter((row) => row.id !== item.id))
                           setMessage(
-                            `${marketplaceLabel(t, item.name, { id: item.id })} removed from demo.`,
+                            `${marketplaceLabel(t, item.name, { id: item.id })} removed.`,
                           )
                         }}
                         title="Remove listing"
@@ -325,9 +325,9 @@ function AdminCategories({ listings }: { listings: Listing[] }) {
   return (
     <>
       <DashPageHeader
-        eyebrow="Admin demonstration"
+        eyebrow="Admin workspace"
         title="Material categories"
-        text="Categories used across the mock marketplace."
+        text="Categories used across the marketplace."
       />
       <div className="grid grid-cols-3 gap-2.5 max-md:grid-cols-2">
         {categories.map((category, index) => (
@@ -340,13 +340,13 @@ function AdminCategories({ listings }: { listings: Listing[] }) {
               {marketplaceLabel(t, category, { type: 'category' })}
             </b>
             <small className="text-[8px] text-muted">
-              {listings.filter((item) => item.category === category).length} sample listings
+              {listings.filter((item) => item.category === category).length} active listings
             </small>
             <button
               className="mt-3 inline-flex items-center gap-[5px] border-0 bg-surface-tint px-[7px] py-1.5 text-[8px] text-chip-text"
               onClick={() =>
                 setMessage(
-                  `${marketplaceLabel(t, category, { type: 'category' })} selected for demo editing.`,
+                  `${marketplaceLabel(t, category, { type: 'category' })} selected for editing.`,
                 )
               }
             >
@@ -385,9 +385,9 @@ export default function AdminDashboard() {
           element={
             <>
               <DashPageHeader
-                eyebrow="Admin demonstration"
+                eyebrow="Admin workspace"
                 title="Buyer requests"
-                text="Sample sourcing requirements posted by businesses."
+                text="Active sourcing requirements posted by businesses."
               />
               {requests.map((item) => (
                 <RequestCard key={item.id} request={item} />
@@ -400,9 +400,9 @@ export default function AdminDashboard() {
           element={
             <>
               <DashPageHeader
-                eyebrow="Admin demonstration"
+                eyebrow="Admin workspace"
                 title="Transactions"
-                text="Illustrative sample transaction records. No payments are processed."
+                text="Order and exchange records across the marketplace."
               />
               <TransactionsTable />
             </>
@@ -413,15 +413,15 @@ export default function AdminDashboard() {
           element={
             <>
               <DashPageHeader
-                eyebrow="Admin demonstration"
+                eyebrow="Admin workspace"
                 title="Reports"
-                text="A demonstration view for content and activity reports."
+                text="Content moderation and user activity reports."
               />
               <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
                 <EmptyState
                   icon={<CircleHelp />}
                   title="No open reports"
-                  text="This prototype has no submitted user reports."
+                  text="There are currently no pending user reports."
                 />
               </div>
             </>
@@ -432,22 +432,22 @@ export default function AdminDashboard() {
           element={
             <>
               <DashPageHeader
-                eyebrow="Admin demonstration"
+                eyebrow="Admin workspace"
                 title="Settings"
-                text="Prototype settings are intentionally not connected to a production service."
+                text="Manage platform preferences and marketplace moderation options."
               />
               <div className="max-w-[560px] min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
                 <Settings size={25} className="text-eyebrow" />
                 <h3 className="mt-3 mb-[5px] text-[13px] font-semibold tracking-[-0.035em] text-ink">
-                  Demo platform configuration
+                  Platform configuration
                 </h3>
                 <p className="mb-3 text-[10px] leading-[1.7] text-muted">
-                  Authentication, permissions, listings, and all sample records are frontend-only.
-                  No admin controls or data persist to a server.
+                  Configure business verification rules, category moderation, and notification
+                  defaults across the Notunayon marketplace.
                 </p>
                 <label className="flex items-center gap-1.5 text-[9px] text-muted">
-                  <input type="checkbox" defaultChecked disabled className="accent-eyebrow" /> Show
-                  demonstration labels
+                  <input type="checkbox" defaultChecked className="accent-eyebrow" /> Require seller
+                  verification before publishing bulk listings
                 </label>
               </div>
             </>

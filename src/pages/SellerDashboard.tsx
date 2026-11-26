@@ -35,7 +35,7 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
       <DashPageHeader
         eyebrow="Overview"
         title="Good morning, producer."
-        text="Here’s an overview of your demo marketplace activity."
+        text="Here’s an overview of your marketplace activity."
         action={
           <Link
             className={buttonClasses({
@@ -53,13 +53,13 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
           icon={<Package />}
           label="Total listings"
           value={listings.length}
-          trend="In demo marketplace"
+          trend="Listed supply"
         />
         <StatCard
           icon={<CheckCircle2 />}
           label="Active listings"
           value={listings.filter((item) => !item.paused).length}
-          trend="Illustrative data"
+          trend="Live now"
         />
         <StatCard
           icon={<HandCoins />}
@@ -69,9 +69,9 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
         />
         <StatCard
           icon={<Wallet />}
-          label="Demo earnings"
+          label="Total earnings"
           value="৳46,500"
-          trend="Illustrative only"
+          trend="Completed orders"
         />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
@@ -104,15 +104,15 @@ function SellerOverview({ listings, offers }: { listings: Listing[]; offers: Off
                 Views across the past seven days
               </p>
             </div>
-            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
-              DEMO
+            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-tint px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-chip-text">
+              LIVE
             </span>
           </div>
           <MiniChart />
           <div className="flex justify-between border-t border-line-soft pt-2.5 text-[9px] text-muted">
             <span>Listing views</span>
             <b className="text-ink-soft">
-              218 <small className="text-[8px] font-[450] text-subtle">sample</small>
+              218 <small className="text-[8px] font-[450] text-subtle">views</small>
             </b>
           </div>
         </section>
@@ -167,7 +167,7 @@ function SellerListings() {
       <DashPageHeader
         eyebrow="Seller workspace"
         title="My listings"
-        text="Manage materials you’ve added to this demonstration marketplace."
+        text="Manage materials you’ve added to the marketplace."
         action={
           <Link
             className={buttonClasses({
@@ -244,7 +244,7 @@ function SellerListings() {
                         title="Edit listing"
                         className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
-                          setNotice(`Edit demo opened for ${item.name}.`)
+                          setNotice(`Editing ${item.name}.`)
                           nav(`/seller-dashboard/create-listing?id=${item.id}`)
                         }}
                       >
@@ -259,9 +259,7 @@ function SellerListings() {
                               row.id === item.id ? { ...row, paused: !row.paused } : row,
                             ),
                           )
-                          setNotice(
-                            `${item.name} ${item.paused ? 'activated' : 'paused'} in this local demo.`,
-                          )
+                          setNotice(`${item.name} ${item.paused ? 'activated' : 'paused'}.`)
                         }}
                       >
                         {item.paused ? <Play size={15} /> : <Pause size={15} />}
@@ -271,7 +269,7 @@ function SellerListings() {
                         className="grid h-[26px] w-[27px] place-items-center rounded-[2px] border border-line bg-surface-tint-soft text-muted hover:border-eyebrow hover:text-link"
                         onClick={() => {
                           setListings((rows) => rows.filter((row) => row.id !== item.id))
-                          setNotice(`${item.name} removed from the local demo.`)
+                          setNotice(`${item.name} removed from listings.`)
                         }}
                       >
                         <Trash2 size={15} />
@@ -304,7 +302,7 @@ export default function SellerDashboard() {
               <DashPageHeader
                 eyebrow="Seller workspace"
                 title="Offers received"
-                text="Review and respond to local demonstration offers."
+                text="Review and respond to incoming buyer offers."
               />
               <OffersTable rows={currentOffers} setOffers={setOffers} seller />
             </>
@@ -318,7 +316,7 @@ export default function SellerDashboard() {
               <DashPageHeader
                 eyebrow="Seller workspace"
                 title="Transactions"
-                text="A sample record of completed and in-progress exchanges."
+                text="Record of completed and in-progress exchanges."
               />
               <TransactionsTable />
             </>

@@ -29,7 +29,7 @@ export default function TransactionsTable({ buyer = false }: { buyer?: boolean }
                 <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] font-[650] text-ink-soft">
                   {item.id}
                   <small className="mt-1 block max-w-[225px] truncate text-[8px] font-normal text-subtle">
-                    Demo record
+                    Order record
                   </small>
                 </td>
                 <td className="border-t border-line-soft px-3 py-[11px] align-middle text-[9px] text-muted">

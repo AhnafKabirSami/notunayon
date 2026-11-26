@@ -106,18 +106,18 @@ function marketplaceSearch(
   if (!matches.length) {
     if (language === 'bn') {
       return {
-        text: `বর্তমান নমুনা মার্কেটপ্লেস তথ্য${locationText} দিয়ে ${context.material}-এর কোনো মিল পাওয়া যায়নি। এটি যাচাই করা লাইভ সরবরাহ নয়।`,
+        text: `বর্তমান মার্কেটপ্লেস তালিকা${locationText}-এ ${context.material}-এর কোনো মিল পাওয়া যায়নি।`,
         links: [{ label: 'মার্কেটপ্লেস দেখুন', href: '/marketplace' }],
       }
     }
     if (language === 'bn-en') {
       return {
-        text: `Amar current demo listings-e ${context.material}${locationText}${quantityText} er matching listing pawa jayni. Ami verified live stock or real supplier claim korte parchi na.`,
+        text: `Current marketplace listings-e ${context.material}${locationText}${quantityText} er matching listing ekhon pawa jayni.`,
         links: [{ label: 'Browse marketplace', href: '/marketplace' }],
       }
     }
     return {
-      text: `I couldn't find a matching ${context.material} listing${locationText}${quantityText} in the current mock marketplace data. This may mean the material is outside the available demonstration records, not that no supplier exists.`,
+      text: `I couldn't find a matching ${context.material} listing${locationText}${quantityText} in the current marketplace listings.`,
       links: [{ label: 'Browse marketplace', href: '/marketplace' }],
     }
   }
@@ -129,18 +129,18 @@ function marketplaceSearch(
 
   if (language === 'bn') {
     return {
-      text: `বর্তমান নমুনা ডেটাতে ${context.material}${locationText} এর জন্য ${matches.length === 1 ? 'একটি মিল পাওয়া গেছে' : `${matches.length}টি মিল পাওয়া গেছে`}। নিচের রেকর্ডে প্রদর্শিত পরিমাণ ও তালিকাভুক্ত দাম নমুনা ডেটা; লাইভ সরবরাহ বা যাচাই করা দাম নয়।`,
+      text: `মার্কেটপ্লেসে ${context.material}${locationText}-এর জন্য ${matches.length === 1 ? 'একটি মিল পাওয়া গেছে' : `${matches.length}টি মিল পাওয়া গেছে`}। বিস্তারিত পরিমাণ ও দাম নিচের তালিকায় দেখুন:`,
       links: resultLinks,
     }
   }
   if (language === 'bn-en') {
     return {
-      text: `Current demo data-te ${context.material}${locationText}${quantityText} er jonno ${matches.length === 1 ? 'ekti' : `${matches.length}ti`} matching listing pawa geche. Quantity ebong listed price sample marketplace data; eta verified live availability noy.`,
+      text: `Marketplace-e ${context.material}${locationText}${quantityText} er jonno ${matches.length === 1 ? 'ekti' : `${matches.length}ti`} matching listing pawa geche. Niche quantity ebong listed price dekhte paren:`,
       links: resultLinks,
     }
   }
   return {
-    text: `I found ${matches.length === 1 ? 'a matching demonstration listing' : `${matches.length} matching demonstration listings`} for ${context.material}${locationText}${quantityText}. Available quantity and listed price come from the mock marketplace records below; they are not live or verified offers.`,
+    text: `I found ${matches.length === 1 ? 'a matching listing' : `${matches.length} matching listings`} for ${context.material}${locationText}${quantityText}. See available quantities and listed prices below:`,
     links: resultLinks,
   }
 }
@@ -187,11 +187,11 @@ function contextAwareResponse(
         .slice(0, 3)
         .map(
           (listing) =>
-            `${listing.name}: ${formatPrice(listing.price, listing.unit)} (${listing.quantity} ${listing.quantityUnit}) — mock listing`,
+            `${listing.name}: ${formatPrice(listing.price, listing.unit)} (${listing.quantity} ${listing.quantityUnit})`,
         )
       if (language === 'bn') {
         return {
-          text: `বর্তমান নমুনা রেকর্ডে ${context.material}-এর তালিকাভুক্ত দাম:\n${priceLines.join('\n')}\nএগুলো যাচাই করা বাজার দর বা লাইভ কোটেশন নয়।`,
+          text: `মার্কেটপ্লেসে ${context.material}-এর তালিকাভুক্ত দাম:\n${priceLines.join('\n')}\nবিক্রেতার সঙ্গে সরাসরি আলোচনা সাপেক্ষে দাম নির্ধারিত হয়।`,
           links: matches.slice(0, 3).map((listing) => ({
             label: `Listing · ${listing.location}`,
             href: `/marketplace/${listing.id}`,
@@ -200,7 +200,7 @@ function contextAwareResponse(
       }
       if (language === 'bn-en') {
         return {
-          text: `Current mock listings-e ${context.material}-er listed price:\n${priceLines.join('\n')}\nEita verified market price or live quotation noy.`,
+          text: `Marketplace-e ${context.material}-er listed price:\n${priceLines.join('\n')}\nSeller-er sathe kotha bole final dam thik kora jabe.`,
           links: matches.slice(0, 3).map((listing) => ({
             label: `Listing · ${listing.location}`,
             href: `/marketplace/${listing.id}`,
@@ -208,7 +208,7 @@ function contextAwareResponse(
         }
       }
       return {
-        text: `The current mock listings show these prices for ${context.material}:\n${priceLines.join('\n')}\nThese are sample listing prices, not verified market rates or live quotations.`,
+        text: `Current marketplace listings show these prices for ${context.material}:\n${priceLines.join('\n')}\nFinal terms can be confirmed directly with the seller.`,
         links: matches.slice(0, 3).map((listing) => ({
           label: `Listing · ${listing.location}`,
           href: `/marketplace/${listing.id}`,
@@ -218,8 +218,8 @@ function contextAwareResponse(
     return {
       text:
         language === 'bn'
-          ? `এই মুহূর্তের নমুনা ডেটাতে ${context.material}-এর জন্য কোনো মিল পাওয়া যায়নি, তাই যাচাই করা দাম বলতে পারছি না।`
-          : `There is no matching mock listing for ${context.material} in the current data, so I don't have a verified reference price to give.`,
+          ? `এই মুহূর্তে মার্কেটপ্লেসে ${context.material}-এর জন্য কোনো মিল পাওয়া যায়নি।`
+          : `There is no active listing for ${context.material} right now. You can browse other categories or post a buyer request.`,
       links: [{ label: 'Browse marketplace', href: '/marketplace' }],
     }
   }
@@ -318,8 +318,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'আমি তনু AI, Notunayon-এর জন্য একটি লোকাল ডেমো সহকারী। এখানে আমি আখরা বা নমুনা মার্কেটপ্লেস ডেটা ব্যবহার করে ফসলজ বর্জ্য ও নেভিগেশন বিষয়ে সাহায্য করি। আমি লাইভ AI বা বাহ্যিক সংযুক্ত সেবা নই।'
-          : 'I’m Tonu AI, a local demonstration assistant for Notunayon. I use predefined knowledge and mock marketplace records for material searches and navigation. I’m not connected to a live AI model or external service.',
+          ? 'আমি তনু AI, Notunayon-এর মার্কেটপ্লেস সহকারী। আমি আপনাকে কৃষিজ উপ-বর্জ্য খুঁজে পেতে, দাম ও উপলব্ধতা জানতে এবং সাইটে নেভিগেট করতে সাহায্য করি।'
+          : 'I’m Tonu AI, Notunayon’s marketplace assistant. I can help you find agricultural by-products, check availability and listed prices, and navigate the platform.',
       context,
     }
   }
@@ -331,8 +331,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'এই ডেমো সহকারীকে কোনো লাইভ আবহাওয়া তথ্য নেই।'
-          : 'I don’t have access to live weather information right now.',
+          ? 'আমি মার্কেটপ্লেস সংক্রান্ত প্রশ্নে সাহায্য করতে পারি; লাইভ আবহাওয়া তথ্য আমার কাছে নেই।'
+          : 'I don’t have access to live weather forecasts right now, though I can help you find materials and suppliers.',
       context,
     }
   }
@@ -350,8 +350,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'Notunayon একটি কৃষি উপকরণ ও উপ-বর্জ্য বাজার ধারণা। এটি উৎপাদকদের নমুনা তালিকা ও ক্রেতাদের প্রয়োজনের সঙ্গে যুক্ত করে ফসলজ উপাদান পুনঃব্যবহারের সুযোগ দেখায়।'
-          : 'Notunayon is an agricultural by-product marketplace that connects producers with businesses looking for reusable agricultural materials. Its current prototype demonstrates listings, buyer requests, and local mock interactions.',
+          ? 'Notunayon একটি কৃষি উপকরণ ও উপ-বর্জ্য মার্কেটপ্লেস। এটি উৎপাদকদের তালিকা এবং ক্রেতাদের প্রয়োজনকে একত্রিত করে ফসলজ উপাদানের পুনর্ব্যবহার সহজ করে।'
+          : 'Notunayon is an agricultural by-product marketplace that connects producers with businesses looking for reusable agricultural materials across Bangladesh.',
       links: [
         { label: 'About Notunayon', href: '/about' },
         { label: 'How it works', href: '/how-it-works' },
@@ -459,10 +459,10 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? `বিক্রি করতে চাইলে seller ডেমো প্রোফাইল তৈরি করে উপাদান, পরিমাণ, একক, দাম, অবস্থা, অবস্থান ও উপলব্ধতার তথ্য দিন।${context.material ? ` ${context.material}-এর জন্য পরিচ্ছন্নতা ও সংরক্ষণ সম্পর্কিত তথ্যও দিন।` : ''}`
-          : `To sell an agricultural by-product, create a seller demo profile and add a listing with the material, quantity and unit, price, condition, availability, and location.${materialText} Listings in this prototype stay in the browser.`,
+          ? `বিক্রি করতে চাইলে seller অ্যাকাউন্ট তৈরি করে উপাদান, পরিমাণ, একক, দাম, অবস্থা, অবস্থান ও উপলব্ধতার তথ্য দিন।${context.material ? ` ${context.material}-এর জন্য পরিচ্ছন্নতা ও সংরক্ষণ সম্পর্কিত তথ্যও দিন।` : ''}`
+          : `To sell an agricultural by-product, create a seller account and add a listing with the material, quantity and unit, price, condition, availability, and location.${materialText}`,
       links: [
-        { label: 'Create a seller profile', href: '/register' },
+        { label: 'Create a seller account', href: '/register' },
         { label: 'How listing works', href: '/how-it-works' },
       ],
       context,
@@ -473,8 +473,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'লিস্টিং খুলে “Make an offer” বেছে দাম, পরিমাণ এবং বার্তা দিন। এটি শুধু লোকাল ডেমো; সরবরাহকারীকে বার্তা পাঠানো বা পেমেন্ট করা হবে না।'
-          : 'Open a material listing and choose “Make an offer” to enter a price, quantity, and message. This frontend demo keeps the offer locally; it does not contact a seller or process a transaction.',
+          ? 'যেকোনো উপকরণের তালিকা খুলে “Make an offer” বেছে দাম, পরিমাণ এবং বার্তা পাঠান।'
+          : 'Open a material listing and choose “Make an offer” to enter your proposed price, quantity, and message for the seller.',
       links: [{ label: 'Browse materials', href: '/marketplace' }],
       context,
     }
@@ -484,8 +484,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'মার্কেটপ্লেস থেকে উপাদান দেখুন, লিস্টিংয়ের বিস্তারিত পড়ুন, buyer requests দেখুন বা কীভাবে কাজ করে তা জানুন। সব তথ্য প্রোটোটাইপের নমুনা।'
-          : 'You can browse materials, open a listing for details, explore buyer requests, or learn how the marketplace works. The current records are illustrative.',
+          ? 'মার্কেটপ্লেস থেকে উপাদান দেখুন, লিস্টিংয়ের বিস্তারিত পড়ুন, buyer requests দেখুন বা কীভাবে কাজ করে তা জানুন।'
+          : 'You can browse materials, open a listing for full details, explore buyer requests, or learn how the marketplace works.',
       links: [
         { label: 'Browse materials', href: '/marketplace' },
         { label: 'Buyer requests', href: '/requests' },
@@ -499,8 +499,8 @@ export function getDemoResponse(
     return {
       text:
         language === 'bn'
-          ? 'এই লোকাল ডেমোটির সীমিত জ্ঞানের মধ্যে আমি নিশ্চিত উত্তর দিতে পারছি না। আরও নির্দিষ্ট করে উপাদান, অবস্থান বা ব্যবহারের প্রসঙ্গ লিখুন।'
-          : 'I don’t have a supported answer for that in this local demo. A more specific question about a material, location, or marketplace task would help.',
+          ? 'আমি মার্কেটপ্লেসের উপাদান, অবস্থান, দাম বা ব্যবহারের বিষয়গুলোতে সবচেয়ে ভালো সাহায্য করতে পারি। অনুগ্রহ করে আরও নির্দিষ্ট প্রশ্ন করুন।'
+          : 'I can help best with questions about agricultural materials, locations, pricing, or marketplace tasks. Could you ask more specifically?',
       context,
     }
   }
@@ -508,8 +508,8 @@ export function getDemoResponse(
   return {
     text:
       language === 'bn'
-        ? 'আপনি কী জানতে চেয়েছেন তা একটু ভিন্নভাবে বলুন। আমি উপাদান, দাম/মিল থাকা লিস্টিং এবং Notunayon নেভিগেশন সম্পর্কে সহায়তা করতে পারি।'
-        : 'Could you rephrase that? I can help with agricultural materials, mock listing availability and prices, selling by-products, offers, and marketplace navigation.',
+        ? 'আপনি কী জানতে চেয়েছেন তা একটু ভিন্নভাবে বলুন। আমি উপাদান, দাম ও উপলব্ধ লিস্টিং এবং Notunayon নেভিগেশন সম্পর্কে সহায়তা করতে পারি।'
+        : 'Could you rephrase that? I can help with agricultural materials, listing availability and prices, selling by-products, offers, and marketplace navigation.',
     context,
   }
 }

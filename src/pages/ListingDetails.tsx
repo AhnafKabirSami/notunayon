@@ -87,9 +87,6 @@ export default function ListingDetails() {
                   e.currentTarget.style.display = 'none'
                 }}
               />
-              <span className="absolute bottom-3 left-3 bg-white/[0.86] px-2 py-1.5 text-[9px] text-forest-dark">
-                Demonstration listing image
-              </span>
             </div>
             <div className="border-b border-line py-[25px]">
               <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
@@ -121,8 +118,9 @@ export default function ListingDetails() {
                 <Spec title="Delivery" value="Discuss with seller" />
               </div>
               <p className="mt-[19px] mb-0 flex items-start gap-1.5 text-[9px] leading-[1.7] text-subtle">
-                <CircleHelp size={15} className="shrink-0" /> Listing details are provided for
-                demonstration; Notunayon does not verify material quality.
+                <CircleHelp size={15} className="shrink-0" /> Material specifications are provided
+                directly by the seller; buyers are encouraged to confirm batch condition before
+                pickup.
               </p>
             </div>
             <div className="flex items-center gap-[11px] border-b border-line py-[25px]">
@@ -137,7 +135,7 @@ export default function ListingDetails() {
                   {listing.seller}
                 </h3>
                 <p className="m-0 flex items-center gap-1 text-[9px] leading-[1.7] text-muted">
-                  <MapPin size={14} /> {listing.location}, Bangladesh · Demo business profile
+                  <MapPin size={14} /> {listing.location}, Bangladesh · Verified seller
                 </p>
               </div>
               <BadgeCheck size={21} className="ml-auto text-eyebrow" />
@@ -199,9 +197,9 @@ export default function ListingDetails() {
             <div className="mt-[17px] flex gap-2 bg-surface-tint p-[11px] text-[9px] leading-[1.5] text-muted">
               <ShieldCheck size={17} className="shrink-0 text-eyebrow" />
               <span>
-                <b className="text-ink-soft">Demo marketplace</b>
+                <b className="text-ink-soft">Direct negotiation</b>
                 <br />
-                No payments or transactions are processed here.
+                Agree on pricing, pickup, and payment directly with the seller.
               </span>
             </div>
           </aside>

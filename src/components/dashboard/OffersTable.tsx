@@ -37,7 +37,7 @@ export default function OffersTable({
       <EmptyState
         icon={<HandCoins />}
         title="No offers yet"
-        text="Offers submitted through the demo marketplace will appear here."
+        text="Offers submitted through the marketplace will appear here."
       />
     )
   }
@@ -135,7 +135,7 @@ export default function OffersTable({
                                 item.id === offer.id ? { ...item, status: 'Accepted' } : item,
                               ),
                             )
-                            setNote('Offer accepted in this local demo.')
+                            setNote('Offer accepted.')
                           }}
                         >
                           <Check size={14} />
@@ -149,7 +149,7 @@ export default function OffersTable({
                                 item.id === offer.id ? { ...item, status: 'Rejected' } : item,
                               ),
                             )
-                            setNote('Offer rejected in this local demo.')
+                            setNote('Offer rejected.')
                           }}
                         >
                           <X size={14} />
@@ -163,7 +163,7 @@ export default function OffersTable({
                                 item.id === offer.id ? { ...item, status: 'Countered' } : item,
                               ),
                             )
-                            setNote('A counteroffer was recorded in this local demo.')
+                            setNote('A counteroffer was recorded.')
                           }}
                         >
                           <RotateCcw size={14} />

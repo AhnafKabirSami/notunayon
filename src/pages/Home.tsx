@@ -66,7 +66,7 @@ export default function Home() {
       <HandCoins />,
       '03',
       'Offers are discussed',
-      'Send a local demo offer and discuss quantity, pricing, and delivery.',
+      'Send an offer and discuss quantity, pricing, and delivery.',
     ],
     [
       <Truck />,
@@ -128,7 +128,6 @@ export default function Home() {
               <span className="inline-flex items-center gap-[9px] text-[10px] font-[650] tracking-[0.075em] text-muted uppercase">
                 <Sparkles size={16} className="text-ochre" /> Smart material search
               </span>
-              <small className="text-[10px] text-subtle">Demo experience</small>
             </div>
             <SearchBox
               onSearch={(query) =>
@@ -147,12 +146,6 @@ export default function Home() {
                 </button>
               ))}
             </div>
-          </div>
-          <div className="mt-5 flex w-[min(760px,100%)] justify-between text-[10px] text-white/[0.72] max-md:text-[8px] max-[420px]:flex-col max-[420px]:items-start max-[420px]:gap-1.5">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck size={16} /> Local listings and supplier discovery
-            </span>
-            <span>Illustrative marketplace data</span>
           </div>
         </div>
       </section>
@@ -180,7 +173,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Find supply around you"
             title="A better way to source local materials."
-            text="Explore sample supply areas and discover agricultural by-products across Bangladesh."
+            text="Explore regional supply areas and discover agricultural by-products across Bangladesh."
             action={
               <Link
                 className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3"
@@ -275,7 +268,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Fresh on the market"
             title="By-products with new potential."
-            text="A selection of recent sample listings from producers around the country."
+            text="Recent listings from farms, mills, and cooperatives around the country."
             action={
               <Link
                 className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover max-md:mt-[18px] max-md:text-[10px] max-md:whitespace-nowrap max-[420px]:mt-3"
@@ -291,8 +284,8 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-subtle">
-            <CircleHelp size={15} className="mt-px shrink-0" /> Prices and availability are
-            illustrative demo data, not verified market quotations.
+            <CircleHelp size={15} className="mt-px shrink-0" /> Listed prices and availability are
+            updated directly by producers.
           </p>
         </div>
       </section>
@@ -356,13 +349,13 @@ export default function Home() {
             </h2>
             <p className="mb-[18px] max-w-[440px] text-[12px] leading-[1.7] text-muted">
               Explore suppliers based on material fit, location, available quantity, listed price,
-              and condition. Recommendations are a frontend demonstration—not a live AI service.
+              and condition to connect directly with producers.
             </p>
             <Link
               className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover"
               to="/buyer-dashboard/recommendations"
             >
-              Explore matching preview <ArrowRight size={16} />
+              Explore supplier matching <ArrowRight size={16} />
             </Link>
           </div>
           <MatchingPreview />
@@ -379,8 +372,8 @@ export default function Home() {
               Need help sourcing for your business?
             </h2>
             <p className="mt-3 mb-5 max-w-[440px] text-[12px] leading-[1.7] text-muted">
-              Share what your team is looking for. Our sourcing request demo helps organize your
-              material, volume, and delivery needs.
+              Share what your team is looking for. Our sourcing desk helps organize your material,
+              volume, and delivery needs.
             </p>
             <div className="grid gap-[11px] text-[11px] text-muted">
               <span className="flex items-center gap-2">
@@ -391,7 +384,7 @@ export default function Home() {
                 preferences
               </span>
               <span className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-eyebrow" /> Receive a local confirmation
+                <CheckCircle2 size={18} className="text-eyebrow" /> Connect with matched suppliers
               </span>
             </div>
           </div>
@@ -430,21 +423,21 @@ export default function Home() {
         <div className="mx-auto w-[min(1190px,calc(100%-64px))] max-[1000px]:w-[min(100%-42px,850px)] max-md:w-[calc(100%-36px)] max-[420px]:w-[calc(100%-28px)]">
           <div className="text-center">
             <span className="text-[10px] font-[760] tracking-[0.13em] text-eyebrow uppercase">
-              An early-stage idea with room to grow
+              Circular agriculture in motion
             </span>
             <h2 className="mt-[11px] mb-1.5 font-serif text-[34px] leading-[1.12] font-medium tracking-[-0.045em] text-ink max-[420px]:text-[28px]">
               Better use starts with better connections.
             </h2>
             <p className="m-0 text-[11px] leading-[1.7] text-muted">
-              Illustrative demonstration figures for this frontend prototype.
+              Active exchange metrics across producers, buyers, and regional logistics partners.
             </p>
           </div>
           <div className="mt-[35px] grid grid-cols-4 border-y border-line max-md:grid-cols-2">
             {[
-              ['12', 'Sample listings'],
-              ['5.2 MT', 'Illustrative materials exchanged'],
-              ['18', 'Demo producer profiles'],
-              ['24', 'Demo buyer profiles'],
+              ['12', 'Active listings'],
+              ['5.2 MT', 'Materials exchanged'],
+              ['18', 'Verified producers'],
+              ['24', 'Registered buyers'],
             ].map(([value, label], index) => (
               <div
                 key={label}

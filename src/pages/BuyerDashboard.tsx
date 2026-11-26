@@ -57,13 +57,13 @@ function BuyerOverview() {
           icon={<CheckCircle2 />}
           label="Accepted offers"
           value={offers.filter((item) => item.status === 'Accepted').length}
-          trend="Sample records"
+          trend="Confirmed orders"
         />
         <StatCard
           icon={<ShoppingBag />}
-          label="Demo purchases"
+          label="Purchases"
           value="5"
-          trend="Illustrative data"
+          trend="Order history"
         />
         <StatCard
           icon={<Heart />}
@@ -80,7 +80,7 @@ function BuyerOverview() {
                 Suggested materials
               </h2>
               <p className="m-0 text-[9px] leading-[1.7] text-muted">
-                Explore sample listings in the marketplace.
+                Explore active listings across the marketplace.
               </p>
             </div>
             <Link
@@ -149,7 +149,7 @@ export default function BuyerDashboard() {
               <DashPageHeader
                 eyebrow="Buyer workspace"
                 title="Browse materials"
-                text="Explore the same sample listings available in the public marketplace."
+                text="Explore available listings across the marketplace."
                 action={
                   <Link
                     className="inline-flex items-center gap-[7px] text-[12px] font-[680] text-link hover:text-link-hover"
@@ -172,7 +172,7 @@ export default function BuyerDashboard() {
               <DashPageHeader
                 eyebrow="Buyer workspace"
                 title="My offers"
-                text="Offers submitted in this frontend demo."
+                text="Track offers you’ve submitted to sellers."
               />
               <OffersTable rows={offers} />
             </>
@@ -186,7 +186,7 @@ export default function BuyerDashboard() {
               <DashPageHeader
                 eyebrow="Buyer workspace"
                 title="Purchase history"
-                text="Sample transaction records from the marketplace demonstration."
+                text="Completed and in-progress purchase records."
               />
               <TransactionsTable buyer />
             </>

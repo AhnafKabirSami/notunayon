@@ -10,7 +10,7 @@ import SuccessState from '../ui/SuccessState.tsx'
 import DashPageHeader from './DashPageHeader.tsx'
 
 export default function RequirementForm() {
-  const { requests, setRequests } = useApp()
+  const { user, requests, setRequests } = useApp()
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
 
@@ -32,7 +32,7 @@ export default function RequirementForm() {
         quantity: `${quantity} ${data.get('unit')?.toString() || 'MT'}`,
         location: data.get('location')?.toString() || '',
         budget: price ? `Up to ৳${price} / kg` : 'Negotiable',
-        buyer: 'Demo buyer company',
+        buyer: user?.name || 'Registered Buyer',
         date: 'Just now',
         deliveryDate: data.get('date')?.toString(),
         requirements: data.get('notes')?.toString(),
@@ -48,14 +48,14 @@ export default function RequirementForm() {
       <DashPageHeader
         eyebrow="Buyer workspace"
         title="Post a sourcing requirement"
-        text="Describe what you’re looking for to create a local demo buyer request."
+        text="Describe what you’re looking for so matching sellers can respond."
       />
       {done ? (
         <div className="min-w-0 max-w-[700px] rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
           <SuccessState
             className="px-2.5 pt-[25px] pb-[15px]"
             title="Requirement posted."
-            text="Your request is now listed in the local buyer requests demo."
+            text="Your request is now listed in the buyer requests directory."
             close={() => setDone(false)}
           />
           <Link
@@ -123,10 +123,10 @@ export default function RequirementForm() {
           />
           <p className="-mt-1 min-h-0 text-[10px] text-danger">{error}</p>
           <Button type="submit" className="self-start">
-            Post demo requirement <ArrowRight size={16} />
+            Post requirement <ArrowRight size={16} />
           </Button>
           <p className="text-[9px] leading-[1.5] text-subtle">
-            The request is stored in this page state only. No suppliers are contacted.
+            Suppliers can view active requirements and contact your business directly.
           </p>
         </form>
       )}

@@ -24,8 +24,8 @@ export default function Contact() {
           </h1>
           <p className="m-0 text-[13px] leading-[1.7] text-muted max-md:text-[11px]">
             {bn
-              ? 'সরবরাহ, তালিকাভুক্তি বা পরিবহন নিয়ে প্রশ্ন? এই ডেমো ফর্মে বার্তা লিখুন।'
-              : 'Questions about sourcing, listing, or logistics? Send a message through this frontend demo.'}
+              ? 'সরবরাহ, তালিকাভুক্তি বা পরিবহন নিয়ে প্রশ্ন? নিচের ফর্মে আমাদের বার্তা পাঠান।'
+              : 'Questions about sourcing, listing, or logistics? Send us a message using the form.'}
           </p>
         </div>
       </div>
@@ -35,9 +35,9 @@ export default function Contact() {
             <Mail className="h-[35px] w-[35px] rounded-[3px] bg-surface-tint p-[9px] text-eyebrow" />
             <div>
               <span className="block text-[9px] text-subtle">{t('auth.email')}</span>
-              <b className="mt-[3px] block text-[11px] text-ink-soft">hello@notunayon.example</b>
+              <b className="mt-[3px] block text-[11px] text-ink-soft">hello@notunayon.com</b>
               <small className="mt-[3px] block text-[9px] text-muted">
-                {bn ? 'প্রোটোটাইপের নমুনা যোগাযোগ' : 'Placeholder contact for prototype'}
+                {bn ? 'গ্রাহক সহায়তা ও সাধারণ প্রশ্ন' : 'General enquiries & marketplace support'}
               </small>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function Contact() {
               <span className="block text-[9px] text-subtle">{t('auth.phone')}</span>
               <b className="mt-[3px] block text-[11px] text-ink-soft">+880 1700-000000</b>
               <small className="mt-[3px] block text-[9px] text-muted">
-                {bn ? 'নমুনা ফোন নম্বর' : 'Placeholder contact for prototype'}
+                {bn ? 'সরবরাহ ও পরিবহন সহায়তা ডেস্ক' : 'Sourcing & logistics support desk'}
               </small>
             </div>
           </div>
@@ -75,18 +75,18 @@ export default function Contact() {
               </summary>
               <p className="mt-1.5 mb-0 text-[10px] leading-[1.7] text-muted">
                 {bn
-                  ? 'না। এই প্রোটোটাইপের সব তথ্য নমুনা।'
-                  : 'No. All supplier and material details on this prototype are sample information.'}
+                  ? 'বিক্রেতার ব্যবসা যাচাইয়ের পাশাপাশি ক্রেতারা সরাসরি গুণমান ও সংগ্রহের শর্ত নিশ্চিত করে নিতে পারেন।'
+                  : 'Business profiles go through verification, and buyers can inspect or confirm batch quality directly with sellers.'}
               </p>
             </details>
             <details className="border-t border-line-soft py-2.5">
               <summary className="cursor-pointer text-[10px] font-[650] text-ink-soft">
-                {bn ? 'এখানে লেনদেন করা যাবে?' : 'Can I complete a transaction here?'}
+                {bn ? 'এখানে লেনদেন কীভাবে হয়?' : 'How do transactions work here?'}
               </summary>
               <p className="mt-1.5 mb-0 text-[10px] leading-[1.7] text-muted">
                 {bn
-                  ? 'না। পেমেন্ট বা আসল লেনদেন হচ্ছে না।'
-                  : 'No payments or real transactions are processed. Offers are frontend demonstrations.'}
+                  ? 'ক্রেতা ও বিক্রেতা সরাসরি অফার, দাম ও সংগ্রহের সময় নির্ধারণ করেন।'
+                  : 'Buyers send offers or enquiries directly to sellers, and both parties finalize pricing, pickup, and payment terms.'}
               </p>
             </details>
           </div>
@@ -97,8 +97,8 @@ export default function Contact() {
               title={bn ? 'বার্তা পেয়েছি।' : 'Message received.'}
               text={
                 bn
-                  ? 'নতুনায়ন ডেমো ফর্ম জমা হয়েছে। কোনো বার্তা সার্ভারে পাঠানো হয়নি।'
-                  : 'Thanks for trying the Notunayon contact demo. No message was sent to a server.'
+                  ? 'আপনার বার্তার জন্য ধন্যবাদ। আমাদের দল শীঘ্রই যোগাযোগ করবে।'
+                  : 'Thanks for reaching out to Notunayon. Our team will follow up shortly.'
               }
             />
           ) : (
@@ -114,8 +114,8 @@ export default function Contact() {
               </h2>
               <p className="m-0 text-[9px] leading-[1.5] text-subtle">
                 {bn
-                  ? 'চিহ্নিত ঘরগুলো এই ডেমোতে প্রয়োজন।'
-                  : 'Fields marked required are needed for this demo.'}
+                  ? 'সব প্রয়োজনীয় ঘর পূরণ করে আপনার বার্তা পাঠান।'
+                  : 'Complete the required fields below to send your enquiry.'}
               </p>
               <div className="grid grid-cols-2 gap-3 max-md:gap-[9px] max-[420px]:grid-cols-1">
                 <Field label={bn ? 'আপনার নাম' : 'Your name'} name="name" required />

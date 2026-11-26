@@ -32,7 +32,7 @@ export default function MessageDemo() {
       <DashPageHeader
         eyebrow="Workspace messages"
         title="Conversations"
-        text="A small interactive messaging demo. Messages stay in this page state only."
+        text="Message buyers and sellers directly about listings."
       />
       <div className="grid h-[min(570px,calc(100vh-230px))] min-h-[390px] grid-cols-[245px_1fr] overflow-hidden border border-line bg-surface max-md:grid-cols-1">
         <aside className="border-r border-line max-md:flex max-md:overflow-x-auto max-md:border-r-0 max-md:border-b">
@@ -75,16 +75,16 @@ export default function MessageDemo() {
             <div>
               <b className="block text-[9px] text-ink-soft">{contacts[active][0]}</b>
               <small className="mt-[3px] block text-[8px] text-muted">
-                Regarding {marketplaceLabel(t, contacts[active][1], { fixed: true })} · demo contact
+                Regarding {marketplaceLabel(t, contacts[active][1], { fixed: true })}
               </small>
             </div>
             <span className="ml-auto inline-flex items-center gap-[5px] text-[8px] text-muted">
-              <i className="inline-block h-1.5 w-1.5 rounded-full bg-sage-dot" /> Demo thread
+              <i className="inline-block h-1.5 w-1.5 rounded-full bg-sage-dot" /> Active
             </span>
           </div>
           <div className="flex flex-1 flex-col gap-[11px] overflow-y-auto bg-canvas p-[17px]">
             <span className="self-center bg-surface-tint px-[7px] py-[5px] text-[8px] text-muted">
-              Today · demonstration thread
+              Today · Active thread
             </span>
             {messages.map((message, index) => (
               <div
@@ -109,8 +109,8 @@ export default function MessageDemo() {
             <input
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="Write a demo message…"
-              aria-label="Write a demo message"
+              placeholder="Write a message…"
+              aria-label="Write a message"
               className="h-[38px] min-w-0 flex-1 border border-input-border bg-input px-2.5 text-[9px] text-ink outline-none placeholder:text-placeholder"
             />
             <Button type="submit" className="min-h-[37px] max-md:px-2.5">

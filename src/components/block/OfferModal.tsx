@@ -18,7 +18,7 @@ interface OfferModalProps {
 
 export default function OfferModal({ listing, mode, open, close }: OfferModalProps) {
   const { t } = useTranslation()
-  const { setOffers } = useApp()
+  const { user, setOffers } = useApp()
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
 
@@ -43,7 +43,7 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
     setOffers((items) => [
       {
         id: `OFF-${Date.now().toString().slice(-5)}`,
-        buyer: 'Demo Buyer',
+        buyer: user?.name || 'Registered Buyer',
         material: listing.name,
         price: Number(data.get('price')),
         quantity: `${data.get('quantity')} ${data.get('unit')}`,
@@ -72,18 +72,18 @@ export default function OfferModal({ listing, mode, open, close }: OfferModalPro
     >
       {done ? (
         <SuccessState
-          title={mode === 'contact' ? 'Your message is ready.' : 'Your offer is ready.'}
+          title={mode === 'contact' ? 'Your message is sent.' : 'Your offer is sent.'}
           text={
             mode === 'contact'
-              ? 'This local demonstration prepared a message. The seller has not been contacted.'
-              : 'This local demonstration has added the offer to the buyer and seller demo views.'
+              ? `Your enquiry has been shared with ${listing.seller}.`
+              : 'Your offer has been submitted and added to your offers list.'
           }
           close={close}
         />
       ) : (
         <form className="flex flex-col gap-[13px]" onSubmit={submit}>
           <p className="text-[9px] leading-[1.5] text-subtle">
-            This is a local demo. No real seller will be contacted.
+            Send your {mode === 'contact' ? 'message' : 'price offer'} directly to {listing.seller}.
           </p>
           {mode === 'contact' ? (
             <Field

@@ -33,7 +33,7 @@ export default function Requests() {
             What are businesses looking for?
           </h1>
           <p className="m-0 text-[13px] leading-[1.7] text-muted max-md:text-[11px]">
-            Review demonstration sourcing requirements and find materials buyers need.
+            Review active sourcing requirements and find materials buyers need.
           </p>
         </div>
         <Link
@@ -96,8 +96,8 @@ export default function Requests() {
           />
         )}
         <p className="mt-5 mb-0 flex items-start gap-[7px] text-[10px] leading-[1.7] text-subtle">
-          <CircleHelp size={15} className="mt-px shrink-0" /> Buyer profiles and sourcing details
-          are illustrative demo records.
+          <CircleHelp size={15} className="mt-px shrink-0" /> Contact buyers directly via their
+          active requirements or post a matching supply listing.
         </p>
       </div>
     </main>

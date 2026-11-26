@@ -221,8 +221,8 @@ html.dark {
   --color-chat-logo-fg: #264b32;
   --color-chat-online: #8eb889;
 
-  --font-sans: Inter, "Segoe UI", Arial, sans-serif;
-  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Anek Bangla", sans-serif;
+  --font-serif: Georgia, "Times New Roman", "Anek Bangla", serif;
 }
 
 @keyframes notu-message-in {
@@ -257,21 +257,20 @@ html.dark {
     -webkit-font-smoothing: antialiased;
   }
 
+  body,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: var(--font-sans);
+  }
+
   body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
     color: var(--color-ink);
     background-color: var(--color-canvas);
-    font-family: var(--font-sans);
-  }
-
-  html[lang="bn"] body,
-  html[lang="bn"] button,
-  html[lang="bn"] input,
-  html[lang="bn"] textarea,
-  html[lang="bn"] select {
-    font-family: "Noto Sans Bengali", "Segoe UI", Arial, sans-serif;
   }
 
   button,
@@ -286,5 +285,15 @@ html.dark {
   ::selection {
     color: #ffffff;
     background-color: #376c50;
+  }
+
+  html.dark .leaflet-tile-pane {
+    filter: brightness(0.82) contrast(1.06) saturate(0.88);
+  }
+
+  html.dark .leaflet-popup-content-wrapper,
+  html.dark .leaflet-popup-tip {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
   }
 }

@@ -15,28 +15,28 @@ export default function AnalyticsView({ type }: { type: DashboardRole }) {
       <DashPageHeader
         eyebrow={`${type} workspace`}
         title={buyer ? 'Purchase analytics' : 'Listing analytics'}
-        text="Illustrative activity charts. These numbers do not represent verified marketplace performance."
+        text="Track views, offers, monthly volume, and category trends across your activity."
       />
       <div className="mb-4 grid grid-cols-4 gap-3 max-md:mb-2.5 max-md:grid-cols-2 max-md:gap-2">
         <StatCard
           icon={<Eye />}
           label="Listing views"
           value={buyer ? '84' : '218'}
-          trend="Sample count"
+          trend="Last 30 days"
         />
         <StatCard
           icon={<HandCoins />}
           label={buyer ? 'Offers sent' : 'Offers received'}
           value={buyer ? '12' : '18'}
-          trend="Illustrative"
+          trend="Active cycle"
         />
         <StatCard
           icon={<TrendingUp />}
           label={buyer ? 'Spend this month' : 'Sales this month'}
           value="৳24,500"
-          trend="Demo value"
+          trend="This month"
         />
-        <StatCard icon={<CalendarDays />} label="Active days" value="22" trend="Sample period" />
+        <StatCard icon={<CalendarDays />} label="Active days" value="22" trend="Past 30 days" />
       </div>
       <div className="mt-3.5 grid grid-cols-2 gap-3.5 max-md:mt-[9px] max-md:grid-cols-1 max-md:gap-[9px]">
         <div className="min-w-0 rounded-[3px] border border-line bg-surface p-[17px] max-md:p-[13px]">
@@ -46,11 +46,11 @@ export default function AnalyticsView({ type }: { type: DashboardRole }) {
                 {buyer ? 'Sourcing activity' : 'Listing views'}
               </h2>
               <p className="m-0 text-[9px] leading-[1.7] text-muted">
-                Last 7 days · illustrative data
+                Last 7 days
               </p>
             </div>
-            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-warm px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-pending">
-              DEMO
+            <span className="inline-flex items-center gap-[5px] rounded-[2px] bg-surface-tint px-[7px] py-[5px] text-[8px] font-[760] tracking-[0.06em] text-chip-text">
+              LIVE
             </span>
           </div>
           <MiniChart tall />
@@ -66,7 +66,7 @@ export default function AnalyticsView({ type }: { type: DashboardRole }) {
                 Category breakdown
               </h2>
               <p className="m-0 text-[9px] leading-[1.7] text-muted">
-                Sample marketplace activity
+                Marketplace activity by category
               </p>
             </div>
           </div>

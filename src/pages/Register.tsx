@@ -26,7 +26,7 @@ export default function Register() {
     }
     const data = new FormData(form)
     const account: DemoUser = {
-      name: data.get('name')?.toString() || 'Demo User',
+      name: data.get('name')?.toString() || 'Marketplace User',
       type,
     }
     localStorage.setItem('notunayon-demo-user', JSON.stringify(account))
